@@ -2,9 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
-import 'package:lineai/src/core/theme/app_theme.dart';
 import 'package:lineai/src/shared/locator.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 class LineAI extends StatelessWidget {
   final AppRouter _appRouter;
@@ -15,15 +15,13 @@ class LineAI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'LienAI',
+    return ShadApp.router(
+      title: 'LineAI',
       routerConfig: _appRouter.config(
         navigatorObservers: () => [
           AutoRouteObserver(),
         ],
       ),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
       debugShowCheckedModeBanner: false,
       localizationsDelegates: const [
         I18n.delegate,
