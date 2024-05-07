@@ -22,6 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "chat_inputPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Message..."),
+        "chat_tips_subtitle":
+            MessageLookupByLibrary.simpleMessage("for weight loss"),
+        "chat_tips_title":
+            MessageLookupByLibrary.simpleMessage("Create a workout plan"),
         "login_btnLabel": MessageLookupByLibrary.simpleMessage("Login"),
         "login_emailHint":
             MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),

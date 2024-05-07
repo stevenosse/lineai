@@ -55,7 +55,6 @@ class Input extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color fillColor = Colors.transparent;
     final Color borderColor = context.colorScheme.outline;
 
     return Column(
@@ -77,14 +76,13 @@ class Input extends StatelessWidget {
             cursorColor: cursorColor,
             readOnly: readOnly,
             focusNode: focusNode,
-            style: style ?? Theme.of(context).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.normal),
+            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
             minLines: isPassword ? 1 : minLines,
             maxLines: isPassword ? 1 : maxLines,
             keyboardType: keyboardType,
             textInputAction: textInputAction,
             onFieldSubmitted: onSubmitted,
             decoration: InputDecoration(
-              contentPadding: const EdgeInsets.all(Dimens.halfSpacing),
               hintText: hintText,
               hintStyle: hintStyle,
               filled: filled,

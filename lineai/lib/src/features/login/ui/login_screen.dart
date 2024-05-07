@@ -1,11 +1,9 @@
-import 'dart:ui';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lineai/gen/assets.gen.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
+import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/shared/components/button.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
@@ -72,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const Gap.vertical(height: Dimens.spacing),
             Button.primary(
               title: I18n.of(context).login_btnLabel,
-              onPressed: () {},
+              onPressed: () => context.router.push(const ChatHomeRoute()),
             ),
             const Gap.vertical(height: Dimens.doubleSpacing),
             LabeledDivider(
@@ -86,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: Dimens.iconSize,
               ),
               title: I18n.of(context).login_googleBtnLabel,
-              onPressed: () {},
+              onPressed: () => context.router.push(const ChatHomeRoute()),
             ),
             const Gap.vertical(height: Dimens.spacing),
             Button.outline(
@@ -97,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: Dimens.iconSize,
               ),
               title: I18n.of(context).login_googleBtnLabel,
-              onPressed: () {},
+              onPressed: () => context.router.push(const ChatHomeRoute()),
             ),
             const Spacer(),
             Center(

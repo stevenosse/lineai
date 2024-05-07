@@ -160,6 +160,36 @@ class I18n {
     );
   }
 
+  /// `Create a workout plan`
+  String get chat_tips_title {
+    return Intl.message(
+      'Create a workout plan',
+      name: 'chat_tips_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `for weight loss`
+  String get chat_tips_subtitle {
+    return Intl.message(
+      'for weight loss',
+      name: 'chat_tips_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message...`
+  String get chat_inputPlaceholder {
+    return Intl.message(
+      'Message...',
+      name: 'chat_inputPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OR`
   String get or {
     return Intl.message(
