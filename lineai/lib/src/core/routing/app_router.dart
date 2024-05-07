@@ -5,6 +5,7 @@ import 'package:lineai/src/features/chat/ui/chat_settings_screen.dart';
 import 'package:lineai/src/features/drawer_navigation/ui/drawer_wrapper.dart';
 import 'package:lineai/src/features/login/ui/login_screen.dart';
 import 'package:lineai/src/features/profile/ui/profile_screen.dart';
+import 'package:lineai/src/features/register/ui/register_screen.dart';
 import 'package:lineai/src/features/settings/ui/settings_screen.dart';
 import 'package:lineai/src/features/welcome/welcome_screen.dart';
 import 'package:lineai/src/shared/features/auth/ui/auth_wrapper.dart';
@@ -17,6 +18,7 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> routes = [
     AutoRoute(page: WelcomeRoute.page, initial: true),
     AutoRoute(page: LoginRoute.page),
+    AutoRoute(page: RegisterRoute.page),
     AutoRoute(
       page: AuthRoute.page,
       guards: [AuthGuard()],

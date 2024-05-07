@@ -72,8 +72,10 @@ class Button extends StatelessWidget {
     final label = Text(
       title,
       style: context.textTheme.bodyMedium?.copyWith(
-        color: type == ButtonType.primary ? context.colorScheme.background : context.colorScheme.onBackground,
-        fontWeight: FontWeight.w500,
+        color: (type == ButtonType.primary || type == ButtonType.neutral)
+            ? context.colorScheme.background
+            : context.colorScheme.onBackground,
+        fontWeight: type == ButtonType.primary ? FontWeight.w600 : FontWeight.w500,
       ),
     );
     return SizedBox(

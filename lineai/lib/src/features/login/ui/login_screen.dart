@@ -68,130 +68,106 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(Dimens.spacing),
-          child: Column(
+          child: ListView(
             children: [
-              Expanded(
-                child: ListView(
-                  children: [
-                    const Gap.vertical(height: Dimens.spacing),
-                    Row(
-                      children: [
-                        IconButton.filled(
-                          onPressed: () => context.router.maybePop(),
-                          icon: Icon(IconsaxPlusBroken.arrow_left_1, color: context.colorScheme.onSurface),
-                          style: IconButton.styleFrom(
-                            foregroundColor: context.colorScheme.onSurface,
-                            backgroundColor: context.colorScheme.surface,
-                          ),
-                        ),
-                      ],
+              const Gap.vertical(height: Dimens.spacing),
+              Row(
+                children: [
+                  IconButton.filled(
+                    onPressed: () => context.router.maybePop(),
+                    icon: Icon(IconsaxPlusBroken.arrow_left_1, color: context.colorScheme.onSurface),
+                    style: IconButton.styleFrom(
+                      foregroundColor: context.colorScheme.onSurface,
+                      backgroundColor: context.colorScheme.surface,
                     ),
-                    const Gap.vertical(height: Dimens.spacing),
-                    Text(
-                      I18n.of(context).login_title,
-                      style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                    ),
-                    const Gap.vertical(height: Dimens.minSpacing),
-                    Text(I18n.of(context).login_subtitle, style: context.textTheme.bodyMedium),
-                    const Gap.vertical(height: Dimens.doubleSpacing),
-                    AutofillGroup(
-                      child: Form(
-                        key: _formKey,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Input(
-                              autofillHints: const [AutofillHints.email],
-                              controller: _emailController,
-                              labelText: I18n.of(context).login_emailLabel,
-                              hintText: I18n.of(context).login_emailHint,
-                              onChanged: context.read<LoginCubit>().onEmailChanged,
-                              validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
-                                  .email(I18n.of(context).formInput_emailValidation)
-                                  .required(I18n.of(context).formInput_required)
-                                  .build(),
-                            ),
-                            const Gap.vertical(height: Dimens.spacing),
-                            Input(
-                              autofillHints: const [AutofillHints.password],
-                              controller: _passwordController,
-                              isPassword: true,
-                              labelText: I18n.of(context).login_passwordLabel,
-                              hintText: I18n.of(context).login_passwordHint,
-                              onChanged: context.read<LoginCubit>().onPasswordChanged,
-                              validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
-                                  .minLength(8, I18n.of(context).formInput_passwordValidation)
-                                  .required(I18n.of(context).formInput_required)
-                                  .build(),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const Gap.vertical(height: Dimens.spacing),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(I18n.of(context).login_forgotPasswordLabel),
-                      ),
-                    ),
-                    const Gap.vertical(height: Dimens.spacing),
-                    Button.primary(
-                      title: I18n.of(context).login_btnLabel,
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          FocusManager.instance.primaryFocus?.unfocus();
-                          context.read<LoginCubit>().login();
-                        }
-                      },
-                    ),
-                    const Gap.vertical(height: Dimens.doubleSpacing),
-                    LabeledDivider(
-                      label: I18n.of(context).or,
-                    ),
-                    const Gap.vertical(height: Dimens.doubleSpacing),
-                    Button.outline(
-                      icon: SvgPicture.asset(
-                        Assets.images.googleLogo,
-                        width: Dimens.iconSize,
-                        height: Dimens.iconSize,
-                      ),
-                      title: I18n.of(context).login_googleBtnLabel,
-                      onPressed: () => context.router.push(const ChatHomeRoute()),
-                    ),
-                    const Gap.vertical(height: Dimens.spacing),
-                    Button.outline(
-                      icon: SvgPicture.asset(
-                        Assets.images.appleLogo,
-                        colorFilter: ColorFilter.mode(context.colorScheme.onBackground, BlendMode.srcIn),
-                        width: Dimens.iconSize,
-                        height: Dimens.iconSize,
-                      ),
-                      title: I18n.of(context).login_googleBtnLabel,
-                      onPressed: () => context.router.push(const ChatHomeRoute()),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: I18n.of(context).login_termsLabel,
-                    style: context.textTheme.bodySmall,
+              const Gap.vertical(height: Dimens.spacing),
+              Text(
+                I18n.of(context).login_title,
+                style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              const Gap.vertical(height: Dimens.minSpacing),
+              Text(I18n.of(context).login_subtitle, style: context.textTheme.bodyMedium),
+              const Gap.vertical(height: Dimens.doubleSpacing),
+              AutofillGroup(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const TextSpan(text: ' '),
-                      TextSpan(
-                        text: I18n.of(context).login_termsLink,
-                        style: context.textTheme.bodySmall
-                            ?.copyWith(color: context.colorScheme.primary, fontWeight: FontWeight.w600),
-                      )
+                      Input(
+                        autofillHints: const [AutofillHints.email],
+                        controller: _emailController,
+                        labelText: I18n.of(context).login_emailLabel,
+                        hintText: I18n.of(context).login_emailHint,
+                        onChanged: context.read<LoginCubit>().onEmailChanged,
+                        validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
+                            .email(I18n.of(context).formInput_emailValidation)
+                            .required(I18n.of(context).formInput_required)
+                            .build(),
+                      ),
+                      const Gap.vertical(height: Dimens.spacing),
+                      Input(
+                        autofillHints: const [AutofillHints.password],
+                        controller: _passwordController,
+                        isPassword: true,
+                        labelText: I18n.of(context).login_passwordLabel,
+                        hintText: I18n.of(context).login_passwordHint,
+                        onChanged: context.read<LoginCubit>().onPasswordChanged,
+                        validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
+                            .minLength(8, I18n.of(context).formInput_passwordValidation)
+                            .required(I18n.of(context).formInput_required)
+                            .build(),
+                      ),
                     ],
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
+              const Gap.vertical(height: Dimens.spacing),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(I18n.of(context).login_forgotPasswordLabel),
+                ),
+              ),
+              const Gap.vertical(height: Dimens.spacing),
+              Button.primary(
+                title: I18n.of(context).login_btnLabel,
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                    context.read<LoginCubit>().login();
+                  }
+                },
+              ),
               const Gap.vertical(height: Dimens.doubleSpacing),
+              LabeledDivider(
+                label: I18n.of(context).or,
+              ),
+              const Gap.vertical(height: Dimens.doubleSpacing),
+              Button.outline(
+                icon: SvgPicture.asset(
+                  Assets.images.googleLogo,
+                  width: Dimens.iconSize,
+                  height: Dimens.iconSize,
+                ),
+                title: I18n.of(context).login_googleBtnLabel,
+                onPressed: () => context.router.push(const ChatHomeRoute()),
+              ),
+              const Gap.vertical(height: Dimens.spacing),
+              Button.outline(
+                icon: SvgPicture.asset(
+                  Assets.images.appleLogo,
+                  colorFilter: ColorFilter.mode(context.colorScheme.onBackground, BlendMode.srcIn),
+                  width: Dimens.iconSize,
+                  height: Dimens.iconSize,
+                ),
+                title: I18n.of(context).login_googleBtnLabel,
+                onPressed: () => context.router.push(const ChatHomeRoute()),
+              ),
             ],
           ),
         ),

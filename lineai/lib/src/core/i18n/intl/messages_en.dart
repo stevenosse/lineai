@@ -79,6 +79,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_title": MessageLookupByLibrary.simpleMessage("Log In"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
+        "register_btnLabel": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "register_emailHint":
+            MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),
+        "register_emailLabel": MessageLookupByLibrary.simpleMessage("Email"),
+        "register_forgotPasswordLabel":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
+        "register_googleBtnLabel":
+            MessageLookupByLibrary.simpleMessage("Sign up with Google"),
+        "register_passwordHint":
+            MessageLookupByLibrary.simpleMessage("********"),
+        "register_passwordLabel":
+            MessageLookupByLibrary.simpleMessage("Password"),
+        "register_subtitle": MessageLookupByLibrary.simpleMessage(
+            "You need an account to continue."),
+        "register_termsLabel": MessageLookupByLibrary.simpleMessage(
+            "By signing up, you agree to our"),
+        "register_termsLink":
+            MessageLookupByLibrary.simpleMessage("terms of service"),
+        "register_title": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings_groqApiKeyHint":
             MessageLookupByLibrary.simpleMessage("gsk_********************"),

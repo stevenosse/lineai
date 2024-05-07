@@ -22,6 +22,18 @@
   "login_termsLink": "terms of service",
   "login_forgotPasswordLabel": "Forgot your password?",
 
+  "register_title": "Sign Up",
+  "register_subtitle": "You need an account to continue.",
+  "register_btnLabel": "Sign Up",
+  "register_emailLabel": "Email",
+  "register_emailHint": "hello@adaptiv.io",
+  "register_passwordLabel": "Password",
+  "register_passwordHint": "********",
+  "register_googleBtnLabel": "Sign up with Google",
+  "register_termsLabel": "By signing up, you agree to our",
+  "register_termsLink": "terms of service",
+  "register_forgotPasswordLabel": "Forgot your password?",
+
   "drawer_newConversation": "New conversation",
   "drawer_searchHint": "Search",
   "drawer_settings": "Settings",

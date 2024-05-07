@@ -230,6 +230,116 @@ class I18n {
     );
   }
 
+  /// `Sign Up`
+  String get register_title {
+    return Intl.message(
+      'Sign Up',
+      name: 'register_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You need an account to continue.`
+  String get register_subtitle {
+    return Intl.message(
+      'You need an account to continue.',
+      name: 'register_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get register_btnLabel {
+    return Intl.message(
+      'Sign Up',
+      name: 'register_btnLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get register_emailLabel {
+    return Intl.message(
+      'Email',
+      name: 'register_emailLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hello@adaptiv.io`
+  String get register_emailHint {
+    return Intl.message(
+      'hello@adaptiv.io',
+      name: 'register_emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get register_passwordLabel {
+    return Intl.message(
+      'Password',
+      name: 'register_passwordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `********`
+  String get register_passwordHint {
+    return Intl.message(
+      '********',
+      name: 'register_passwordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up with Google`
+  String get register_googleBtnLabel {
+    return Intl.message(
+      'Sign up with Google',
+      name: 'register_googleBtnLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By signing up, you agree to our`
+  String get register_termsLabel {
+    return Intl.message(
+      'By signing up, you agree to our',
+      name: 'register_termsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `terms of service`
+  String get register_termsLink {
+    return Intl.message(
+      'terms of service',
+      name: 'register_termsLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot your password?`
+  String get register_forgotPasswordLabel {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'register_forgotPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New conversation`
   String get drawer_newConversation {
     return Intl.message(

@@ -35,14 +35,14 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             const Gap.vertical(height: Dimens.doubleSpacing),
             Button.primary(
               title: I18n.of(context).welcome_getStarted,
-              onPressed: () => context.router.push(const LoginRoute()),
+              onPressed: () => context.router.push(const RegisterRoute()),
             ),
             const Gap.vertical(height: Dimens.spacing),
             Button.neutral(
               title: I18n.of(context).welcome_signIn,
-              // onPressed: () => context.router.push(const HomeRoute()),
+              onPressed: () => context.router.push(const LoginRoute()),
             ),
-            const Gap.vertical(height: Dimens.doubleSpacing),
+            const Gap.vertical(height: Dimens.tripleSpacing),
           ],
         ),
       ),
