@@ -20,6 +20,11 @@ class AppTheme {
         fontWeight: FontWeight.w700,
         fontSize: 32,
       ),
+      headlineLarge: TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w700,
+        fontSize: 28,
+      ),
       titleLarge: TextStyle(
         fontFamily: _fontFamily,
         fontWeight: FontWeight.w700,

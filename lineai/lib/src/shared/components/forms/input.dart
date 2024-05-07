@@ -69,60 +69,48 @@ class Input extends StatelessWidget {
           ),
           const Gap.vertical(height: Dimens.minSpacing),
         ],
-        SizedBox(
-          height: minLines != null ? null : kMinInteractiveDimension,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(Dimens.borderRadius),
-            child: TextFormField(
-              autofillHints: autofillHints,
-              controller: controller,
-              obscureText: isPassword,
-              cursorColor: cursorColor,
-              readOnly: readOnly,
-              focusNode: focusNode,
-              style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
-              minLines: isPassword ? 1 : minLines,
-              maxLines: isPassword ? 1 : maxLines,
-              keyboardType: keyboardType,
-              textInputAction: textInputAction,
-              onFieldSubmitted: onSubmitted,
-              decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(vertical: Dimens.halfSpacing, horizontal: Dimens.spacing),
-                hintText: hintText,
-                hintStyle: hintStyle,
-                filled: filled,
-                fillColor: fillColor ?? context.colorScheme.surface,
-                prefixIcon: prefixIcon,
-                suffixIcon: suffixIcon,
-                enabled: enabled,
-                enabledBorder: isBorderless
-                    ? InputBorder.none
-                    : OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(Dimens.borderRadius),
-                        borderSide: BorderSide(color: borderColor, width: 1.0),
-                      ),
-                border: isBorderless
-                    ? InputBorder.none
-                    : OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(Dimens.borderRadius),
-                        borderSide: BorderSide.none,
-                      ),
-                focusedBorder: isBorderless
-                    ? InputBorder.none
-                    : OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(Dimens.borderRadius),
-                        borderSide: BorderSide(
-                          color: borderColor,
-                          width: 1.0,
-                        ),
-                      ),
-              ),
-              onChanged: onChanged,
-              validator: validator,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(Dimens.borderRadius),
+          child: TextFormField(
+            autofillHints: autofillHints,
+            controller: controller,
+            obscureText: isPassword,
+            cursorColor: cursorColor,
+            readOnly: readOnly,
+            focusNode: focusNode,
+            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+            minLines: isPassword ? 1 : minLines,
+            maxLines: isPassword ? 1 : maxLines,
+            keyboardType: keyboardType,
+            textInputAction: textInputAction,
+            onFieldSubmitted: onSubmitted,
+            decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(vertical: Dimens.halfSpacing, horizontal: Dimens.spacing),
+              hintText: hintText,
+              hintStyle: hintStyle,
+              filled: filled,
+              fillColor: fillColor ?? context.colorScheme.surface,
+              prefixIcon: prefixIcon,
+              suffixIcon: suffixIcon,
+              enabled: enabled,
+              errorBorder: _getInputBorder(color: context.colorScheme.error),
+              enabledBorder: _getInputBorder(color: borderColor),
+              border: _getInputBorder(color: borderColor),
+              focusedErrorBorder: _getInputBorder(color: context.colorScheme.error),
+              focusedBorder: _getInputBorder(color: context.colorScheme.primary),
             ),
+            onChanged: onChanged,
+            validator: validator,
           ),
         ),
       ],
     );
   }
+
+  InputBorder _getInputBorder({required Color color}) => isBorderless
+      ? InputBorder.none
+      : OutlineInputBorder(
+          borderRadius: BorderRadius.circular(Dimens.borderRadius),
+          borderSide: BorderSide(color: color, width: 1.0),
+        );
 }

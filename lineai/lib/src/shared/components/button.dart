@@ -4,6 +4,7 @@ import 'package:lineai/src/shared/extensions/context_extensions.dart';
 
 enum ButtonType {
   primary,
+  neutral,
   outline,
 }
 
@@ -16,7 +17,7 @@ class Button extends StatelessWidget {
     this.icon,
   });
 
-  factory Button.primary({
+  factory Button.neutral({
     Key? key,
     required String title,
     Widget? icon,
@@ -27,7 +28,7 @@ class Button extends StatelessWidget {
       title: title,
       icon: icon,
       onPressed: onPressed,
-      type: ButtonType.primary,
+      type: ButtonType.neutral,
     );
   }
 
@@ -43,6 +44,21 @@ class Button extends StatelessWidget {
       icon: icon,
       onPressed: onPressed,
       type: ButtonType.outline,
+    );
+  }
+
+  factory Button.primary({
+    Key? key,
+    required String title,
+    Widget? icon,
+    VoidCallback? onPressed,
+  }) {
+    return Button._(
+      key: key,
+      title: title,
+      icon: icon,
+      onPressed: onPressed,
+      type: ButtonType.primary,
     );
   }
 
@@ -64,11 +80,12 @@ class Button extends StatelessWidget {
       width: double.infinity,
       height: kMinInteractiveDimension,
       child: switch (type) {
-        ButtonType.primary => ElevatedButton.icon(
+        ButtonType.primary || ButtonType.neutral => ElevatedButton.icon(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.borderRadius)),
-              backgroundColor: context.colorScheme.onBackground,
+              backgroundColor:
+                  type == ButtonType.primary ? context.colorScheme.primary : context.colorScheme.onBackground,
             ),
             icon: icon ?? const SizedBox(),
             label: label,

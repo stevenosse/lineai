@@ -47,10 +47,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New conversation"),
         "drawer_searchHint": MessageLookupByLibrary.simpleMessage("Search"),
         "drawer_settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "errorDialog_title": MessageLookupByLibrary.simpleMessage("Oops!"),
+        "formInput_emailValidation": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid email address."),
+        "formInput_passwordValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter a password."),
+        "formInput_required":
+            MessageLookupByLibrary.simpleMessage("This field is required."),
+        "loadingDialog_content":
+            MessageLookupByLibrary.simpleMessage("Loading..."),
         "login_btnLabel": MessageLookupByLibrary.simpleMessage("Login"),
         "login_emailHint":
             MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),
         "login_emailLabel": MessageLookupByLibrary.simpleMessage("Email"),
+        "login_error_400": MessageLookupByLibrary.simpleMessage(
+            "Invalid email address or password"),
+        "login_error_default": MessageLookupByLibrary.simpleMessage(
+            "An error occurred. Please try again."),
         "login_forgotPasswordLabel":
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "login_googleBtnLabel":
@@ -64,12 +77,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_termsLink":
             MessageLookupByLibrary.simpleMessage("terms of service"),
         "login_title": MessageLookupByLibrary.simpleMessage("Log In"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings_groqApiKeyHint":
             MessageLookupByLibrary.simpleMessage("gsk_********************"),
         "settings_groqApiKeyLabel":
             MessageLookupByLibrary.simpleMessage("Groq API key"),
-        "settings_title": MessageLookupByLibrary.simpleMessage("Settings")
+        "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
+        "welcome_getStarted":
+            MessageLookupByLibrary.simpleMessage("Get Started"),
+        "welcome_signIn": MessageLookupByLibrary.simpleMessage("Sign In"),
+        "welcome_subtitle": MessageLookupByLibrary.simpleMessage(
+            "The best free & open source ChatGPT alternative."),
+        "welcome_title": MessageLookupByLibrary.simpleMessage("LineAI")
       };
 }

@@ -50,6 +50,76 @@ class I18n {
     return Localizations.of<I18n>(context, I18n);
   }
 
+  /// `This field is required.`
+  String get formInput_required {
+    return Intl.message(
+      'This field is required.',
+      name: 'formInput_required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address.`
+  String get formInput_emailValidation {
+    return Intl.message(
+      'Please enter a valid email address.',
+      name: 'formInput_emailValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a password.`
+  String get formInput_passwordValidation {
+    return Intl.message(
+      'Please enter a password.',
+      name: 'formInput_passwordValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get Started`
+  String get welcome_getStarted {
+    return Intl.message(
+      'Get Started',
+      name: 'welcome_getStarted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get welcome_signIn {
+    return Intl.message(
+      'Sign In',
+      name: 'welcome_signIn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LineAI`
+  String get welcome_title {
+    return Intl.message(
+      'LineAI',
+      name: 'welcome_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The best free & open source ChatGPT alternative.`
+  String get welcome_subtitle {
+    return Intl.message(
+      'The best free & open source ChatGPT alternative.',
+      name: 'welcome_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Log In`
   String get login_title {
     return Intl.message(
@@ -325,6 +395,56 @@ class I18n {
     return Intl.message(
       'gsk_********************',
       name: 'settings_groqApiKeyHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Loading...`
+  String get loadingDialog_content {
+    return Intl.message(
+      'Loading...',
+      name: 'loadingDialog_content',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email address or password`
+  String get login_error_400 {
+    return Intl.message(
+      'Invalid email address or password',
+      name: 'login_error_400',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred. Please try again.`
+  String get login_error_default {
+    return Intl.message(
+      'An error occurred. Please try again.',
+      name: 'login_error_default',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oops!`
+  String get errorDialog_title {
+    return Intl.message(
+      'Oops!',
+      name: 'errorDialog_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
       desc: '',
       args: [],
     );

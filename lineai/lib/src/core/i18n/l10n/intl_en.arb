@@ -1,6 +1,15 @@
 {
   "@@locale": "en",
 
+  "formInput_required": "This field is required.",
+  "formInput_emailValidation": "Please enter a valid email address.",
+  "formInput_passwordValidation": "Please enter a password.",
+
+  "welcome_getStarted": "Get Started",
+  "welcome_signIn": "Sign In",
+  "welcome_title": "LineAI",
+  "welcome_subtitle": "The best free & open source ChatGPT alternative.",
+
   "login_title": "Log In",
   "login_subtitle": "To continue, log in to your account.",
   "login_btnLabel": "Login",
@@ -34,6 +43,14 @@
   "settings_groqApiKeyLabel": "Groq API key",
   "settings_groqApiKeyHint": "gsk_********************",
 
+  "loadingDialog_content": "Loading...",
+
+  "login_error_400": "Invalid email address or password",
+  "login_error_default": "An error occurred. Please try again.",
+
+  "errorDialog_title": "Oops!",
+
+  "ok": "OK",
   "or": "OR",
   "save": "Save"
 }
