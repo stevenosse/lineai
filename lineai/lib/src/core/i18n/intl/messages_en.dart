@@ -59,6 +59,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_termsLink":
             MessageLookupByLibrary.simpleMessage("terms of service"),
         "login_title": MessageLookupByLibrary.simpleMessage("Log In"),
-        "or": MessageLookupByLibrary.simpleMessage("OR")
+        "or": MessageLookupByLibrary.simpleMessage("OR"),
+        "settings_groqApiKeyHint":
+            MessageLookupByLibrary.simpleMessage("gsk_********************"),
+        "settings_groqApiKeyLabel":
+            MessageLookupByLibrary.simpleMessage("Groq API key"),
+        "settings_title": MessageLookupByLibrary.simpleMessage("Settings")
       };
 }

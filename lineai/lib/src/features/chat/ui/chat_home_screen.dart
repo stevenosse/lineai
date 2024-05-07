@@ -38,7 +38,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
               child: Center(
                 child: SvgPicture.asset(
                   Assets.images.lineaiFlatLogo,
-                  width: 50,
+                  width: 40,
                 ),
               ),
             ),

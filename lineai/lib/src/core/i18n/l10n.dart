@@ -270,6 +270,36 @@ class I18n {
     );
   }
 
+  /// `Settings`
+  String get settings_title {
+    return Intl.message(
+      'Settings',
+      name: 'settings_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Groq API key`
+  String get settings_groqApiKeyLabel {
+    return Intl.message(
+      'Groq API key',
+      name: 'settings_groqApiKeyLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `gsk_********************`
+  String get settings_groqApiKeyHint {
+    return Intl.message(
+      'gsk_********************',
+      name: 'settings_groqApiKeyHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OR`
   String get or {
     return Intl.message(

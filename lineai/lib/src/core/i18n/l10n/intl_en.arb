@@ -27,5 +27,9 @@
   "chatSettings_systemPromptLabel": "System prompt",
   "chatSettings_systemPromptHint": "Please provide useful, helpful and actionnable answers.",
 
+  "settings_title": "Settings",
+  "settings_groqApiKeyLabel": "Groq API key",
+  "settings_groqApiKeyHint": "gsk_********************",
+
   "or": "OR"
 }
