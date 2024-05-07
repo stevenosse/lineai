@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:lineai/gen/assets.gen.dart';
 import 'package:lineai/src/core/environment.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
@@ -57,11 +59,12 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
           widthFactor: 1,
           child: Column(
             children: [
-              const Expanded(
+              Expanded(
                 flex: 7,
                 child: Center(
-                  child: FlutterLogo(
-                    size: 56,
+                  child: SvgPicture.asset(
+                    Assets.images.lineaiFlatLogo,
+                    width: 50,
                   ),
                 ),
               ),
