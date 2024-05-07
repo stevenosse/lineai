@@ -4,12 +4,18 @@ import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/datasource/models/conversation/conversation.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/labeled_divider.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 
 class DrawerMenu extends StatefulWidget {
-  const DrawerMenu({super.key});
+  const DrawerMenu({
+    super.key,
+    required this.conversations,
+  });
+
+  final List<Conversation> conversations;
 
   @override
   State<DrawerMenu> createState() => _DrawerMenuState();
@@ -51,6 +57,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
         shape: const ContinuousRectangleBorder(),
         child: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(Dimens.spacing),
@@ -83,22 +90,32 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 ),
               ),
               const SizedBox(height: Dimens.spacing),
+              ListTile(
+                leading: const Icon(IconsaxPlusBroken.message_circle),
+                title: Text(I18n.of(context).drawer_newConversation),
+                onTap: () {},
+              ),
+              const SizedBox(height: Dimens.spacing),
+              LabeledDivider(
+                label: I18n.of(context).drawer_chatsSectionTitle,
+                labelAlignment: Alignment.centerLeft,
+                labelBackgroundColor: context.colorScheme.surface,
+              ),
+              const SizedBox(height: Dimens.halfSpacing),
               Expanded(
-                child: ListView(
-                  children: [
-                    ListTile(
-                      leading: const Icon(IconsaxPlusBroken.message_circle),
-                      title: Text(I18n.of(context).drawer_newConversation),
-                      onTap: () {},
-                    ),
-                    const SizedBox(height: Dimens.spacing),
-                    LabeledDivider(
-                      label: I18n.of(context).drawer_chatsSectionTitle,
-                      labelAlignment: Alignment.centerLeft,
-                      labelBackgroundColor: context.colorScheme.surface,
-                    ),
-                  ],
-                ),
+                child: widget.conversations.isEmpty
+                    ? const _EmptyList()
+                    : ListView.builder(
+                        itemCount: widget.conversations.length,
+                        itemBuilder: (context, index) {
+                          final conversation = widget.conversations[index];
+                          return ListTile(
+                            title: Text(conversation.name),
+                            onTap: () {},
+                            trailing: const Icon(IconsaxPlusBroken.more),
+                          );
+                        },
+                      ),
               ),
               const Divider(),
               ListTile(
@@ -115,6 +132,24 @@ class _DrawerMenuState extends State<DrawerMenu> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _EmptyList extends StatelessWidget {
+  const _EmptyList();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(Dimens.spacing),
+      child: Text(
+        I18n.of(context).drawer_noConversations,
+        style: Theme.of(context)
+            .textTheme
+            .bodySmall
+            ?.copyWith(color: context.colorScheme.onSurface, fontWeight: FontWeight.w400),
       ),
     );
   }

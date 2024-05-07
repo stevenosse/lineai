@@ -36,7 +36,7 @@ abstract class _$AppRouter extends RootStackRouter {
     DrawerRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const DrawerWrapper(),
+        child: WrappedRoute(child: const DrawerWrapper()),
       );
     },
     LoginRoute.name: (routeData) {

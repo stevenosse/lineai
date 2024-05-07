@@ -1,18 +1,28 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/environment.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/features/drawer_navigation/logic/conversations/conversation_list_bloc.dart';
 import 'package:lineai/src/features/drawer_navigation/models/drawer_entry.dart';
 import 'package:lineai/src/features/drawer_navigation/ui/components/drawer_menu.dart';
 
 @RoutePage(name: 'DrawerRoute')
-class DrawerWrapper extends StatefulWidget {
+class DrawerWrapper extends StatefulWidget implements AutoRouteWrapper {
   const DrawerWrapper({super.key});
 
   @override
   State<DrawerWrapper> createState() => _DrawerWrapperState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (_) => ConversationListBloc(),
+      child: this,
+    );
+  }
 }
 
 class _DrawerWrapperState extends State<DrawerWrapper> {
@@ -54,7 +64,11 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
   Widget build(BuildContext context) {
     return AutoTabsScaffold(
       scaffoldKey: _scaffoldKey,
-      drawer: const DrawerMenu(),
+      drawer: BlocBuilder<ConversationListBloc, ConversationListState>(
+        builder: (context, state) {
+          return DrawerMenu(conversations: state.conversations);
+        },
+      ),
       appBarBuilder: (context, tabsRouter) => entries[tabsRouter.activeIndex].appBar,
       routes: routes,
     );

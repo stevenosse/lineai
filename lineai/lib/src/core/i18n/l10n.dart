@@ -420,6 +420,16 @@ class I18n {
     );
   }
 
+  /// `No conversations yet`
+  String get drawer_noConversations {
+    return Intl.message(
+      'No conversations yet',
+      name: 'drawer_noConversations',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create a workout plan`
   String get chat_tips_title {
     return Intl.message(

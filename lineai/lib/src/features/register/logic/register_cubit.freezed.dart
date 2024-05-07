@@ -22,7 +22,8 @@ mixin _$RegisterState {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(String email, String password, ApiError error)
+    required TResult Function(
+            String email, String password, ApiError<dynamic> error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -33,7 +34,8 @@ mixin _$RegisterState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError error)? error,
+    TResult? Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) =>
@@ -42,7 +44,8 @@ mixin _$RegisterState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError error)? error,
+    TResult Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -194,7 +197,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(String email, String password, ApiError error)
+    required TResult Function(
+            String email, String password, ApiError<dynamic> error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -208,7 +212,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError error)? error,
+    TResult? Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -220,7 +225,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError error)? error,
+    TResult Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -361,7 +367,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(String email, String password, ApiError error)
+    required TResult Function(
+            String email, String password, ApiError<dynamic> error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -375,7 +382,8 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError error)? error,
+    TResult? Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -387,7 +395,8 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError error)? error,
+    TResult Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -459,7 +468,7 @@ abstract class _$$ErrorImplCopyWith<$Res>
       __$$ErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, ApiError error});
+  $Res call({String email, String password, ApiError<dynamic> error});
 }
 
 /// @nodoc
@@ -475,7 +484,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$ErrorImpl(
       email: null == email
@@ -486,10 +495,10 @@ class __$$ErrorImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      error: freezed == error
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as ApiError,
+              as ApiError<dynamic>,
     ));
   }
 }
@@ -505,7 +514,7 @@ class _$ErrorImpl implements _Error {
   @override
   final String password;
   @override
-  final ApiError error;
+  final ApiError<dynamic> error;
 
   @override
   String toString() {
@@ -520,12 +529,11 @@ class _$ErrorImpl implements _Error {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, email, password, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, email, password, error);
 
   @JsonKey(ignore: true)
   @override
@@ -538,7 +546,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(String email, String password, ApiError error)
+    required TResult Function(
+            String email, String password, ApiError<dynamic> error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -552,7 +561,8 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError error)? error,
+    TResult? Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -564,7 +574,8 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError error)? error,
+    TResult Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -617,13 +628,13 @@ abstract class _Error implements RegisterState {
   factory _Error(
       {required final String email,
       required final String password,
-      required final ApiError error}) = _$ErrorImpl;
+      required final ApiError<dynamic> error}) = _$ErrorImpl;
 
   @override
   String get email;
   @override
   String get password;
-  ApiError get error;
+  ApiError<dynamic> get error;
   @override
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -717,7 +728,8 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(String email, String password, ApiError error)
+    required TResult Function(
+            String email, String password, ApiError<dynamic> error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -731,7 +743,8 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError error)? error,
+    TResult? Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -743,7 +756,8 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError error)? error,
+    TResult Function(String email, String password, ApiError<dynamic> error)?
+        error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),

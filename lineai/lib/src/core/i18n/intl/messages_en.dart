@@ -45,6 +45,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Chats"),
         "drawer_newConversation":
             MessageLookupByLibrary.simpleMessage("New conversation"),
+        "drawer_noConversations":
+            MessageLookupByLibrary.simpleMessage("No conversations yet"),
         "drawer_searchHint": MessageLookupByLibrary.simpleMessage("Search"),
         "drawer_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "errorDialog_title": MessageLookupByLibrary.simpleMessage("Oops!"),
