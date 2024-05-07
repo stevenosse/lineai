@@ -88,7 +88,7 @@ class _ChatSettingsScreenState extends State<ChatSettingsScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: Dimens.spacing) +
                   const EdgeInsets.only(bottom: Dimens.spacing),
-              child: Button.primary(
+              child: Button.neutral(
                 title: I18n.of(context).save,
                 onPressed: () {},
               ),

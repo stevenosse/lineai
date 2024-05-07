@@ -57,6 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
           },
           success: (email, password, response) {
             LoadingDialog.hide(context: context);
+            FocusManager.instance.primaryFocus?.unfocus();
+            context.router.replaceAll([const ChatHomeRoute()]);
           },
           orElse: () => LoadingDialog.hide(context: context),
         );

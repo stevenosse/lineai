@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:lineai/src/datasource/models/api_error.dart';
 import 'package:lineai/src/datasource/models/api_response/api_response.dart';
 import 'package:lineai/src/datasource/utils/api_utils.dart';
@@ -12,6 +14,8 @@ abstract class BaseRepository {
       return response;
     } on AuthException catch (e) {
       return ApiResponse.error(createApiErrorFromAuthError(e));
+    } on SocketException catch (e) {
+      return ApiResponse.error(networkError(e));
     } catch (e) {
       return ApiResponse.error(unknownError(e));
     }

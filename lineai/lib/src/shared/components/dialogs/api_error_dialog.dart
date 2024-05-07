@@ -1,10 +1,8 @@
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/datasource/models/api_error.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ApiErrorDialog {
   static bool isRecoverableError(ApiError error) {
@@ -22,6 +20,7 @@ class ApiErrorDialog {
       useRootNavigator: false,
       builder: (context) {
         return AlertDialog(
+          surfaceTintColor: Colors.transparent,
           title: Text(
             I18n.of(context).errorDialog_title,
             style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
@@ -57,22 +56,10 @@ extension ApiErrorX on ApiError {
   }
 
   String? _extractResponseMessage() {
-    if (error is DioException) {
-      if (error.response.statusCode == HttpStatus.notFound) {
-        return I18n.current.error_notFound;
-      }
-      if (error.response!.data is String) {
-        return error.response!.data;
-      } else if (error.response!.data is Map) {
-        if (error.response?.data['message'] != null) {
-          final Object? message = error.response!.data!['message']!;
-          if (message is String) {
-            return message;
-          } else if (message is List) {
-            return message.map((e) => e['message']).join('\n');
-          }
-        }
-      }
+    if (error is AuthException) {
+      final authException = error as AuthException;
+
+      return authException.message;
     }
     return null;
   }
