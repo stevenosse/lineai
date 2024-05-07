@@ -58,9 +58,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SettingsRoute.name: (routeData) {
+      final args = routeData.argsAs<SettingsRouteArgs>(
+          orElse: () => const SettingsRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SettingsScreen(),
+        child: SettingsScreen(
+          key: args.key,
+          logoutController: args.logoutController,
+        ),
       );
     },
     WelcomeRoute.name: (routeData) {
@@ -172,16 +177,40 @@ class RegisterRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SettingsScreen]
-class SettingsRoute extends PageRouteInfo<void> {
-  const SettingsRoute({List<PageRouteInfo>? children})
-      : super(
+class SettingsRoute extends PageRouteInfo<SettingsRouteArgs> {
+  SettingsRoute({
+    Key? key,
+    LogoutController? logoutController,
+    List<PageRouteInfo>? children,
+  }) : super(
           SettingsRoute.name,
+          args: SettingsRouteArgs(
+            key: key,
+            logoutController: logoutController,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SettingsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SettingsRouteArgs> page =
+      PageInfo<SettingsRouteArgs>(name);
+}
+
+class SettingsRouteArgs {
+  const SettingsRouteArgs({
+    this.key,
+    this.logoutController,
+  });
+
+  final Key? key;
+
+  final LogoutController? logoutController;
+
+  @override
+  String toString() {
+    return 'SettingsRouteArgs{key: $key, logoutController: $logoutController}';
+  }
 }
 
 /// generated route for

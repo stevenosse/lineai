@@ -5,6 +5,7 @@ import 'package:lineai/src/core/app_initializer.dart';
 import 'package:lineai/src/core/line_ai.dart';
 
 // TODO: Lock orientation
+// TODO: Enable email verification
 void main() {
   final AppInitializer appInitializer = AppInitializer();
 

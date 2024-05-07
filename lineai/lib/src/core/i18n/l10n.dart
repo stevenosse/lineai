@@ -340,6 +340,36 @@ class I18n {
     );
   }
 
+  /// `Verify your email`
+  String get pendingVerification_title {
+    return Intl.message(
+      'Verify your email',
+      name: 'pendingVerification_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your email and click on the link to verify your account.`
+  String get pendingVerification_subtitle {
+    return Intl.message(
+      'Please check your email and click on the link to verify your account.',
+      name: 'pendingVerification_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get pendingVerification_resendButton {
+    return Intl.message(
+      'Resend',
+      name: 'pendingVerification_resendButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New conversation`
   String get drawer_newConversation {
     return Intl.message(
@@ -510,6 +540,36 @@ class I18n {
     );
   }
 
+  /// `Logout`
+  String get settings_logout {
+    return Intl.message(
+      'Logout',
+      name: 'settings_logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout failed`
+  String get settings_logoutFailedTitle {
+    return Intl.message(
+      'Logout failed',
+      name: 'settings_logoutFailedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred while logging out. Please try again.`
+  String get settings_logoutFailedBody {
+    return Intl.message(
+      'An error occurred while logging out. Please try again.',
+      name: 'settings_logoutFailedBody',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingDialog_content {
     return Intl.message(
@@ -550,6 +610,46 @@ class I18n {
     );
   }
 
+  /// `We are unable to connect to the internet. Please check your connection and try again.`
+  String get error_noInternet {
+    return Intl.message(
+      'We are unable to connect to the internet. Please check your connection and try again.',
+      name: 'error_noInternet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred. Please try again.`
+  String get error_server {
+    return Intl.message(
+      'An error occurred. Please try again.',
+      name: 'error_server',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred. Please try again.`
+  String get error_unknown {
+    return Intl.message(
+      'An error occurred. Please try again.',
+      name: 'error_unknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred. Please try again.`
+  String get error_notFound {
+    return Intl.message(
+      'An error occurred. Please try again.',
+      name: 'error_notFound',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OK`
   String get ok {
     return Intl.message(
@@ -575,6 +675,16 @@ class I18n {
     return Intl.message(
       'Save',
       name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
       desc: '',
       args: [],
     );

@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:lineai/src/core/guards/auth_guard.dart';
+import 'package:lineai/src/core/guards/auth_redirection_guard.dart';
 import 'package:lineai/src/features/chat/ui/chat_home_screen.dart';
 import 'package:lineai/src/features/chat/ui/chat_settings_screen.dart';
 import 'package:lineai/src/features/drawer_navigation/ui/drawer_wrapper.dart';
@@ -8,6 +10,7 @@ import 'package:lineai/src/features/profile/ui/profile_screen.dart';
 import 'package:lineai/src/features/register/ui/register_screen.dart';
 import 'package:lineai/src/features/settings/ui/settings_screen.dart';
 import 'package:lineai/src/features/welcome/welcome_screen.dart';
+import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
 import 'package:lineai/src/shared/features/auth/ui/auth_wrapper.dart';
 
 part 'app_router.gr.dart';
@@ -16,9 +19,19 @@ part 'app_router.gr.dart';
 class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> routes = [
-    AutoRoute(page: WelcomeRoute.page, initial: true),
-    AutoRoute(page: LoginRoute.page),
-    AutoRoute(page: RegisterRoute.page),
+    AutoRoute(
+      page: WelcomeRoute.page,
+      initial: true,
+      guards: [AuthRedirectionGuard()],
+    ),
+    AutoRoute(
+      page: LoginRoute.page,
+      guards: [AuthRedirectionGuard()],
+    ),
+    AutoRoute(
+      page: RegisterRoute.page,
+      guards: [AuthRedirectionGuard()],
+    ),
     AutoRoute(
       page: AuthRoute.page,
       guards: [AuthGuard()],

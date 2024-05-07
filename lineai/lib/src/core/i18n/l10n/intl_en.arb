@@ -34,6 +34,10 @@
   "register_termsLink": "terms of service",
   "register_forgotPasswordLabel": "Forgot your password?",
 
+  "pendingVerification_title": "Verify your email",
+  "pendingVerification_subtitle": "Please check your email and click on the link to verify your account.",
+  "pendingVerification_resendButton": "Resend",
+
   "drawer_newConversation": "New conversation",
   "drawer_searchHint": "Search",
   "drawer_settings": "Settings",
@@ -54,6 +58,10 @@
   "settings_title": "Settings",
   "settings_groqApiKeyLabel": "Groq API key",
   "settings_groqApiKeyHint": "gsk_********************",
+  "settings_logout": "Logout",
+  "settings_logoutFailedTitle": "Logout failed",
+  "settings_logoutFailedBody": "An error occurred while logging out. Please try again.",
+
 
   "loadingDialog_content": "Loading...",
 
@@ -61,8 +69,13 @@
   "login_error_default": "An error occurred. Please try again.",
 
   "errorDialog_title": "Oops!",
+  "error_noInternet": "We are unable to connect to the internet. Please check your connection and try again.",
+  "error_server": "An error occurred. Please try again.",
+  "error_unknown": "An error occurred. Please try again.",
+  "error_notFound": "An error occurred. Please try again.",
 
   "ok": "OK",
   "or": "OR",
-  "save": "Save"
+  "save": "Save",
+  "retry": "Retry"
 }

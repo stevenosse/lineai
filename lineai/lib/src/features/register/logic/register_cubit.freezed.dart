@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'login_cubit.dart';
+part of 'register_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,15 +15,14 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$RegisterState {
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(
-            String email, String password, ApiError<dynamic> error)
+    required TResult Function(String email, String password, ApiError error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -34,8 +33,7 @@ mixin _$LoginState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult? Function(String email, String password, ApiError error)? error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) =>
@@ -44,8 +42,7 @@ mixin _$LoginState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult Function(String email, String password, ApiError error)? error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -78,23 +75,23 @@ mixin _$LoginState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LoginStateCopyWith<LoginState> get copyWith =>
+  $RegisterStateCopyWith<RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res, LoginState>;
+abstract class $RegisterStateCopyWith<$Res> {
+  factory $RegisterStateCopyWith(
+          RegisterState value, $Res Function(RegisterState) then) =
+      _$RegisterStateCopyWithImpl<$Res, RegisterState>;
   @useResult
   $Res call({String email, String password});
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
-    implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
+    implements $RegisterStateCopyWith<$Res> {
+  _$RegisterStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -122,7 +119,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
 
 /// @nodoc
 abstract class _$$InitialImplCopyWith<$Res>
-    implements $LoginStateCopyWith<$Res> {
+    implements $RegisterStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
@@ -133,7 +130,7 @@ abstract class _$$InitialImplCopyWith<$Res>
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -170,7 +167,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'LoginState.initial(email: $email, password: $password)';
+    return 'RegisterState.initial(email: $email, password: $password)';
   }
 
   @override
@@ -197,8 +194,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(
-            String email, String password, ApiError<dynamic> error)
+    required TResult Function(String email, String password, ApiError error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -212,8 +208,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult? Function(String email, String password, ApiError error)? error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -225,8 +220,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult Function(String email, String password, ApiError error)? error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -275,7 +269,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements LoginState {
+abstract class _Initial implements RegisterState {
   factory _Initial(
       {required final String email,
       required final String password}) = _$InitialImpl;
@@ -292,7 +286,7 @@ abstract class _Initial implements LoginState {
 
 /// @nodoc
 abstract class _$$LoadingImplCopyWith<$Res>
-    implements $LoginStateCopyWith<$Res> {
+    implements $RegisterStateCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
@@ -303,7 +297,7 @@ abstract class _$$LoadingImplCopyWith<$Res>
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -340,7 +334,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'LoginState.loading(email: $email, password: $password)';
+    return 'RegisterState.loading(email: $email, password: $password)';
   }
 
   @override
@@ -367,8 +361,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(
-            String email, String password, ApiError<dynamic> error)
+    required TResult Function(String email, String password, ApiError error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -382,8 +375,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult? Function(String email, String password, ApiError error)? error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -395,8 +387,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult Function(String email, String password, ApiError error)? error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -445,7 +436,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements LoginState {
+abstract class _Loading implements RegisterState {
   factory _Loading(
       {required final String email,
       required final String password}) = _$LoadingImpl;
@@ -461,18 +452,19 @@ abstract class _Loading implements LoginState {
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
+abstract class _$$ErrorImplCopyWith<$Res>
+    implements $RegisterStateCopyWith<$Res> {
   factory _$$ErrorImplCopyWith(
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password, ApiError<dynamic> error});
+  $Res call({String email, String password, ApiError error});
 }
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -483,7 +475,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
-    Object? error = null,
+    Object? error = freezed,
   }) {
     return _then(_$ErrorImpl(
       email: null == email
@@ -494,10 +486,10 @@ class __$$ErrorImplCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as ApiError<dynamic>,
+              as ApiError,
     ));
   }
 }
@@ -513,11 +505,11 @@ class _$ErrorImpl implements _Error {
   @override
   final String password;
   @override
-  final ApiError<dynamic> error;
+  final ApiError error;
 
   @override
   String toString() {
-    return 'LoginState.error(email: $email, password: $password, error: $error)';
+    return 'RegisterState.error(email: $email, password: $password, error: $error)';
   }
 
   @override
@@ -528,11 +520,12 @@ class _$ErrorImpl implements _Error {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password) &&
-            (identical(other.error, error) || other.error == error));
+            const DeepCollectionEquality().equals(other.error, error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, error);
+  int get hashCode => Object.hash(
+      runtimeType, email, password, const DeepCollectionEquality().hash(error));
 
   @JsonKey(ignore: true)
   @override
@@ -545,8 +538,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(
-            String email, String password, ApiError<dynamic> error)
+    required TResult Function(String email, String password, ApiError error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -560,8 +552,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult? Function(String email, String password, ApiError error)? error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -573,8 +564,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult Function(String email, String password, ApiError error)? error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -623,17 +613,17 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements LoginState {
+abstract class _Error implements RegisterState {
   factory _Error(
       {required final String email,
       required final String password,
-      required final ApiError<dynamic> error}) = _$ErrorImpl;
+      required final ApiError error}) = _$ErrorImpl;
 
   @override
   String get email;
   @override
   String get password;
-  ApiError<dynamic> get error;
+  ApiError get error;
   @override
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
@@ -642,7 +632,7 @@ abstract class _Error implements LoginState {
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<$Res>
-    implements $LoginStateCopyWith<$Res> {
+    implements $RegisterStateCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
@@ -653,7 +643,7 @@ abstract class _$$SuccessImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$RegisterStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
@@ -698,7 +688,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'LoginState.success(email: $email, password: $password, response: $response)';
+    return 'RegisterState.success(email: $email, password: $password, response: $response)';
   }
 
   @override
@@ -727,8 +717,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) initial,
     required TResult Function(String email, String password) loading,
-    required TResult Function(
-            String email, String password, ApiError<dynamic> error)
+    required TResult Function(String email, String password, ApiError error)
         error,
     required TResult Function(
             String email, String password, AuthResponse response)
@@ -742,8 +731,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? initial,
     TResult? Function(String email, String password)? loading,
-    TResult? Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult? Function(String email, String password, ApiError error)? error,
     TResult? Function(String email, String password, AuthResponse response)?
         success,
   }) {
@@ -755,8 +743,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? initial,
     TResult Function(String email, String password)? loading,
-    TResult Function(String email, String password, ApiError<dynamic> error)?
-        error,
+    TResult Function(String email, String password, ApiError error)? error,
     TResult Function(String email, String password, AuthResponse response)?
         success,
     required TResult orElse(),
@@ -805,7 +792,7 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements LoginState {
+abstract class _Success implements RegisterState {
   factory _Success(
       {required final String email,
       required final String password,

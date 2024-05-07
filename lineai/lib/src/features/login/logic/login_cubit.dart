@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:lineai/src/datasource/models/api_error.dart';
 import 'package:lineai/src/datasource/repositories/auth_repository.dart';
 import 'package:lineai/src/shared/locator.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -25,13 +26,11 @@ class LoginCubit extends Cubit<LoginState> {
 
   void login() async {
     emit(LoginState.loading(email: state.email, password: state.password));
+    final response = await _authRepository.login(email: state.email, password: state.password);
 
-    try {
-      final response = await _authRepository.login(email: state.email, password: state.password);
-
-      emit(LoginState.success(email: state.email, password: state.password, response: response));
-    } on AuthException catch (e) {
-      emit(LoginState.error(email: state.email, password: state.password, error: e));
-    }
+    response.when(
+      success: (response) => emit(LoginState.success(email: state.email, password: state.password, response: response)),
+      error: (error) => emit(LoginState.error(email: state.email, password: state.password, error: error)),
+    );
   }
 }

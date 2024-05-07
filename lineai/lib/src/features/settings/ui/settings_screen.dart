@@ -1,14 +1,21 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/components/main_app_bar.dart';
-
+import 'package:lineai/src/shared/extensions/context_extensions.dart';
+import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  SettingsScreen({
+    super.key,
+    LogoutController? logoutController,
+  }) : _logoutController = logoutController ?? LogoutController();
+
+  final LogoutController _logoutController;
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
@@ -43,6 +50,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
               isBorderless: true,
               hintText: I18n.of(context).settings_groqApiKeyHint,
             ),
+            const Gap.vertical(height: Dimens.doubleSpacing),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(
+                IconsaxPlusBroken.logout,
+                color: context.colorScheme.error,
+              ),
+              title: Text(
+                I18n.of(context).settings_logout,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyLarge
+                    ?.copyWith(color: context.colorScheme.error, fontWeight: FontWeight.w500),
+              ),
+              onTap: () async => await widget._logoutController.logout(),
+            )
           ],
         ),
       ),

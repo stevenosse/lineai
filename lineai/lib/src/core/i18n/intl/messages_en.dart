@@ -48,6 +48,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "drawer_searchHint": MessageLookupByLibrary.simpleMessage("Search"),
         "drawer_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "errorDialog_title": MessageLookupByLibrary.simpleMessage("Oops!"),
+        "error_noInternet": MessageLookupByLibrary.simpleMessage(
+            "We are unable to connect to the internet. Please check your connection and try again."),
+        "error_notFound": MessageLookupByLibrary.simpleMessage(
+            "An error occurred. Please try again."),
+        "error_server": MessageLookupByLibrary.simpleMessage(
+            "An error occurred. Please try again."),
+        "error_unknown": MessageLookupByLibrary.simpleMessage(
+            "An error occurred. Please try again."),
         "formInput_emailValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid email address."),
         "formInput_passwordValidation":
@@ -79,6 +87,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "login_title": MessageLookupByLibrary.simpleMessage("Log In"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
+        "pendingVerification_resendButton":
+            MessageLookupByLibrary.simpleMessage("Resend"),
+        "pendingVerification_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Please check your email and click on the link to verify your account."),
+        "pendingVerification_title":
+            MessageLookupByLibrary.simpleMessage("Verify your email"),
         "register_btnLabel": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "register_emailHint":
             MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),
@@ -98,11 +112,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "register_termsLink":
             MessageLookupByLibrary.simpleMessage("terms of service"),
         "register_title": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings_groqApiKeyHint":
             MessageLookupByLibrary.simpleMessage("gsk_********************"),
         "settings_groqApiKeyLabel":
             MessageLookupByLibrary.simpleMessage("Groq API key"),
+        "settings_logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "settings_logoutFailedBody": MessageLookupByLibrary.simpleMessage(
+            "An error occurred while logging out. Please try again."),
+        "settings_logoutFailedTitle":
+            MessageLookupByLibrary.simpleMessage("Logout failed"),
         "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
         "welcome_getStarted":
             MessageLookupByLibrary.simpleMessage("Get Started"),

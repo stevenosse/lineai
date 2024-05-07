@@ -5,6 +5,7 @@ import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/app_theme.dart';
 import 'package:lineai/src/shared/locator.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:toastification/toastification.dart';
 
 class LineAI extends StatelessWidget {
   final AppRouter _appRouter;
@@ -15,23 +16,25 @@ class LineAI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'LineAI',
-      routerConfig: _appRouter.config(
-        navigatorObservers: () => [
-          AutoRouteObserver(),
+    return ToastificationWrapper(
+      child: MaterialApp.router(
+        title: 'LineAI',
+        routerConfig: _appRouter.config(
+          navigatorObservers: () => [
+            AutoRouteObserver(),
+          ],
+        ),
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          I18n.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
         ],
+        supportedLocales: I18n.delegate.supportedLocales,
       ),
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates: const [
-        I18n.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: I18n.delegate.supportedLocales,
     );
   }
 }

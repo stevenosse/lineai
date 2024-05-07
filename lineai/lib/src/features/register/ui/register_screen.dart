@@ -8,9 +8,9 @@ import 'package:lineai/gen/assets.gen.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
-import 'package:lineai/src/datasource/mappers.dart';
+import 'package:lineai/src/features/register/logic/register_cubit.dart';
 import 'package:lineai/src/shared/components/button.dart';
-import 'package:lineai/src/shared/components/dialogs/dialog_builder.dart';
+import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
@@ -26,7 +26,10 @@ class RegisterScreen extends StatefulWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return this;
+    return BlocProvider(
+      create: (_) => RegisterCubit(),
+      child: this,
+    );
   }
 }
 
@@ -44,136 +47,157 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(Dimens.spacing),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  const Gap.vertical(height: Dimens.spacing),
-                  Row(
-                    children: [
-                      IconButton.filled(
-                        onPressed: () => context.router.maybePop(),
-                        icon: Icon(IconsaxPlusBroken.arrow_left_1, color: context.colorScheme.onSurface),
-                        style: IconButton.styleFrom(
-                          foregroundColor: context.colorScheme.onSurface,
-                          backgroundColor: context.colorScheme.surface,
+    return BlocListener<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+        state.maybeWhen(
+          loading: (email, password) => LoadingDialog.show(context: context),
+          error: (email, password, error) {
+            LoadingDialog.hide(context: context);
+            ApiErrorDialog.show(context: context, error: error);
+          },
+          success: (email, password, response) {
+            LoadingDialog.hide(context: context);
+            context.router.replace(const ChatHomeRoute());
+          },
+          orElse: () => LoadingDialog.hide(context: context),
+        );
+      },
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(Dimens.spacing),
+          child: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    const Gap.vertical(height: Dimens.spacing),
+                    Row(
+                      children: [
+                        IconButton.filled(
+                          onPressed: () => context.router.maybePop(),
+                          icon: Icon(IconsaxPlusBroken.arrow_left_1, color: context.colorScheme.onSurface),
+                          style: IconButton.styleFrom(
+                            foregroundColor: context.colorScheme.onSurface,
+                            backgroundColor: context.colorScheme.surface,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Gap.vertical(height: Dimens.spacing),
+                    Text(
+                      I18n.of(context).register_title,
+                      style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                    const Gap.vertical(height: Dimens.minSpacing),
+                    Text(I18n.of(context).register_subtitle, style: context.textTheme.bodyMedium),
+                    const Gap.vertical(height: Dimens.doubleSpacing),
+                    AutofillGroup(
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Input(
+                              autofillHints: const [AutofillHints.email],
+                              controller: _emailController,
+                              labelText: I18n.of(context).register_emailLabel,
+                              hintText: I18n.of(context).register_emailHint,
+                              onChanged: context.read<RegisterCubit>().onEmailChanged,
+                              validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
+                                  .email(I18n.of(context).formInput_emailValidation)
+                                  .required(I18n.of(context).formInput_required)
+                                  .build(),
+                              textInputAction: TextInputAction.next,
+                            ),
+                            const Gap.vertical(height: Dimens.spacing),
+                            Input(
+                              autofillHints: const [AutofillHints.password],
+                              controller: _passwordController,
+                              isPassword: true,
+                              labelText: I18n.of(context).register_passwordLabel,
+                              hintText: I18n.of(context).register_passwordHint,
+                              onChanged: context.read<RegisterCubit>().onPasswordChanged,
+                              validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
+                                  .minLength(8, I18n.of(context).formInput_passwordValidation)
+                                  .required(I18n.of(context).formInput_required)
+                                  .build(),
+                              textInputAction: TextInputAction.done,
+                              onSubmitted: (value) => _onRegister(),
+                            ),
+                          ],
                         ),
                       ),
-                    ],
-                  ),
-                  const Gap.vertical(height: Dimens.spacing),
-                  Text(
-                    I18n.of(context).register_title,
-                    style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.bold),
-                  ),
-                  const Gap.vertical(height: Dimens.minSpacing),
-                  Text(I18n.of(context).register_subtitle, style: context.textTheme.bodyMedium),
-                  const Gap.vertical(height: Dimens.doubleSpacing),
-                  AutofillGroup(
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Input(
-                            autofillHints: const [AutofillHints.email],
-                            controller: _emailController,
-                            labelText: I18n.of(context).register_emailLabel,
-                            hintText: I18n.of(context).register_emailHint,
-                            // onChanged: context.read<LoginCubit>().onEmailChanged,
-                            validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
-                                .email(I18n.of(context).formInput_emailValidation)
-                                .required(I18n.of(context).formInput_required)
-                                .build(),
-                          ),
-                          const Gap.vertical(height: Dimens.spacing),
-                          Input(
-                            autofillHints: const [AutofillHints.password],
-                            controller: _passwordController,
-                            isPassword: true,
-                            labelText: I18n.of(context).register_passwordLabel,
-                            hintText: I18n.of(context).register_passwordHint,
-                            // onChanged: context.read<LoginCubit>().onPasswordChanged,
-                            validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
-                                .minLength(8, I18n.of(context).formInput_passwordValidation)
-                                .required(I18n.of(context).formInput_required)
-                                .build(),
-                          ),
-                        ],
+                    ),
+                    const Gap.vertical(height: Dimens.spacing),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text(I18n.of(context).register_forgotPasswordLabel),
                       ),
                     ),
-                  ),
-                  const Gap.vertical(height: Dimens.spacing),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(I18n.of(context).register_forgotPasswordLabel),
+                    const Gap.vertical(height: Dimens.spacing),
+                    Button.primary(
+                      title: I18n.of(context).register_btnLabel,
+                      onPressed: _onRegister,
                     ),
-                  ),
-                  const Gap.vertical(height: Dimens.spacing),
-                  Button.primary(
-                    title: I18n.of(context).register_btnLabel,
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        FocusManager.instance.primaryFocus?.unfocus();
-                        // context.read<LoginCubit>().login();
-                      }
-                    },
-                  ),
-                  const Gap.vertical(height: Dimens.doubleSpacing),
-                  LabeledDivider(
-                    label: I18n.of(context).or,
-                  ),
-                  const Gap.vertical(height: Dimens.doubleSpacing),
-                  Button.outline(
-                    icon: SvgPicture.asset(
-                      Assets.images.googleLogo,
-                      width: Dimens.iconSize,
-                      height: Dimens.iconSize,
+                    const Gap.vertical(height: Dimens.doubleSpacing),
+                    LabeledDivider(
+                      label: I18n.of(context).or,
                     ),
-                    title: I18n.of(context).register_googleBtnLabel,
-                    onPressed: () => context.router.push(const ChatHomeRoute()),
-                  ),
-                  const Gap.vertical(height: Dimens.spacing),
-                  Button.outline(
-                    icon: SvgPicture.asset(
-                      Assets.images.appleLogo,
-                      colorFilter: ColorFilter.mode(context.colorScheme.onBackground, BlendMode.srcIn),
-                      width: Dimens.iconSize,
-                      height: Dimens.iconSize,
+                    const Gap.vertical(height: Dimens.doubleSpacing),
+                    Button.outline(
+                      icon: SvgPicture.asset(
+                        Assets.images.googleLogo,
+                        width: Dimens.iconSize,
+                        height: Dimens.iconSize,
+                      ),
+                      title: I18n.of(context).register_googleBtnLabel,
+                      onPressed: () => context.router.push(const ChatHomeRoute()),
                     ),
-                    title: I18n.of(context).register_googleBtnLabel,
-                    onPressed: () => context.router.push(const ChatHomeRoute()),
-                  ),
-                ],
-              ),
-            ),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  text: I18n.of(context).register_termsLabel,
-                  style: context.textTheme.bodySmall,
-                  children: [
-                    const TextSpan(text: ' '),
-                    TextSpan(
-                      text: I18n.of(context).register_termsLink,
-                      style: context.textTheme.bodySmall
-                          ?.copyWith(color: context.colorScheme.primary, fontWeight: FontWeight.w600),
-                    )
+                    const Gap.vertical(height: Dimens.spacing),
+                    Button.outline(
+                      icon: SvgPicture.asset(
+                        Assets.images.appleLogo,
+                        colorFilter: ColorFilter.mode(context.colorScheme.onBackground, BlendMode.srcIn),
+                        width: Dimens.iconSize,
+                        height: Dimens.iconSize,
+                      ),
+                      title: I18n.of(context).register_googleBtnLabel,
+                      onPressed: () => context.router.push(const ChatHomeRoute()),
+                    ),
                   ],
                 ),
-                textAlign: TextAlign.center,
               ),
-            ),
-            const Gap.vertical(height: Dimens.doubleSpacing),
-          ],
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    text: I18n.of(context).register_termsLabel,
+                    style: context.textTheme.bodySmall,
+                    children: [
+                      const TextSpan(text: ' '),
+                      TextSpan(
+                        text: I18n.of(context).register_termsLink,
+                        style: context.textTheme.bodySmall
+                            ?.copyWith(color: context.colorScheme.primary, fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const Gap.vertical(height: Dimens.doubleSpacing),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  void _onRegister() {
+    if (_formKey.currentState!.validate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      context.read<RegisterCubit>().register();
+    }
   }
 }

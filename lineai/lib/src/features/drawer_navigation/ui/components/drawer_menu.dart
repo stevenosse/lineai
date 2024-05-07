@@ -104,7 +104,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ListTile(
                 leading: const Icon(IconsaxPlusBroken.setting_2),
                 title: Text(I18n.of(context).drawer_settings),
-                onTap: () => context.router.push(const SettingsRoute()),
+                onTap: () => context.router.push(SettingsRoute()),
               ),
               ListTile(
                 leading: const Icon(IconsaxPlusBroken.info_circle),

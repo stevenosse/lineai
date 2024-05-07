@@ -8,10 +8,9 @@ import 'package:lineai/gen/assets.gen.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
-import 'package:lineai/src/datasource/mappers.dart';
 import 'package:lineai/src/features/login/logic/login_cubit.dart';
 import 'package:lineai/src/shared/components/button.dart';
-import 'package:lineai/src/shared/components/dialogs/dialog_builder.dart';
+import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
@@ -54,10 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           loading: (email, password) => LoadingDialog.show(context: context),
           error: (email, password, error) {
             LoadingDialog.hide(context: context);
-            DialogBuilder.showErrorDialog(
-              context: context,
-              message: error.describe(context: context),
-            );
+            ApiErrorDialog.show(context: context, error: error);
           },
           success: (email, password, response) {
             LoadingDialog.hide(context: context);
@@ -107,6 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             .email(I18n.of(context).formInput_emailValidation)
                             .required(I18n.of(context).formInput_required)
                             .build(),
+                        textInputAction: TextInputAction.next,
                       ),
                       const Gap.vertical(height: Dimens.spacing),
                       Input(
@@ -120,6 +117,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             .minLength(8, I18n.of(context).formInput_passwordValidation)
                             .required(I18n.of(context).formInput_required)
                             .build(),
+                        textInputAction: TextInputAction.done,
+                        onSubmitted: (_) => _onLogin(),
                       ),
                     ],
                   ),
@@ -136,12 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
               const Gap.vertical(height: Dimens.spacing),
               Button.primary(
                 title: I18n.of(context).login_btnLabel,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    FocusManager.instance.primaryFocus?.unfocus();
-                    context.read<LoginCubit>().login();
-                  }
-                },
+                onPressed: _onLogin,
               ),
               const Gap.vertical(height: Dimens.doubleSpacing),
               LabeledDivider(
@@ -173,5 +167,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  void _onLogin() {
+    if (_formKey.currentState!.validate()) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      context.read<LoginCubit>().login();
+    }
   }
 }
