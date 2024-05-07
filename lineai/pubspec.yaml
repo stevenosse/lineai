@@ -19,6 +19,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
   equatable: ^2.0.5
+  supabase_flutter: ^2.5.2
 
   intl: ^0.18.1
   intl_utils: ^2.8.7
