@@ -22,6 +22,23 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "count": MessageLookupByLibrary.simpleMessage("Count")
+        "login_btnLabel": MessageLookupByLibrary.simpleMessage("Login"),
+        "login_emailHint":
+            MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),
+        "login_emailLabel": MessageLookupByLibrary.simpleMessage("Email"),
+        "login_forgotPasswordLabel":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
+        "login_googleBtnLabel":
+            MessageLookupByLibrary.simpleMessage("Sign in with Google"),
+        "login_passwordHint": MessageLookupByLibrary.simpleMessage("********"),
+        "login_passwordLabel": MessageLookupByLibrary.simpleMessage("Password"),
+        "login_subtitle": MessageLookupByLibrary.simpleMessage(
+            "To continue, log in to your account."),
+        "login_termsLabel": MessageLookupByLibrary.simpleMessage(
+            "By logging in, you agree to our"),
+        "login_termsLink":
+            MessageLookupByLibrary.simpleMessage("terms of service"),
+        "login_title": MessageLookupByLibrary.simpleMessage("Log In"),
+        "or": MessageLookupByLibrary.simpleMessage("OR")
       };
 }

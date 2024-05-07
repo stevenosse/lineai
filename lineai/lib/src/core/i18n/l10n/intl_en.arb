@@ -1,5 +1,17 @@
 {
   "@@locale": "en",
 
-  "count": "Count"
+  "login_title": "Log In",
+  "login_subtitle": "To continue, log in to your account.",
+  "login_btnLabel": "Login",
+  "login_emailLabel": "Email",
+  "login_emailHint": "hello@adaptiv.io",
+  "login_passwordLabel": "Password",
+  "login_passwordHint": "********",
+  "login_googleBtnLabel": "Sign in with Google",
+  "login_termsLabel": "By logging in, you agree to our",
+  "login_termsLink": "terms of service",
+  "login_forgotPasswordLabel": "Forgot your password?",
+
+  "or": "OR"
 }

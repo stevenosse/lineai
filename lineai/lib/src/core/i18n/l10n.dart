@@ -50,11 +50,121 @@ class I18n {
     return Localizations.of<I18n>(context, I18n);
   }
 
-  /// `Count`
-  String get count {
+  /// `Log In`
+  String get login_title {
     return Intl.message(
-      'Count',
-      name: 'count',
+      'Log In',
+      name: 'login_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To continue, log in to your account.`
+  String get login_subtitle {
+    return Intl.message(
+      'To continue, log in to your account.',
+      name: 'login_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login_btnLabel {
+    return Intl.message(
+      'Login',
+      name: 'login_btnLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get login_emailLabel {
+    return Intl.message(
+      'Email',
+      name: 'login_emailLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hello@adaptiv.io`
+  String get login_emailHint {
+    return Intl.message(
+      'hello@adaptiv.io',
+      name: 'login_emailHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get login_passwordLabel {
+    return Intl.message(
+      'Password',
+      name: 'login_passwordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `********`
+  String get login_passwordHint {
+    return Intl.message(
+      '********',
+      name: 'login_passwordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in with Google`
+  String get login_googleBtnLabel {
+    return Intl.message(
+      'Sign in with Google',
+      name: 'login_googleBtnLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `By logging in, you agree to our`
+  String get login_termsLabel {
+    return Intl.message(
+      'By logging in, you agree to our',
+      name: 'login_termsLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `terms of service`
+  String get login_termsLink {
+    return Intl.message(
+      'terms of service',
+      name: 'login_termsLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot your password?`
+  String get login_forgotPasswordLabel {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'login_forgotPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OR`
+  String get or {
+    return Intl.message(
+      'OR',
+      name: 'or',
       desc: '',
       args: [],
     );

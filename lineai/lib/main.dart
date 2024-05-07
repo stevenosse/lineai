@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lineai/src/core/app_initializer.dart';
 import 'package:lineai/src/core/line_ai.dart';
 
+// TODO: Lock orientation
 void main() {
   final AppInitializer appInitializer = AppInitializer();
 

@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/features/home/logic/counter_cubit.dart';
 import 'package:lineai/src/shared/components/gap.dart';
@@ -31,10 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                I18n.of(context).count,
-                style: context.textTheme.bodyLarge,
-              ),
               const Gap.vertical(height: Dimens.spacing),
               BlocBuilder<CounterCubit, CounterState>(
                 builder: (context, state) {
