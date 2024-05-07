@@ -14,7 +14,7 @@ class TipsCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.halfSpacing),
+      padding: const EdgeInsets.only(right: Dimens.halfSpacing),
       child: Card(
         surfaceTintColor: Colors.transparent,
         margin: EdgeInsets.zero,

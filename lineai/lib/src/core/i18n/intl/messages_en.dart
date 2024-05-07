@@ -22,12 +22,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "chatSettings_modelLabel":
+            MessageLookupByLibrary.simpleMessage("Model"),
+        "chatSettings_systemPromptHint": MessageLookupByLibrary.simpleMessage(
+            "Please provide useful, helpful and actionnable answers."),
+        "chatSettings_systemPromptLabel":
+            MessageLookupByLibrary.simpleMessage("System prompt"),
+        "chatSettings_title":
+            MessageLookupByLibrary.simpleMessage("Chat settings"),
         "chat_inputPlaceholder":
             MessageLookupByLibrary.simpleMessage("Message..."),
         "chat_tips_subtitle":
             MessageLookupByLibrary.simpleMessage("for weight loss"),
         "chat_tips_title":
             MessageLookupByLibrary.simpleMessage("Create a workout plan"),
+        "drawer_chatsSectionTitle":
+            MessageLookupByLibrary.simpleMessage("Chats"),
+        "drawer_newConversation":
+            MessageLookupByLibrary.simpleMessage("New conversation"),
+        "drawer_searchHint": MessageLookupByLibrary.simpleMessage("Search"),
+        "drawer_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "login_btnLabel": MessageLookupByLibrary.simpleMessage("Login"),
         "login_emailHint":
             MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),

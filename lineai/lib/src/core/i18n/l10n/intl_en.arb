@@ -13,9 +13,19 @@
   "login_termsLink": "terms of service",
   "login_forgotPasswordLabel": "Forgot your password?",
 
+  "drawer_newConversation": "New conversation",
+  "drawer_searchHint": "Search",
+  "drawer_settings": "Settings",
+  "drawer_chatsSectionTitle": "Chats",
+
   "chat_tips_title": "Create a workout plan",
   "chat_tips_subtitle": "for weight loss",
   "chat_inputPlaceholder": "Message...",
+
+  "chatSettings_title": "Chat settings",
+  "chatSettings_modelLabel": "Model",
+  "chatSettings_systemPromptLabel": "System prompt",
+  "chatSettings_systemPromptHint": "Please provide useful, helpful and actionnable answers.",
 
   "or": "OR"
 }

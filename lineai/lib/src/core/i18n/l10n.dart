@@ -160,6 +160,46 @@ class I18n {
     );
   }
 
+  /// `New conversation`
+  String get drawer_newConversation {
+    return Intl.message(
+      'New conversation',
+      name: 'drawer_newConversation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get drawer_searchHint {
+    return Intl.message(
+      'Search',
+      name: 'drawer_searchHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get drawer_settings {
+    return Intl.message(
+      'Settings',
+      name: 'drawer_settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chats`
+  String get drawer_chatsSectionTitle {
+    return Intl.message(
+      'Chats',
+      name: 'drawer_chatsSectionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create a workout plan`
   String get chat_tips_title {
     return Intl.message(
@@ -185,6 +225,46 @@ class I18n {
     return Intl.message(
       'Message...',
       name: 'chat_inputPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Chat settings`
+  String get chatSettings_title {
+    return Intl.message(
+      'Chat settings',
+      name: 'chatSettings_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Model`
+  String get chatSettings_modelLabel {
+    return Intl.message(
+      'Model',
+      name: 'chatSettings_modelLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System prompt`
+  String get chatSettings_systemPromptLabel {
+    return Intl.message(
+      'System prompt',
+      name: 'chatSettings_systemPromptLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide useful, helpful and actionnable answers.`
+  String get chatSettings_systemPromptHint {
+    return Intl.message(
+      'Please provide useful, helpful and actionnable answers.',
+      name: 'chatSettings_systemPromptHint',
       desc: '',
       args: [],
     );

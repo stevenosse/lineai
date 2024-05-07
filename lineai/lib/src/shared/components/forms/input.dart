@@ -10,6 +10,7 @@ class Input extends StatelessWidget {
   final String? hintText;
   final TextStyle? hintStyle;
   final TextStyle? style;
+  final Widget? prefixIcon;
   final Widget? suffixIcon;
   final Color? cursorColor;
   final bool? filled;
@@ -34,6 +35,7 @@ class Input extends StatelessWidget {
     this.hintText,
     this.hintStyle,
     this.style,
+    this.prefixIcon,
     this.suffixIcon,
     this.cursorColor,
     this.filled,
@@ -68,51 +70,56 @@ class Input extends StatelessWidget {
           const Gap.vertical(height: Dimens.minSpacing),
         ],
         SizedBox(
-          height: kMinInteractiveDimension,
-          child: TextFormField(
-            autofillHints: autofillHints,
-            controller: controller,
-            obscureText: isPassword,
-            cursorColor: cursorColor,
-            readOnly: readOnly,
-            focusNode: focusNode,
-            style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
-            minLines: isPassword ? 1 : minLines,
-            maxLines: isPassword ? 1 : maxLines,
-            keyboardType: keyboardType,
-            textInputAction: textInputAction,
-            onFieldSubmitted: onSubmitted,
-            decoration: InputDecoration(
-              hintText: hintText,
-              hintStyle: hintStyle,
-              filled: filled,
-              fillColor: fillColor,
-              suffixIcon: suffixIcon,
-              enabled: enabled,
-              enabledBorder: isBorderless
-                  ? InputBorder.none
-                  : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(Dimens.borderRadius),
-                      borderSide: BorderSide(color: borderColor, width: 1.0),
-                    ),
-              border: isBorderless
-                  ? InputBorder.none
-                  : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(Dimens.borderRadius),
-                      borderSide: BorderSide.none,
-                    ),
-              focusedBorder: isBorderless
-                  ? InputBorder.none
-                  : OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(Dimens.borderRadius),
-                      borderSide: BorderSide(
-                        color: borderColor,
-                        width: 1.0,
+          height: minLines != null ? null : kMinInteractiveDimension,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(Dimens.borderRadius),
+            child: TextFormField(
+              autofillHints: autofillHints,
+              controller: controller,
+              obscureText: isPassword,
+              cursorColor: cursorColor,
+              readOnly: readOnly,
+              focusNode: focusNode,
+              style: style ?? Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+              minLines: isPassword ? 1 : minLines,
+              maxLines: isPassword ? 1 : maxLines,
+              keyboardType: keyboardType,
+              textInputAction: textInputAction,
+              onFieldSubmitted: onSubmitted,
+              decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(vertical: Dimens.halfSpacing, horizontal: Dimens.spacing),
+                hintText: hintText,
+                hintStyle: hintStyle,
+                filled: filled,
+                fillColor: fillColor,
+                prefixIcon: prefixIcon,
+                suffixIcon: suffixIcon,
+                enabled: enabled,
+                enabledBorder: isBorderless
+                    ? InputBorder.none
+                    : OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(Dimens.borderRadius),
+                        borderSide: BorderSide(color: borderColor, width: 1.0),
                       ),
-                    ),
+                border: isBorderless
+                    ? InputBorder.none
+                    : OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(Dimens.borderRadius),
+                        borderSide: BorderSide.none,
+                      ),
+                focusedBorder: isBorderless
+                    ? InputBorder.none
+                    : OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(Dimens.borderRadius),
+                        borderSide: BorderSide(
+                          color: borderColor,
+                          width: 1.0,
+                        ),
+                      ),
+              ),
+              onChanged: onChanged,
+              validator: validator,
             ),
-            onChanged: onChanged,
-            validator: validator,
           ),
         ),
       ],
