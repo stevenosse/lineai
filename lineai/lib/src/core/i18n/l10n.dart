@@ -190,6 +190,16 @@ class I18n {
     );
   }
 
+  /// `About`
+  String get drawer_about {
+    return Intl.message(
+      'About',
+      name: 'drawer_about',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Chats`
   String get drawer_chatsSectionTitle {
     return Intl.message(
@@ -270,6 +280,26 @@ class I18n {
     );
   }
 
+  /// `Temperature`
+  String get chatSettings_temperatureLabel {
+    return Intl.message(
+      'Temperature',
+      name: 'chatSettings_temperatureLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.`
+  String get chatSettings_temperatureHint {
+    return Intl.message(
+      'Between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.',
+      name: 'chatSettings_temperatureHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get settings_title {
     return Intl.message(
@@ -305,6 +335,16 @@ class I18n {
     return Intl.message(
       'OR',
       name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
       desc: '',
       args: [],
     );

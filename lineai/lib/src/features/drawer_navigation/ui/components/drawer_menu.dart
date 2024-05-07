@@ -106,6 +106,11 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 title: Text(I18n.of(context).drawer_settings),
                 onTap: () => context.router.push(const SettingsRoute()),
               ),
+              ListTile(
+                leading: const Icon(IconsaxPlusBroken.info_circle),
+                title: Text(I18n.of(context).drawer_about),
+                onTap: () {},
+              ),
               const SizedBox(height: Dimens.halfSpacing),
             ],
           ),

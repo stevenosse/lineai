@@ -28,6 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please provide useful, helpful and actionnable answers."),
         "chatSettings_systemPromptLabel":
             MessageLookupByLibrary.simpleMessage("System prompt"),
+        "chatSettings_temperatureHint": MessageLookupByLibrary.simpleMessage(
+            "Between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic."),
+        "chatSettings_temperatureLabel":
+            MessageLookupByLibrary.simpleMessage("Temperature"),
         "chatSettings_title":
             MessageLookupByLibrary.simpleMessage("Chat settings"),
         "chat_inputPlaceholder":
@@ -36,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("for weight loss"),
         "chat_tips_title":
             MessageLookupByLibrary.simpleMessage("Create a workout plan"),
+        "drawer_about": MessageLookupByLibrary.simpleMessage("About"),
         "drawer_chatsSectionTitle":
             MessageLookupByLibrary.simpleMessage("Chats"),
         "drawer_newConversation":
@@ -60,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("terms of service"),
         "login_title": MessageLookupByLibrary.simpleMessage("Log In"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings_groqApiKeyHint":
             MessageLookupByLibrary.simpleMessage("gsk_********************"),
         "settings_groqApiKeyLabel":
