@@ -64,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
       },
       child: Scaffold(
+        appBar: AppBar(toolbarHeight: 0),
         body: Padding(
           padding: const EdgeInsets.all(Dimens.spacing),
           child: ListView(

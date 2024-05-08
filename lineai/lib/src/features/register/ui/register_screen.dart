@@ -63,6 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         );
       },
       child: Scaffold(
+        appBar: AppBar(toolbarHeight: 0),
         body: Padding(
           padding: const EdgeInsets.all(Dimens.spacing),
           child: Column(
