@@ -66,6 +66,7 @@
   "settings_logoutFailedTitle": "Logout failed",
   "settings_logoutFailedBody": "An error occurred while logging out. Please try again.",
 
+  "settings_groqApiKeyError": "Please provide a groq API key in the settings.",
 
   "loadingDialog_content": "Loading...",
 

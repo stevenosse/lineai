@@ -8,6 +8,7 @@ import 'package:lineai/src/features/chat/logic/send_message/send_message_cubit.d
 import 'package:lineai/src/features/chat/ui/components/chats_empty_state.dart';
 import 'package:lineai/src/features/chat/ui/components/message_list.dart';
 import 'package:lineai/src/features/chat/ui/components/send_message_form.dart';
+import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
@@ -36,6 +37,13 @@ class ChatHomeScreen extends StatefulWidget implements AutoRouteWrapper {
 
 class _ChatHomeScreenState extends State<ChatHomeScreen> {
   String? _pendingMessage;
+  final TextEditingController _messageController = TextEditingController();
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +79,9 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                   context: context,
                   body: error.describe(context: context),
                 ),
+                success: (conversationId, message) {
+                  _messageController.clear();
+                },
               );
             },
           ),
@@ -102,6 +113,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(Dimens.spacing),
                 child: SendMessageForm(
+                  controller: _messageController,
                   onSendMessage: _onSendMessagePressed,
                 ),
               ),
@@ -113,6 +125,15 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   }
 
   void _onSendMessagePressed(String message) async {
+    final settings = context.read<UserSettingsCubit>().state.settings;
+    if (settings.groqApiKey.isEmpty) {
+      $notificationService.showErrorNotification(
+        context: context,
+        body: I18n.of(context).settings_groqApiKeyError,
+      );
+      return;
+    }
+
     final sendMessageCubit = context.read<SendMessageCubit>();
     final conversationId = context.read<ChatCubit>().state.conversation?.id;
 

@@ -10,9 +10,11 @@ import 'package:lineai/src/shared/extensions/context_extensions.dart';
 class SendMessageForm extends StatefulWidget {
   const SendMessageForm({
     super.key,
+    required this.controller,
     this.onSendMessage,
   });
 
+  final TextEditingController controller;
   final ValueChanged<String>? onSendMessage;
 
   @override
@@ -21,13 +23,6 @@ class SendMessageForm extends StatefulWidget {
 
 class _SendMessageFormState extends State<SendMessageForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _messageController = TextEditingController();
-
-  @override
-  void dispose() {
-    _messageController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +32,7 @@ class _SendMessageFormState extends State<SendMessageForm> {
         children: [
           Expanded(
             child: Input(
-              controller: _messageController,
+              controller: widget.controller,
               fillColor: context.colorScheme.surface,
               filled: true,
               isBorderless: true,
@@ -52,8 +47,7 @@ class _SendMessageFormState extends State<SendMessageForm> {
           IconButton.filled(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                widget.onSendMessage?.call(_messageController.text);
-                _messageController.clear();
+                widget.onSendMessage?.call(widget.controller.text);
               }
             },
             icon: const Icon(IconsaxPlusBroken.arrow_up, size: Dimens.iconSizeS),
