@@ -18,7 +18,7 @@ abstract class _$AppRouter extends RootStackRouter {
     AuthRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AuthWrapper(),
+        child: WrappedRoute(child: const AuthWrapper()),
       );
     },
     ChatHomeRoute.name: (routeData) {

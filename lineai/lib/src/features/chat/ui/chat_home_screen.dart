@@ -1,17 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/widgets.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
-import 'package:lineai/gen/assets.gen.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
-import 'package:lineai/src/features/chat/ui/components/tips_card.dart';
+import 'package:lineai/src/features/chat/ui/components/chats_empty_state.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
-
-const _tipsCardHeight = 80.0;
 
 @RoutePage()
 class ChatHomeScreen extends StatefulWidget implements AutoRouteWrapper {
@@ -33,30 +30,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
         widthFactor: 1,
         child: Column(
           children: [
-            Expanded(
-              flex: 7,
-              child: Center(
-                child: SvgPicture.asset(
-                  Assets.images.lineaiFlatLogo,
-                  width: 40,
-                ),
-              ),
-            ),
-            const Gap.vertical(height: Dimens.spacing),
-            SizedBox(
-              height: _tipsCardHeight,
-              child: ListView.builder(
-                itemCount: 4,
-                padding: const EdgeInsets.only(left: Dimens.spacing),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return TipsCard(
-                    title: I18n.of(context).chat_tips_title,
-                    subtitle: I18n.of(context).chat_tips_subtitle,
-                  );
-                },
-              ),
-            ),
+            const Expanded(child: ChatsEmptyState()),
             Padding(
               padding: const EdgeInsets.all(Dimens.spacing),
               child: Row(
