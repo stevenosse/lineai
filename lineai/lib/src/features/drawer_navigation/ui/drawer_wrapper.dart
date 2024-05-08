@@ -72,7 +72,14 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
               return DrawerMenu(
                 conversations: state.conversations,
                 selectedConversation: chatState.conversation,
-                onDismissRequested: () => _scaffoldKey.currentState?.closeDrawer(),
+                onStartConversation: () {
+                  context.read<ChatCubit>().startNewConversation();
+                  _scaffoldKey.currentState?.closeDrawer();
+                },
+                onConversationSelected: (conversation) {
+                  context.read<ChatCubit>().selectConversation(conversation);
+                  _scaffoldKey.currentState?.closeDrawer();
+                },
               );
             },
           );

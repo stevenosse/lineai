@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lineai/gen/assets.gen.dart';
-import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/datasource/constants.dart';
 import 'package:lineai/src/features/chat/ui/components/tips_card.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 
-const _tipsCardHeight = 80.0;
+const _tipsCardHeight = 90.0;
 
 class ChatsEmptyState extends StatelessWidget {
-  const ChatsEmptyState({super.key});
+  const ChatsEmptyState({
+    super.key,
+    this.onTipsTapped,
+  });
+
+  final ValueChanged<String>? onTipsTapped;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +31,17 @@ class ChatsEmptyState extends StatelessWidget {
         ),
         const Gap.vertical(height: Dimens.spacing),
         SizedBox(
-          height: _tipsCardHeight,
+          height: MediaQuery.textScalerOf(context).scale(_tipsCardHeight),
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: chatTips.length,
             padding: const EdgeInsets.only(left: Dimens.spacing),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
+              final tips = chatTips[index];
               return TipsCard(
-                title: I18n.of(context).chat_tips_title,
-                subtitle: I18n.of(context).chat_tips_subtitle,
+                title: tips['title'] as String,
+                subtitle: tips['subtitle'] as String,
+                onTap: onTipsTapped,
               );
             },
           ),

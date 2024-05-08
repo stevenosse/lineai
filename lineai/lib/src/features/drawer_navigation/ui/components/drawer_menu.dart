@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
@@ -9,19 +8,20 @@ import 'package:lineai/src/datasource/models/conversation/conversation.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/labeled_divider.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
-import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({
     super.key,
     required this.conversations,
     this.selectedConversation,
-    this.onDismissRequested,
+    this.onConversationSelected,
+    this.onStartConversation,
   });
 
   final Conversation? selectedConversation;
   final List<Conversation> conversations;
-  final VoidCallback? onDismissRequested;
+  final ValueChanged<Conversation>? onConversationSelected;
+  final VoidCallback? onStartConversation;
 
   @override
   State<DrawerMenu> createState() => _DrawerMenuState();
@@ -99,10 +99,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ListTile(
                 leading: const Icon(IconsaxPlusBroken.message_circle),
                 title: Text(I18n.of(context).drawer_newConversation),
-                onTap: () {
-                  context.read<ChatCubit>().startNewConversation();
-                  widget.onDismissRequested?.call();
-                },
+                onTap: widget.onStartConversation,
               ),
               const SizedBox(height: Dimens.spacing),
               LabeledDivider(
@@ -122,10 +119,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                             title: Text(conversation.name),
                             selected: widget.selectedConversation?.id == conversation.id,
                             selectedTileColor: context.colorScheme.background,
-                            onTap: () {
-                              context.read<ChatCubit>().selectConversation(conversation);
-                              widget.onDismissRequested?.call();
-                            },
+                            onTap: () => widget.onConversationSelected?.call(conversation),
                             trailing: const Icon(IconsaxPlusBroken.more),
                           );
                         },

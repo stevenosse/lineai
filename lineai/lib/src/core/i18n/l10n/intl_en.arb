@@ -45,8 +45,6 @@
   "drawer_chatsSectionTitle": "Chats",
   "drawer_noConversations": "No conversations yet",
 
-  "chat_tips_title": "Create a workout plan",
-  "chat_tips_subtitle": "for weight loss",
   "chat_inputPlaceholder": "Message...",
   "chat_messageRequiredValidation": "Please enter a message.",
   "chat_unnamedConversation": "Unnamed conversation",

@@ -16,4 +16,19 @@ final class AIConstants {
   ];
 }
 
+const chatTips = [
+  {
+    'title': 'What is',
+    'subtitle': 'generative AI ?',
+  },
+  {
+    'title': 'What is large ',
+    'subtitle': 'language model (LLM) inference ?',
+  },
+  {
+    'title': 'Why should i care',
+    'subtitle': 'about fast inference ?',
+  }
+];
+
 const groqConsoleApiKeyUrl = 'https://console.groq.com/keys';

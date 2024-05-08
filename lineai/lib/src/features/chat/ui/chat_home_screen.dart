@@ -110,7 +110,9 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 child: BlocBuilder<MessageListBloc, MessageListState>(
                   builder: (context, state) {
                     if (state.messages.isEmpty) {
-                      return const ChatsEmptyState();
+                      return ChatsEmptyState(
+                        onTipsTapped: _onSendMessagePressed,
+                      );
                     }
 
                     return MessageList(messages: state.messages);

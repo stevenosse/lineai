@@ -40,10 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Message..."),
         "chat_messageRequiredValidation":
             MessageLookupByLibrary.simpleMessage("Please enter a message."),
-        "chat_tips_subtitle":
-            MessageLookupByLibrary.simpleMessage("for weight loss"),
-        "chat_tips_title":
-            MessageLookupByLibrary.simpleMessage("Create a workout plan"),
         "chat_unnamedConversation":
             MessageLookupByLibrary.simpleMessage("Unnamed conversation"),
         "drawer_about": MessageLookupByLibrary.simpleMessage("About"),
