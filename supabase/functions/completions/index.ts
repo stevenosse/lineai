@@ -100,6 +100,8 @@ Deno.serve(async (req: Request) => {
       },
     ).then((res) => res.json());
 
+    // TODO: summarize all conversations and save the summary in the conversation
+
     if (!modelResponse) {
       return handleError("Failed to query AI model", 500);
     }

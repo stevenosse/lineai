@@ -20,7 +20,7 @@ Conversation _$ConversationFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Conversation {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'user_id')
   String get userId => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $ConversationCopyWith<$Res> {
       _$ConversationCopyWithImpl<$Res, Conversation>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String name,
       @JsonKey(name: 'user_id') String userId,
       @JsonKey(name: 'created_at') DateTime createdAt,
@@ -68,7 +68,7 @@ class _$ConversationCopyWithImpl<$Res, $Val extends Conversation>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? userId = null,
     Object? createdAt = null,
@@ -78,10 +78,10 @@ class _$ConversationCopyWithImpl<$Res, $Val extends Conversation>
     Object? temperature = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -123,7 +123,7 @@ abstract class _$$ConversationImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String name,
       @JsonKey(name: 'user_id') String userId,
       @JsonKey(name: 'created_at') DateTime createdAt,
@@ -144,7 +144,7 @@ class __$$ConversationImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? userId = null,
     Object? createdAt = null,
@@ -154,10 +154,10 @@ class __$$ConversationImplCopyWithImpl<$Res>
     Object? temperature = null,
   }) {
     return _then(_$ConversationImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -194,7 +194,7 @@ class __$$ConversationImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ConversationImpl implements _Conversation {
   _$ConversationImpl(
-      {required this.id,
+      {this.id,
       this.name = '',
       @JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'created_at') required this.createdAt,
@@ -207,7 +207,7 @@ class _$ConversationImpl implements _Conversation {
       _$$ConversationImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   @JsonKey()
   final String name;
@@ -272,7 +272,7 @@ class _$ConversationImpl implements _Conversation {
 
 abstract class _Conversation implements Conversation {
   factory _Conversation(
-      {required final int id,
+      {final int? id,
       final String name,
       @JsonKey(name: 'user_id') required final String userId,
       @JsonKey(name: 'created_at') required final DateTime createdAt,
@@ -285,7 +285,7 @@ abstract class _Conversation implements Conversation {
       _$ConversationImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get name;
   @override

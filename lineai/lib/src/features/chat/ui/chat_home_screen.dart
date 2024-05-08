@@ -61,7 +61,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                   if (_pendingMessage != null) {
                     context
                         .read<SendMessageCubit>()
-                        .sendMessage(conversationId: conversation.id, message: _pendingMessage!);
+                        .sendMessage(conversationId: conversation.id!, message: _pendingMessage!);
                     _pendingMessage = null;
                   }
                 },
@@ -146,7 +146,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
     final sendMessageCubit = context.read<SendMessageCubit>();
     final conversationId = context.read<ChatCubit>().state.conversation?.id;
 
-    if (conversationId == null) {
+    if (conversationId == null || conversationId == 0) {
       _pendingMessage = message;
       context.read<ChatCubit>().createEmptyConversation();
     } else {

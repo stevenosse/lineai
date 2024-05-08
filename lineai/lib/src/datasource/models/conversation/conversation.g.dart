@@ -8,7 +8,7 @@ part of 'conversation.dart';
 
 _$ConversationImpl _$$ConversationImplFromJson(Map<String, dynamic> json) =>
     _$ConversationImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String? ?? '',
       userId: json['user_id'] as String,
       createdAt: DateTime.parse(json['created_at'] as String),

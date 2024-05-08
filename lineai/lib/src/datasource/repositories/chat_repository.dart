@@ -32,7 +32,10 @@ class ChatRepository extends BaseRepository {
     return runOperation(call: () async {
       final json = await _supabaseClient
           .from(DBConstants.conversationsTable)
-          .upsert({...conversation.toJson(), 'user_id': _supabaseClient.auth.currentUser!.id})
+          .upsert({
+            ...conversation.toJson()..removeWhere((key, value) => value == null),
+            'user_id': _supabaseClient.auth.currentUser!.id
+          })
           .select()
           .single();
       return ApiResponse.success(Conversation.fromJson(json));
@@ -51,12 +54,14 @@ class ChatRepository extends BaseRepository {
           .single()
           .then((value) => Conversation.fromJson(value));
 
-      await _supabaseClient.functions.invoke('completions', body: {
+      final payload = {
         'conversationId': conversation.id,
         'message': message,
-      });
+      };
 
-      return ApiResponse.success(SendMessageResponse(conversationId: conversation.id));
+      await _supabaseClient.functions.invoke('completions', body: payload);
+
+      return ApiResponse.success(SendMessageResponse(conversationId: conversation.id!));
     });
   }
 }
