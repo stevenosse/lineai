@@ -20,7 +20,7 @@ mixin _$ChatState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
-    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation conversation, bool isUpdated) saved,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -30,7 +30,7 @@ mixin _$ChatState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
-    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation conversation, bool isUpdated)? saved,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -39,7 +39,7 @@ mixin _$ChatState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
-    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation conversation, bool isUpdated)? saved,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -195,7 +195,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
-    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation conversation, bool isUpdated) saved,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -208,7 +208,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
-    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation conversation, bool isUpdated)? saved,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -220,7 +220,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
-    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation conversation, bool isUpdated)? saved,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -290,7 +290,7 @@ abstract class _$$ChatStateSavedImplCopyWith<$Res>
       __$$ChatStateSavedImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Conversation conversation});
+  $Res call({Conversation conversation, bool isUpdated});
 
   @override
   $ConversationCopyWith<$Res> get conversation;
@@ -308,12 +308,17 @@ class __$$ChatStateSavedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? conversation = null,
+    Object? isUpdated = null,
   }) {
     return _then(_$ChatStateSavedImpl(
       conversation: null == conversation
           ? _value.conversation
           : conversation // ignore: cast_nullable_to_non_nullable
               as Conversation,
+      isUpdated: null == isUpdated
+          ? _value.isUpdated
+          : isUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
@@ -329,14 +334,18 @@ class __$$ChatStateSavedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChatStateSavedImpl implements _ChatStateSaved {
-  const _$ChatStateSavedImpl({required this.conversation});
+  const _$ChatStateSavedImpl(
+      {required this.conversation, this.isUpdated = false});
 
   @override
   final Conversation conversation;
+  @override
+  @JsonKey()
+  final bool isUpdated;
 
   @override
   String toString() {
-    return 'ChatState.saved(conversation: $conversation)';
+    return 'ChatState.saved(conversation: $conversation, isUpdated: $isUpdated)';
   }
 
   @override
@@ -345,11 +354,13 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
         (other.runtimeType == runtimeType &&
             other is _$ChatStateSavedImpl &&
             (identical(other.conversation, conversation) ||
-                other.conversation == conversation));
+                other.conversation == conversation) &&
+            (identical(other.isUpdated, isUpdated) ||
+                other.isUpdated == isUpdated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, conversation);
+  int get hashCode => Object.hash(runtimeType, conversation, isUpdated);
 
   @JsonKey(ignore: true)
   @override
@@ -362,39 +373,39 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
-    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation conversation, bool isUpdated) saved,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
         error,
   }) {
-    return saved(conversation);
+    return saved(conversation, isUpdated);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
-    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation conversation, bool isUpdated)? saved,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
   }) {
-    return saved?.call(conversation);
+    return saved?.call(conversation, isUpdated);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
-    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation conversation, bool isUpdated)? saved,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
     required TResult orElse(),
   }) {
     if (saved != null) {
-      return saved(conversation);
+      return saved(conversation, isUpdated);
     }
     return orElse();
   }
@@ -438,11 +449,13 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
 }
 
 abstract class _ChatStateSaved implements ChatState {
-  const factory _ChatStateSaved({required final Conversation conversation}) =
-      _$ChatStateSavedImpl;
+  const factory _ChatStateSaved(
+      {required final Conversation conversation,
+      final bool isUpdated}) = _$ChatStateSavedImpl;
 
   @override
   Conversation get conversation;
+  bool get isUpdated;
   @override
   @JsonKey(ignore: true)
   _$$ChatStateSavedImplCopyWith<_$ChatStateSavedImpl> get copyWith =>
@@ -521,7 +534,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
-    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation conversation, bool isUpdated) saved,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -534,7 +547,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
-    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation conversation, bool isUpdated)? saved,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -546,7 +559,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
-    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation conversation, bool isUpdated)? saved,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -688,7 +701,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
-    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation conversation, bool isUpdated) saved,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -701,7 +714,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
-    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation conversation, bool isUpdated)? saved,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -713,7 +726,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
-    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation conversation, bool isUpdated)? saved,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,

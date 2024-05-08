@@ -29,7 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chatSettings_modelLabel":
             MessageLookupByLibrary.simpleMessage("Model"),
         "chatSettings_savedNotification": MessageLookupByLibrary.simpleMessage(
-            "Conversation saved successfully."),
+            "Conversation settings updated successfully."),
         "chatSettings_systemPromptHint": MessageLookupByLibrary.simpleMessage(
             "Please provide useful, helpful and actionnable answers."),
         "chatSettings_systemPromptLabel":

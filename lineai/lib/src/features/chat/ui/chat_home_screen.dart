@@ -14,7 +14,7 @@ import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
-import 'package:lineai/src/shared/utils/notifications.dart';
+import 'package:lineai/src/shared/utils/notifications_service.dart';
 
 @RoutePage()
 class ChatHomeScreen extends StatefulWidget implements AutoRouteWrapper {
@@ -56,7 +56,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
             listener: (context, state) {
               state.whenOrNull(
                 unsaved: (conversation) => context.read<MessageListBloc>().setConversationId(null),
-                saved: (conversation) {
+                saved: (conversation, _) {
                   context.read<MessageListBloc>().setConversationId(conversation.id);
                   if (_pendingMessage != null) {
                     context

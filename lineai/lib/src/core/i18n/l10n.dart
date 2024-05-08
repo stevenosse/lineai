@@ -570,10 +570,10 @@ class I18n {
     );
   }
 
-  /// `Conversation saved successfully.`
+  /// `Conversation settings updated successfully.`
   String get chatSettings_savedNotification {
     return Intl.message(
-      'Conversation saved successfully.',
+      'Conversation settings updated successfully.',
       name: 'chatSettings_savedNotification',
       desc: '',
       args: [],

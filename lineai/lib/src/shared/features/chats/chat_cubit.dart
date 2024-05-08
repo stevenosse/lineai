@@ -45,7 +45,7 @@ class ChatCubit extends Cubit<ChatState> {
 
     state.maybeWhen(
       orElse: () => emit(ChatState.unsaved(conversation: unsavedConversation.copyWith(name: name))),
-      saved: (conversation) => emit(ChatState.saved(conversation: conversation.copyWith(name: name))),
+      saved: (conversation, _) => emit(ChatState.saved(conversation: conversation.copyWith(name: name))),
     );
   }
 
@@ -70,7 +70,7 @@ class ChatCubit extends Cubit<ChatState> {
 
     final response = await _chatRepository.createConversation(conversation: state.conversation!);
     response.when(
-      success: (conversation) => emit(ChatState.saved(conversation: conversation)),
+      success: (conversation) => emit(ChatState.saved(conversation: conversation, isUpdated: true)),
       error: (error) => emit(ChatState.error(conversation: state.conversation, error: error)),
     );
   }

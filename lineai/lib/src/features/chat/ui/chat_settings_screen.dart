@@ -12,6 +12,7 @@ import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/components/main_app_bar.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
+import 'package:lineai/src/shared/utils/notifications_service.dart';
 
 @RoutePage()
 class ChatSettingsScreen extends StatefulWidget {
@@ -52,8 +53,14 @@ class _ChatSettingsScreenState extends State<ChatSettingsScreen> {
       listener: (context, state) {
         state.whenOrNull(
           loading: (conversation) => LoadingDialog.show(context: context),
-          saved: (conversation) {
+          saved: (conversation, isUpdated) {
             LoadingDialog.hide(context: context);
+            if (isUpdated) {
+              $notificationService.showSuccessNotification(
+                context: context,
+                body: I18n.of(context).chatSettings_savedNotification,
+              );
+            }
           },
           error: (conversation, error) {
             LoadingDialog.hide(context: context);

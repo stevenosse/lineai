@@ -15,7 +15,7 @@ import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/components/main_app_bar.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
-import 'package:lineai/src/shared/utils/notifications.dart';
+import 'package:lineai/src/shared/utils/notifications_service.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 @RoutePage()

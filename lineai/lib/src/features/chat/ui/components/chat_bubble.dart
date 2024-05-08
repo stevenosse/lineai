@@ -6,7 +6,7 @@ import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/datasource/models/message.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
-import 'package:lineai/src/shared/utils/notifications.dart';
+import 'package:lineai/src/shared/utils/notifications_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ChatBubble extends StatelessWidget {
