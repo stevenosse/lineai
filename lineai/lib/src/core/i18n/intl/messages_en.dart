@@ -34,12 +34,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Temperature"),
         "chatSettings_title":
             MessageLookupByLibrary.simpleMessage("Chat settings"),
+        "chat_aiAssistant":
+            MessageLookupByLibrary.simpleMessage("AI Assistant"),
         "chat_inputPlaceholder":
             MessageLookupByLibrary.simpleMessage("Message..."),
+        "chat_messageRequiredValidation":
+            MessageLookupByLibrary.simpleMessage("Please enter a message."),
         "chat_tips_subtitle":
             MessageLookupByLibrary.simpleMessage("for weight loss"),
         "chat_tips_title":
             MessageLookupByLibrary.simpleMessage("Create a workout plan"),
+        "chat_unnamedConversation":
+            MessageLookupByLibrary.simpleMessage("Unnamed conversation"),
         "drawer_about": MessageLookupByLibrary.simpleMessage("About"),
         "drawer_chatsSectionTitle":
             MessageLookupByLibrary.simpleMessage("Chats"),
@@ -50,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "drawer_searchHint": MessageLookupByLibrary.simpleMessage("Search"),
         "drawer_settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "errorDialog_title": MessageLookupByLibrary.simpleMessage("Oops!"),
+        "errorNotification_title":
+            MessageLookupByLibrary.simpleMessage("An error occurred"),
         "error_noInternet": MessageLookupByLibrary.simpleMessage(
             "We are unable to connect to the internet. Please check your connection and try again."),
         "error_notFound": MessageLookupByLibrary.simpleMessage(

@@ -16,7 +16,10 @@ abstract class BaseRepository {
       return ApiResponse.error(createApiErrorFromAuthError(e));
     } on SocketException catch (e) {
       return ApiResponse.error(networkError(e));
-    } catch (e) {
+    } on FunctionException catch (e) {
+      return ApiResponse.error(createApiErrorFromFunctionError(e));
+    } 
+    catch (e) {
       return ApiResponse.error(unknownError(e));
     }
   }

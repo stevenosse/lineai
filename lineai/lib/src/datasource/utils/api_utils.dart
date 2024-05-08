@@ -9,6 +9,17 @@ ApiError createApiErrorFromAuthError(AuthException error) {
   );
 }
 
+ApiError createApiErrorFromFunctionError(FunctionException error) {
+  return ApiError(
+    type: switch (error.status.toString().substring(0, 1)) {
+      '4' => ApiErrorType.user,
+      '5' => ApiErrorType.server,
+      _ => ApiErrorType.unknown,
+    },
+    error: error,
+  );
+}
+
 ApiError networkError(Object? e) {
   return ApiError(
     error: e,

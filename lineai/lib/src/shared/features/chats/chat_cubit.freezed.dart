@@ -17,6 +17,56 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ChatState {
   Conversation? get conversation => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Conversation? conversation) unsaved,
+    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation? conversation) loading,
+    required TResult Function(Conversation? conversation, ApiError error) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Conversation? conversation)? unsaved,
+    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation? conversation)? loading,
+    TResult? Function(Conversation? conversation, ApiError error)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Conversation? conversation)? unsaved,
+    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation? conversation)? loading,
+    TResult Function(Conversation? conversation, ApiError error)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatStateUnsaved value) unsaved,
+    required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateLoading value) loading,
+    required TResult Function(_ChatStateError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatStateUnsaved value)? unsaved,
+    TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateLoading value)? loading,
+    TResult? Function(_ChatStateError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatStateUnsaved value)? unsaved,
+    TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateLoading value)? loading,
+    TResult Function(_ChatStateError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatStateCopyWith<ChatState> get copyWith =>
@@ -28,7 +78,7 @@ abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
-  $Res call({Conversation? conversation});
+  $Res call({Conversation conversation});
 
   $ConversationCopyWith<$Res>? get conversation;
 }
@@ -46,13 +96,13 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? conversation = freezed,
+    Object? conversation = null,
   }) {
     return _then(_value.copyWith(
-      conversation: freezed == conversation
-          ? _value.conversation
+      conversation: null == conversation
+          ? _value.conversation!
           : conversation // ignore: cast_nullable_to_non_nullable
-              as Conversation?,
+              as Conversation,
     ) as $Val);
   }
 
@@ -70,11 +120,11 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
 }
 
 /// @nodoc
-abstract class _$$ChatStateImplCopyWith<$Res>
+abstract class _$$ChatStateUnsavedImplCopyWith<$Res>
     implements $ChatStateCopyWith<$Res> {
-  factory _$$ChatStateImplCopyWith(
-          _$ChatStateImpl value, $Res Function(_$ChatStateImpl) then) =
-      __$$ChatStateImplCopyWithImpl<$Res>;
+  factory _$$ChatStateUnsavedImplCopyWith(_$ChatStateUnsavedImpl value,
+          $Res Function(_$ChatStateUnsavedImpl) then) =
+      __$$ChatStateUnsavedImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Conversation? conversation});
@@ -84,11 +134,11 @@ abstract class _$$ChatStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$ChatStateImplCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res, _$ChatStateImpl>
-    implements _$$ChatStateImplCopyWith<$Res> {
-  __$$ChatStateImplCopyWithImpl(
-      _$ChatStateImpl _value, $Res Function(_$ChatStateImpl) _then)
+class __$$ChatStateUnsavedImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatStateUnsavedImpl>
+    implements _$$ChatStateUnsavedImplCopyWith<$Res> {
+  __$$ChatStateUnsavedImplCopyWithImpl(_$ChatStateUnsavedImpl _value,
+      $Res Function(_$ChatStateUnsavedImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +146,7 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   $Res call({
     Object? conversation = freezed,
   }) {
-    return _then(_$ChatStateImpl(
+    return _then(_$ChatStateUnsavedImpl(
       conversation: freezed == conversation
           ? _value.conversation
           : conversation // ignore: cast_nullable_to_non_nullable
@@ -107,22 +157,22 @@ class __$$ChatStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ChatStateImpl implements _ChatState {
-  const _$ChatStateImpl({this.conversation});
+class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
+  const _$ChatStateUnsavedImpl({this.conversation});
 
   @override
   final Conversation? conversation;
 
   @override
   String toString() {
-    return 'ChatState(conversation: $conversation)';
+    return 'ChatState.unsaved(conversation: $conversation)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChatStateImpl &&
+            other is _$ChatStateUnsavedImpl &&
             (identical(other.conversation, conversation) ||
                 other.conversation == conversation));
   }
@@ -133,18 +183,577 @@ class _$ChatStateImpl implements _ChatState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChatStateImplCopyWith<_$ChatStateImpl> get copyWith =>
-      __$$ChatStateImplCopyWithImpl<_$ChatStateImpl>(this, _$identity);
+  _$$ChatStateUnsavedImplCopyWith<_$ChatStateUnsavedImpl> get copyWith =>
+      __$$ChatStateUnsavedImplCopyWithImpl<_$ChatStateUnsavedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Conversation? conversation) unsaved,
+    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation? conversation) loading,
+    required TResult Function(Conversation? conversation, ApiError error) error,
+  }) {
+    return unsaved(conversation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Conversation? conversation)? unsaved,
+    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation? conversation)? loading,
+    TResult? Function(Conversation? conversation, ApiError error)? error,
+  }) {
+    return unsaved?.call(conversation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Conversation? conversation)? unsaved,
+    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation? conversation)? loading,
+    TResult Function(Conversation? conversation, ApiError error)? error,
+    required TResult orElse(),
+  }) {
+    if (unsaved != null) {
+      return unsaved(conversation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatStateUnsaved value) unsaved,
+    required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateLoading value) loading,
+    required TResult Function(_ChatStateError value) error,
+  }) {
+    return unsaved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatStateUnsaved value)? unsaved,
+    TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateLoading value)? loading,
+    TResult? Function(_ChatStateError value)? error,
+  }) {
+    return unsaved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatStateUnsaved value)? unsaved,
+    TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateLoading value)? loading,
+    TResult Function(_ChatStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (unsaved != null) {
+      return unsaved(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _ChatState implements ChatState {
-  const factory _ChatState({final Conversation? conversation}) =
-      _$ChatStateImpl;
+abstract class _ChatStateUnsaved implements ChatState {
+  const factory _ChatStateUnsaved({final Conversation? conversation}) =
+      _$ChatStateUnsavedImpl;
 
   @override
   Conversation? get conversation;
   @override
   @JsonKey(ignore: true)
-  _$$ChatStateImplCopyWith<_$ChatStateImpl> get copyWith =>
+  _$$ChatStateUnsavedImplCopyWith<_$ChatStateUnsavedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChatStateSavedImplCopyWith<$Res>
+    implements $ChatStateCopyWith<$Res> {
+  factory _$$ChatStateSavedImplCopyWith(_$ChatStateSavedImpl value,
+          $Res Function(_$ChatStateSavedImpl) then) =
+      __$$ChatStateSavedImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Conversation conversation});
+
+  @override
+  $ConversationCopyWith<$Res> get conversation;
+}
+
+/// @nodoc
+class __$$ChatStateSavedImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatStateSavedImpl>
+    implements _$$ChatStateSavedImplCopyWith<$Res> {
+  __$$ChatStateSavedImplCopyWithImpl(
+      _$ChatStateSavedImpl _value, $Res Function(_$ChatStateSavedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversation = null,
+  }) {
+    return _then(_$ChatStateSavedImpl(
+      conversation: null == conversation
+          ? _value.conversation
+          : conversation // ignore: cast_nullable_to_non_nullable
+              as Conversation,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConversationCopyWith<$Res> get conversation {
+    return $ConversationCopyWith<$Res>(_value.conversation, (value) {
+      return _then(_value.copyWith(conversation: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ChatStateSavedImpl implements _ChatStateSaved {
+  const _$ChatStateSavedImpl({required this.conversation});
+
+  @override
+  final Conversation conversation;
+
+  @override
+  String toString() {
+    return 'ChatState.saved(conversation: $conversation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChatStateSavedImpl &&
+            (identical(other.conversation, conversation) ||
+                other.conversation == conversation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, conversation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatStateSavedImplCopyWith<_$ChatStateSavedImpl> get copyWith =>
+      __$$ChatStateSavedImplCopyWithImpl<_$ChatStateSavedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Conversation? conversation) unsaved,
+    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation? conversation) loading,
+    required TResult Function(Conversation? conversation, ApiError error) error,
+  }) {
+    return saved(conversation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Conversation? conversation)? unsaved,
+    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation? conversation)? loading,
+    TResult? Function(Conversation? conversation, ApiError error)? error,
+  }) {
+    return saved?.call(conversation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Conversation? conversation)? unsaved,
+    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation? conversation)? loading,
+    TResult Function(Conversation? conversation, ApiError error)? error,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved(conversation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatStateUnsaved value) unsaved,
+    required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateLoading value) loading,
+    required TResult Function(_ChatStateError value) error,
+  }) {
+    return saved(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatStateUnsaved value)? unsaved,
+    TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateLoading value)? loading,
+    TResult? Function(_ChatStateError value)? error,
+  }) {
+    return saved?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatStateUnsaved value)? unsaved,
+    TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateLoading value)? loading,
+    TResult Function(_ChatStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (saved != null) {
+      return saved(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatStateSaved implements ChatState {
+  const factory _ChatStateSaved({required final Conversation conversation}) =
+      _$ChatStateSavedImpl;
+
+  @override
+  Conversation get conversation;
+  @override
+  @JsonKey(ignore: true)
+  _$$ChatStateSavedImplCopyWith<_$ChatStateSavedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChatStateLoadingImplCopyWith<$Res>
+    implements $ChatStateCopyWith<$Res> {
+  factory _$$ChatStateLoadingImplCopyWith(_$ChatStateLoadingImpl value,
+          $Res Function(_$ChatStateLoadingImpl) then) =
+      __$$ChatStateLoadingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Conversation? conversation});
+
+  @override
+  $ConversationCopyWith<$Res>? get conversation;
+}
+
+/// @nodoc
+class __$$ChatStateLoadingImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatStateLoadingImpl>
+    implements _$$ChatStateLoadingImplCopyWith<$Res> {
+  __$$ChatStateLoadingImplCopyWithImpl(_$ChatStateLoadingImpl _value,
+      $Res Function(_$ChatStateLoadingImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversation = freezed,
+  }) {
+    return _then(_$ChatStateLoadingImpl(
+      conversation: freezed == conversation
+          ? _value.conversation
+          : conversation // ignore: cast_nullable_to_non_nullable
+              as Conversation?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChatStateLoadingImpl implements _ChatStateLoading {
+  const _$ChatStateLoadingImpl({this.conversation});
+
+  @override
+  final Conversation? conversation;
+
+  @override
+  String toString() {
+    return 'ChatState.loading(conversation: $conversation)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChatStateLoadingImpl &&
+            (identical(other.conversation, conversation) ||
+                other.conversation == conversation));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, conversation);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatStateLoadingImplCopyWith<_$ChatStateLoadingImpl> get copyWith =>
+      __$$ChatStateLoadingImplCopyWithImpl<_$ChatStateLoadingImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Conversation? conversation) unsaved,
+    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation? conversation) loading,
+    required TResult Function(Conversation? conversation, ApiError error) error,
+  }) {
+    return loading(conversation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Conversation? conversation)? unsaved,
+    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation? conversation)? loading,
+    TResult? Function(Conversation? conversation, ApiError error)? error,
+  }) {
+    return loading?.call(conversation);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Conversation? conversation)? unsaved,
+    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation? conversation)? loading,
+    TResult Function(Conversation? conversation, ApiError error)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(conversation);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatStateUnsaved value) unsaved,
+    required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateLoading value) loading,
+    required TResult Function(_ChatStateError value) error,
+  }) {
+    return loading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatStateUnsaved value)? unsaved,
+    TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateLoading value)? loading,
+    TResult? Function(_ChatStateError value)? error,
+  }) {
+    return loading?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatStateUnsaved value)? unsaved,
+    TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateLoading value)? loading,
+    TResult Function(_ChatStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (loading != null) {
+      return loading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatStateLoading implements ChatState {
+  const factory _ChatStateLoading({final Conversation? conversation}) =
+      _$ChatStateLoadingImpl;
+
+  @override
+  Conversation? get conversation;
+  @override
+  @JsonKey(ignore: true)
+  _$$ChatStateLoadingImplCopyWith<_$ChatStateLoadingImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChatStateErrorImplCopyWith<$Res>
+    implements $ChatStateCopyWith<$Res> {
+  factory _$$ChatStateErrorImplCopyWith(_$ChatStateErrorImpl value,
+          $Res Function(_$ChatStateErrorImpl) then) =
+      __$$ChatStateErrorImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({Conversation? conversation, ApiError error});
+
+  @override
+  $ConversationCopyWith<$Res>? get conversation;
+}
+
+/// @nodoc
+class __$$ChatStateErrorImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatStateErrorImpl>
+    implements _$$ChatStateErrorImplCopyWith<$Res> {
+  __$$ChatStateErrorImplCopyWithImpl(
+      _$ChatStateErrorImpl _value, $Res Function(_$ChatStateErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? conversation = freezed,
+    Object? error = freezed,
+  }) {
+    return _then(_$ChatStateErrorImpl(
+      conversation: freezed == conversation
+          ? _value.conversation
+          : conversation // ignore: cast_nullable_to_non_nullable
+              as Conversation?,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ApiError,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChatStateErrorImpl implements _ChatStateError {
+  const _$ChatStateErrorImpl({this.conversation, required this.error});
+
+  @override
+  final Conversation? conversation;
+  @override
+  final ApiError error;
+
+  @override
+  String toString() {
+    return 'ChatState.error(conversation: $conversation, error: $error)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChatStateErrorImpl &&
+            (identical(other.conversation, conversation) ||
+                other.conversation == conversation) &&
+            const DeepCollectionEquality().equals(other.error, error));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, conversation, const DeepCollectionEquality().hash(error));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatStateErrorImplCopyWith<_$ChatStateErrorImpl> get copyWith =>
+      __$$ChatStateErrorImplCopyWithImpl<_$ChatStateErrorImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Conversation? conversation) unsaved,
+    required TResult Function(Conversation conversation) saved,
+    required TResult Function(Conversation? conversation) loading,
+    required TResult Function(Conversation? conversation, ApiError error) error,
+  }) {
+    return error(conversation, this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Conversation? conversation)? unsaved,
+    TResult? Function(Conversation conversation)? saved,
+    TResult? Function(Conversation? conversation)? loading,
+    TResult? Function(Conversation? conversation, ApiError error)? error,
+  }) {
+    return error?.call(conversation, this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Conversation? conversation)? unsaved,
+    TResult Function(Conversation conversation)? saved,
+    TResult Function(Conversation? conversation)? loading,
+    TResult Function(Conversation? conversation, ApiError error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(conversation, this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatStateUnsaved value) unsaved,
+    required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateLoading value) loading,
+    required TResult Function(_ChatStateError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatStateUnsaved value)? unsaved,
+    TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateLoading value)? loading,
+    TResult? Function(_ChatStateError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatStateUnsaved value)? unsaved,
+    TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateLoading value)? loading,
+    TResult Function(_ChatStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatStateError implements ChatState {
+  const factory _ChatStateError(
+      {final Conversation? conversation,
+      required final ApiError error}) = _$ChatStateErrorImpl;
+
+  @override
+  Conversation? get conversation;
+  ApiError get error;
+  @override
+  @JsonKey(ignore: true)
+  _$$ChatStateErrorImplCopyWith<_$ChatStateErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

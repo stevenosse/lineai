@@ -13,6 +13,7 @@ class Conversation with _$Conversation {
     String? model,
     String? summary,
     @JsonKey(name: 'system_prompt') @Default('') String systemPrompt,
+    @Default(1.0) double temperature,
   }) = _Conversation;
 
   factory Conversation.fromJson(Map<String, dynamic> json) => _$ConversationFromJson(json);

@@ -30,6 +30,7 @@ mixin _$Conversation {
   String? get summary => throw _privateConstructorUsedError;
   @JsonKey(name: 'system_prompt')
   String get systemPrompt => throw _privateConstructorUsedError;
+  double get temperature => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +51,8 @@ abstract class $ConversationCopyWith<$Res> {
       @JsonKey(name: 'created_at') DateTime createdAt,
       String? model,
       String? summary,
-      @JsonKey(name: 'system_prompt') String systemPrompt});
+      @JsonKey(name: 'system_prompt') String systemPrompt,
+      double temperature});
 }
 
 /// @nodoc
@@ -73,6 +75,7 @@ class _$ConversationCopyWithImpl<$Res, $Val extends Conversation>
     Object? model = freezed,
     Object? summary = freezed,
     Object? systemPrompt = null,
+    Object? temperature = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -103,6 +106,10 @@ class _$ConversationCopyWithImpl<$Res, $Val extends Conversation>
           ? _value.systemPrompt
           : systemPrompt // ignore: cast_nullable_to_non_nullable
               as String,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -122,7 +129,8 @@ abstract class _$$ConversationImplCopyWith<$Res>
       @JsonKey(name: 'created_at') DateTime createdAt,
       String? model,
       String? summary,
-      @JsonKey(name: 'system_prompt') String systemPrompt});
+      @JsonKey(name: 'system_prompt') String systemPrompt,
+      double temperature});
 }
 
 /// @nodoc
@@ -143,6 +151,7 @@ class __$$ConversationImplCopyWithImpl<$Res>
     Object? model = freezed,
     Object? summary = freezed,
     Object? systemPrompt = null,
+    Object? temperature = null,
   }) {
     return _then(_$ConversationImpl(
       id: null == id
@@ -173,6 +182,10 @@ class __$$ConversationImplCopyWithImpl<$Res>
           ? _value.systemPrompt
           : systemPrompt // ignore: cast_nullable_to_non_nullable
               as String,
+      temperature: null == temperature
+          ? _value.temperature
+          : temperature // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -187,7 +200,8 @@ class _$ConversationImpl implements _Conversation {
       @JsonKey(name: 'created_at') required this.createdAt,
       this.model,
       this.summary,
-      @JsonKey(name: 'system_prompt') this.systemPrompt = ''});
+      @JsonKey(name: 'system_prompt') this.systemPrompt = '',
+      this.temperature = 1.0});
 
   factory _$ConversationImpl.fromJson(Map<String, dynamic> json) =>
       _$$ConversationImplFromJson(json);
@@ -210,10 +224,13 @@ class _$ConversationImpl implements _Conversation {
   @override
   @JsonKey(name: 'system_prompt')
   final String systemPrompt;
+  @override
+  @JsonKey()
+  final double temperature;
 
   @override
   String toString() {
-    return 'Conversation(id: $id, name: $name, userId: $userId, createdAt: $createdAt, model: $model, summary: $summary, systemPrompt: $systemPrompt)';
+    return 'Conversation(id: $id, name: $name, userId: $userId, createdAt: $createdAt, model: $model, summary: $summary, systemPrompt: $systemPrompt, temperature: $temperature)';
   }
 
   @override
@@ -229,13 +246,15 @@ class _$ConversationImpl implements _Conversation {
             (identical(other.model, model) || other.model == model) &&
             (identical(other.summary, summary) || other.summary == summary) &&
             (identical(other.systemPrompt, systemPrompt) ||
-                other.systemPrompt == systemPrompt));
+                other.systemPrompt == systemPrompt) &&
+            (identical(other.temperature, temperature) ||
+                other.temperature == temperature));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, name, userId, createdAt, model, summary, systemPrompt);
+  int get hashCode => Object.hash(runtimeType, id, name, userId, createdAt,
+      model, summary, systemPrompt, temperature);
 
   @JsonKey(ignore: true)
   @override
@@ -253,14 +272,14 @@ class _$ConversationImpl implements _Conversation {
 
 abstract class _Conversation implements Conversation {
   factory _Conversation(
-          {required final int id,
-          final String name,
-          @JsonKey(name: 'user_id') required final String userId,
-          @JsonKey(name: 'created_at') required final DateTime createdAt,
-          final String? model,
-          final String? summary,
-          @JsonKey(name: 'system_prompt') final String systemPrompt}) =
-      _$ConversationImpl;
+      {required final int id,
+      final String name,
+      @JsonKey(name: 'user_id') required final String userId,
+      @JsonKey(name: 'created_at') required final DateTime createdAt,
+      final String? model,
+      final String? summary,
+      @JsonKey(name: 'system_prompt') final String systemPrompt,
+      final double temperature}) = _$ConversationImpl;
 
   factory _Conversation.fromJson(Map<String, dynamic> json) =
       _$ConversationImpl.fromJson;
@@ -282,6 +301,8 @@ abstract class _Conversation implements Conversation {
   @override
   @JsonKey(name: 'system_prompt')
   String get systemPrompt;
+  @override
+  double get temperature;
   @override
   @JsonKey(ignore: true)
   _$$ConversationImplCopyWith<_$ConversationImpl> get copyWith =>

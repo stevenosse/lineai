@@ -460,6 +460,36 @@ class I18n {
     );
   }
 
+  /// `Please enter a message.`
+  String get chat_messageRequiredValidation {
+    return Intl.message(
+      'Please enter a message.',
+      name: 'chat_messageRequiredValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unnamed conversation`
+  String get chat_unnamedConversation {
+    return Intl.message(
+      'Unnamed conversation',
+      name: 'chat_unnamedConversation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AI Assistant`
+  String get chat_aiAssistant {
+    return Intl.message(
+      'AI Assistant',
+      name: 'chat_aiAssistant',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Chat settings`
   String get chatSettings_title {
     return Intl.message(
@@ -615,6 +645,16 @@ class I18n {
     return Intl.message(
       'Oops!',
       name: 'errorDialog_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred`
+  String get errorNotification_title {
+    return Intl.message(
+      'An error occurred',
+      name: 'errorNotification_title',
       desc: '',
       args: [],
     );

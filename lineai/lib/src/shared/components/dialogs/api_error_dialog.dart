@@ -60,6 +60,10 @@ extension ApiErrorX on ApiError {
       final authException = error as AuthException;
 
       return authException.message;
+    } else if (error is FunctionException) {
+      final functionException = error as FunctionException;
+
+      return functionException.details?.message;
     }
     return null;
   }

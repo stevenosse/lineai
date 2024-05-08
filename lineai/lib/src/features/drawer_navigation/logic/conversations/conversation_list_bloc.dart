@@ -28,7 +28,7 @@ class ConversationListBloc extends Bloc<ConversationListEvent, ConversationListS
 
   void _listenConversations() {
     _conversationSubscription = _chatRepository.getConversations().listen((conversations) {
-      add(OnConversationListUpdated(conversations));
+      add(OnConversationListUpdated(conversations: conversations));
     });
   }
 

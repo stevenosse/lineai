@@ -48,6 +48,9 @@
   "chat_tips_title": "Create a workout plan",
   "chat_tips_subtitle": "for weight loss",
   "chat_inputPlaceholder": "Message...",
+  "chat_messageRequiredValidation": "Please enter a message.",
+  "chat_unnamedConversation": "Unnamed conversation",
+  "chat_aiAssistant": "AI Assistant",
 
   "chatSettings_title": "Chat settings",
   "chatSettings_modelLabel": "Model",
@@ -70,6 +73,7 @@
   "login_error_default": "An error occurred. Please try again.",
 
   "errorDialog_title": "Oops!",
+  "errorNotification_title": "An error occurred",
   "error_noInternet": "We are unable to connect to the internet. Please check your connection and try again.",
   "error_server": "An error occurred. Please try again.",
   "error_unknown": "An error occurred. Please try again.",

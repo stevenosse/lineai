@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
@@ -8,14 +9,17 @@ import 'package:lineai/src/datasource/models/conversation/conversation.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/labeled_divider.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
+import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({
     super.key,
     required this.conversations,
+    this.onDismissRequested,
   });
 
   final List<Conversation> conversations;
+  final VoidCallback? onDismissRequested;
 
   @override
   State<DrawerMenu> createState() => _DrawerMenuState();
@@ -93,7 +97,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ListTile(
                 leading: const Icon(IconsaxPlusBroken.message_circle),
                 title: Text(I18n.of(context).drawer_newConversation),
-                onTap: () {},
+                onTap: () {
+                  context.read<ChatCubit>().startNewConversation();
+                  widget.onDismissRequested?.call();
+                },
               ),
               const SizedBox(height: Dimens.spacing),
               LabeledDivider(
@@ -111,7 +118,10 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           final conversation = widget.conversations[index];
                           return ListTile(
                             title: Text(conversation.name),
-                            onTap: () {},
+                            onTap: () {
+                              context.read<ChatCubit>().selectConversation(conversation);
+                              widget.onDismissRequested?.call();
+                            },
                             trailing: const Icon(IconsaxPlusBroken.more),
                           );
                         },

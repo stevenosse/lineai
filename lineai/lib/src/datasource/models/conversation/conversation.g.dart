@@ -15,6 +15,7 @@ _$ConversationImpl _$$ConversationImplFromJson(Map<String, dynamic> json) =>
       model: json['model'] as String?,
       summary: json['summary'] as String?,
       systemPrompt: json['system_prompt'] as String? ?? '',
+      temperature: (json['temperature'] as num?)?.toDouble() ?? 1.0,
     );
 
 Map<String, dynamic> _$$ConversationImplToJson(_$ConversationImpl instance) =>
@@ -26,4 +27,5 @@ Map<String, dynamic> _$$ConversationImplToJson(_$ConversationImpl instance) =>
       'model': instance.model,
       'summary': instance.summary,
       'system_prompt': instance.systemPrompt,
+      'temperature': instance.temperature,
     };

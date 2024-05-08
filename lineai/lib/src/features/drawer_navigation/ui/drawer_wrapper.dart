@@ -66,7 +66,10 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
       scaffoldKey: _scaffoldKey,
       drawer: BlocBuilder<ConversationListBloc, ConversationListState>(
         builder: (context, state) {
-          return DrawerMenu(conversations: state.conversations);
+          return DrawerMenu(
+            conversations: state.conversations,
+            onDismissRequested: () => _scaffoldKey.currentState?.closeDrawer(),
+          );
         },
       ),
       appBarBuilder: (context, tabsRouter) => entries[tabsRouter.activeIndex].appBar,
