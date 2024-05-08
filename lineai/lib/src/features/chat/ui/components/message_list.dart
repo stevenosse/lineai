@@ -25,6 +25,12 @@ class _MessageListState extends State<MessageList> {
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
       controller: _scrollController,

@@ -13,3 +13,8 @@ class OnReceivedMessages extends MessageListEvent {
   @override
   List<Object> get props => [];
 }
+
+class OnNewConversationStarted extends MessageListEvent {
+  @override
+  List<Object> get props => [];
+}

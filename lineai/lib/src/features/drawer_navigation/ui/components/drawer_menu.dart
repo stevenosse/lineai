@@ -116,7 +116,9 @@ class _DrawerMenuState extends State<DrawerMenu> {
                         itemBuilder: (context, index) {
                           final conversation = widget.conversations[index];
                           return ListTile(
-                            title: Text(conversation.name),
+                            title: Text(
+                              conversation.name.isEmpty ? I18n.of(context).chat_unnamedConversation : conversation.name,
+                            ),
                             selected: widget.selectedConversation?.id == conversation.id,
                             selectedTileColor: context.colorScheme.background,
                             onTap: () => widget.onConversationSelected?.call(conversation),

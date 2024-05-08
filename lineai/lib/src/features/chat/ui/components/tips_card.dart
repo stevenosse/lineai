@@ -15,15 +15,17 @@ class TipsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => onTap?.call('$title $subtitle'),
-      child: Padding(
-        padding: const EdgeInsets.only(right: Dimens.halfSpacing),
-        child: SizedBox(
-          width: 200,
+    return SizedBox(
+      width: 200,
+      child: InkWell(
+        onTap: () => onTap?.call('$title $subtitle'),
+        borderRadius: BorderRadius.circular(Dimens.borderRadius),
+        child: Padding(
+          padding: const EdgeInsets.only(right: Dimens.halfSpacing),
           child: Card(
             surfaceTintColor: Colors.transparent,
             margin: EdgeInsets.zero,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.borderRadius)),
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(

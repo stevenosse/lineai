@@ -55,15 +55,15 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
           BlocListener<ChatCubit, ChatState>(
             listener: (context, state) {
               state.whenOrNull(
+                unsaved: (conversation) => context.read<MessageListBloc>().setConversationId(null),
                 saved: (conversation) {
+                  context.read<MessageListBloc>().setConversationId(conversation.id);
                   if (_pendingMessage != null) {
                     context
                         .read<SendMessageCubit>()
                         .sendMessage(conversationId: conversation.id, message: _pendingMessage!);
                     _pendingMessage = null;
                   }
-
-                  context.read<MessageListBloc>().setConversationId(conversation.id);
                 },
                 error: (conversation, error) {
                   $notificationService.showErrorNotification(
@@ -148,7 +148,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
 
     if (conversationId == null) {
       _pendingMessage = message;
-      await context.read<ChatCubit>().saveConversation();
+      context.read<ChatCubit>().createEmptyConversation();
     } else {
       await sendMessageCubit.sendMessage(conversationId: conversationId, message: message);
     }

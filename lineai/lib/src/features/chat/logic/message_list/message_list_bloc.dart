@@ -22,10 +22,20 @@ class MessageListBloc extends Bloc<MessageListEvent, MessageListState> {
     on<OnReceivedMessages>((event, emit) {
       emit(MessageListState.initial(messages: event.messages));
     });
+
+    on<OnNewConversationStarted>((event, emit) {
+      emit(const MessageListState.initial(messages: []));
+    });
   }
 
-  void setConversationId(int conversationId) {
+  void setConversationId(int? conversationId) {
     _messagesSubscription?.cancel();
+
+    if (conversationId == null) {
+      add(OnNewConversationStarted());
+      return;
+    }
+
     _messagesSubscription = _chatRepository
         .getMessagesStream(conversationId: conversationId)
         .listen((messages) => add(OnReceivedMessages(messages: messages)));

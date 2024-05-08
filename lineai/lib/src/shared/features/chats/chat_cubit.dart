@@ -14,18 +14,24 @@ class ChatCubit extends Cubit<ChatState> {
   ChatCubit({
     ChatRepository? chatRepository,
   })  : _chatRepository = chatRepository ?? locator<ChatRepository>(),
-        super(ChatState.unsaved(conversation: Conversation(id: 0, userId: '', createdAt: DateTime.now())));
+        super(const ChatState.unsaved());
 
   void onModelChanged(String model) {
-    emit(ChatState.unsaved(conversation: state.conversation!.copyWith(model: model)));
+    late Conversation conversation =
+        state.conversation == null ? Conversation(id: 0, userId: '', createdAt: DateTime.now()) : state.conversation!;
+    emit(ChatState.unsaved(conversation: conversation.copyWith(model: model)));
   }
 
   void onSystemPromptChanged(String systemPrompt) {
-    emit(ChatState.unsaved(conversation: state.conversation!.copyWith(systemPrompt: systemPrompt)));
+    late Conversation conversation =
+        state.conversation == null ? Conversation(id: 0, userId: '', createdAt: DateTime.now()) : state.conversation!;
+    emit(ChatState.unsaved(conversation: conversation.copyWith(systemPrompt: systemPrompt)));
   }
 
   void onTemperatureChanged(double temperature) {
-    emit(ChatState.unsaved(conversation: state.conversation!.copyWith(temperature: temperature)));
+    late Conversation conversation =
+        state.conversation == null ? Conversation(id: 0, userId: '', createdAt: DateTime.now()) : state.conversation!;
+    emit(ChatState.unsaved(conversation: conversation.copyWith(temperature: temperature)));
   }
 
   void selectConversation(Conversation conversation) {
@@ -33,10 +39,18 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void startNewConversation() {
-    emit(ChatState.unsaved(conversation: Conversation(id: 0, userId: '', createdAt: DateTime.now())));
+    emit(const ChatState.unsaved());
   }
 
-  Future<void> saveConversation() async {
+  void createEmptyConversation() {
+    late Conversation conversation =
+        state.conversation == null ? Conversation(id: 0, userId: '', createdAt: DateTime.now()) : state.conversation!;
+    emit(ChatState.unsaved(conversation: conversation));
+
+    saveConversation();
+  }
+
+  void saveConversation() async {
     emit(ChatState.loading(conversation: state.conversation!));
 
     final response = await _chatRepository.createConversation(conversation: state.conversation!);

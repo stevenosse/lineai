@@ -49,6 +49,7 @@
   "chat_messageRequiredValidation": "Please enter a message.",
   "chat_unnamedConversation": "Unnamed conversation",
   "chat_aiAssistant": "AI Assistant",
+  "chat_copiedToClipboardMessage": "Message content copied to clipboard",
 
   "chatSettings_title": "Chat settings",
   "chatSettings_modelLabel": "Model",

@@ -90,6 +90,6 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
     );
   }
 
-  void _onNewChatPressed() {}
+  void _onNewChatPressed() => context.read<ChatCubit>().startNewConversation();
   void _onSettingsPressed() => context.router.push(const ChatSettingsRoute());
 }

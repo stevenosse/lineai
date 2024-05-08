@@ -470,6 +470,16 @@ class I18n {
     );
   }
 
+  /// `Message content copied to clipboard`
+  String get chat_copiedToClipboardMessage {
+    return Intl.message(
+      'Message content copied to clipboard',
+      name: 'chat_copiedToClipboardMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Chat settings`
   String get chatSettings_title {
     return Intl.message(
