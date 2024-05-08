@@ -1,6 +1,5 @@
 // Setup type definitions for built-in Supabase Runtime APIs
 /// <reference types="https://esm.sh/@supabase/functions-js/src/edge-runtime.d.ts" />
-import Groq from "https://esm.sh/groq";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 import { handleError, handleSuccess } from "../_shared/response.mapper.ts";
 
@@ -42,7 +41,10 @@ Deno.serve(async (req: Request) => {
       return handleError(settingsError.message, 500);
     }
 
-    // 1. Get the conversation
+    if (!usersSettings?.groq_api_key) {
+      return handleError("Please set your Groq API key in the settings", 400);
+    }
+
     const { data: conversation, error } = await supabaseClient
       .from("conversations")
       .select("id")
@@ -58,7 +60,6 @@ Deno.serve(async (req: Request) => {
       role: "user",
     };
 
-    // 2. Create a new message
     const { error: messageError } = await supabaseClient
       .from("messages")
       .insert({
@@ -71,12 +72,7 @@ Deno.serve(async (req: Request) => {
       return handleError(messageError.message, 500);
     }
 
-    // 3. Query ai model
-    const groqClient = new Groq({
-      apiKey: usersSettings.groq_api_key,
-    });
-
-    const chatCompletion = await groqClient.chat.completions.create({
+    const payload = {
       messages: [
         requestMessage,
       ],
@@ -85,26 +81,45 @@ Deno.serve(async (req: Request) => {
       "top_p": 1,
       stream: false,
       stop: null,
-    });
+    };
 
-    console.log(chatCompletion);
+    const modelResponse = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${usersSettings.groq_api_key}`,
+        },
+        body: JSON.stringify(payload),
+      },
+    ).then((res) => res.json());
+
+    if (!modelResponse) {
+      return handleError("Failed to query AI model", 500);
+    }
+
+    const answer = modelResponse.choices[0].message;
+
+    const { data: aiResponseMessage, error: responseError } =
+      await supabaseClient
+        .from("messages")
+        .insert({
+          conversation_id: conversation.id,
+          user_id: user?.id,
+          content: answer.content,
+          role: answer.role,
+        })
+        .select();
+
+    if (responseError) {
+      return handleError(responseError.message, 500);
+    }
 
     return handleSuccess({
-      response: chatCompletion.choices[0].message,
+      answer: aiResponseMessage,
     });
   } catch (error) {
     return handleError(error.message, 500);
   }
 });
-
-/* To invoke locally:
-
-  1. Run `supabase start` (see: https://supabase.com/docs/reference/cli/supabase-start)
-  2. Make an HTTP request:
-
-  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/completions' \
-    --header 'Authorization: Bearer ' \
-    --header 'Content-Type: application/json' \
-    --data '{"name":"Functions"}'
-
-*/
