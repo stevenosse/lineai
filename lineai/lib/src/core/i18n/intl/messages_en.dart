@@ -22,8 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "chatSettings_conversationTitleHint":
+            MessageLookupByLibrary.simpleMessage("Ex: Personal knowledge"),
+        "chatSettings_conversationTitleLabel":
+            MessageLookupByLibrary.simpleMessage("Conversation name"),
         "chatSettings_modelLabel":
             MessageLookupByLibrary.simpleMessage("Model"),
+        "chatSettings_savedNotification": MessageLookupByLibrary.simpleMessage(
+            "Conversation saved successfully."),
         "chatSettings_systemPromptHint": MessageLookupByLibrary.simpleMessage(
             "Please provide useful, helpful and actionnable answers."),
         "chatSettings_systemPromptLabel":
@@ -72,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("This field is required."),
         "loadingDialog_content":
             MessageLookupByLibrary.simpleMessage("Loading..."),
+        "login_appleBtnLabel":
+            MessageLookupByLibrary.simpleMessage("Sign in with Apple"),
         "login_btnLabel": MessageLookupByLibrary.simpleMessage("Login"),
         "login_emailHint":
             MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),

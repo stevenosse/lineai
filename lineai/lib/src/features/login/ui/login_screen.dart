@@ -161,7 +161,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: Dimens.iconSize,
                   height: Dimens.iconSize,
                 ),
-                title: I18n.of(context).login_googleBtnLabel,
+                title: I18n.of(context).login_appleBtnLabel,
                 onPressed: () => context.router.push(const ChatHomeRoute()),
               ),
             ],

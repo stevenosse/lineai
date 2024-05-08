@@ -14,6 +14,8 @@ final class AIConstants {
     'gemma-7b-it',
     'mixtral-8x7b-32768',
   ];
+
+  static const String defaultModel = 'mixtral-8x7b-32768';
 }
 
 const chatTips = [

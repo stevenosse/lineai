@@ -31,7 +31,7 @@ class ChatRepository extends BaseRepository {
     return runOperation(call: () async {
       final json = await _supabaseClient
           .from(DBConstants.conversationsTable)
-          .insert({...conversation.toJson()..remove('id'), 'user_id': _supabaseClient.auth.currentUser!.id})
+          .upsert({...conversation.toJson(), 'user_id': _supabaseClient.auth.currentUser!.id})
           .select()
           .single();
       return ApiResponse.success(Conversation.fromJson(json));

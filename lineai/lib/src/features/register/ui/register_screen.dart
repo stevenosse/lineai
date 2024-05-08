@@ -163,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: Dimens.iconSize,
                         height: Dimens.iconSize,
                       ),
-                      title: I18n.of(context).register_googleBtnLabel,
+                      title: I18n.of(context).login_appleBtnLabel,
                       onPressed: () => context.router.push(const ChatHomeRoute()),
                     ),
                   ],

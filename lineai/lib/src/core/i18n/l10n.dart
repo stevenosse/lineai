@@ -200,6 +200,16 @@ class I18n {
     );
   }
 
+  /// `Sign in with Apple`
+  String get login_appleBtnLabel {
+    return Intl.message(
+      'Sign in with Apple',
+      name: 'login_appleBtnLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `By logging in, you agree to our`
   String get login_termsLabel {
     return Intl.message(
@@ -535,6 +545,36 @@ class I18n {
     return Intl.message(
       'Between 0 and 1. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.',
       name: 'chatSettings_temperatureHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Conversation name`
+  String get chatSettings_conversationTitleLabel {
+    return Intl.message(
+      'Conversation name',
+      name: 'chatSettings_conversationTitleLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ex: Personal knowledge`
+  String get chatSettings_conversationTitleHint {
+    return Intl.message(
+      'Ex: Personal knowledge',
+      name: 'chatSettings_conversationTitleHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Conversation saved successfully.`
+  String get chatSettings_savedNotification {
+    return Intl.message(
+      'Conversation saved successfully.',
+      name: 'chatSettings_savedNotification',
       desc: '',
       args: [],
     );

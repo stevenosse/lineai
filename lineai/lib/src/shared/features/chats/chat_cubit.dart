@@ -34,6 +34,21 @@ class ChatCubit extends Cubit<ChatState> {
     emit(ChatState.unsaved(conversation: conversation.copyWith(temperature: temperature)));
   }
 
+  void onConversationNameChanged(String name) {
+    late Conversation unsavedConversation = state.conversation == null
+        ? Conversation(
+            id: 0,
+            userId: '',
+            createdAt: DateTime.now(),
+          )
+        : state.conversation!;
+
+    state.maybeWhen(
+      orElse: () => emit(ChatState.unsaved(conversation: unsavedConversation.copyWith(name: name))),
+      saved: (conversation) => emit(ChatState.saved(conversation: conversation.copyWith(name: name))),
+    );
+  }
+
   void selectConversation(Conversation conversation) {
     emit(ChatState.saved(conversation: conversation));
   }

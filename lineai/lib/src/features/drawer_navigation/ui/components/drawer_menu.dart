@@ -122,7 +122,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
                             selected: widget.selectedConversation?.id == conversation.id,
                             selectedTileColor: context.colorScheme.background,
                             onTap: () => widget.onConversationSelected?.call(conversation),
-                            trailing: const Icon(IconsaxPlusBroken.more),
                           );
                         },
                       ),
