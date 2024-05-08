@@ -620,6 +620,26 @@ class I18n {
     );
   }
 
+  /// `Please provide a groq API key.`
+  String get settings_groqApiKeyRequiredValidation {
+    return Intl.message(
+      'Please provide a groq API key.',
+      name: 'settings_groqApiKeyRequiredValidation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings saved successfully.`
+  String get settings_groqApiKeySuccess {
+    return Intl.message(
+      'Settings saved successfully.',
+      name: 'settings_groqApiKeySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Loading...`
   String get loadingDialog_content {
     return Intl.message(
@@ -665,6 +685,16 @@ class I18n {
     return Intl.message(
       'An error occurred',
       name: 'errorNotification_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yay!`
+  String get successNotification_title {
+    return Intl.message(
+      'Yay!',
+      name: 'successNotification_title',
       desc: '',
       args: [],
     );

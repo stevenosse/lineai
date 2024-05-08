@@ -67,6 +67,8 @@
   "settings_logoutFailedBody": "An error occurred while logging out. Please try again.",
 
   "settings_groqApiKeyError": "Please provide a groq API key in the settings.",
+  "settings_groqApiKeyRequiredValidation": "Please provide a groq API key.",
+  "settings_groqApiKeySuccess": "Settings saved successfully.",
 
   "loadingDialog_content": "Loading...",
 
@@ -75,6 +77,9 @@
 
   "errorDialog_title": "Oops!",
   "errorNotification_title": "An error occurred",
+
+  "successNotification_title": "Yay!",
+
   "error_noInternet": "We are unable to connect to the internet. Please check your connection and try again.",
   "error_server": "An error occurred. Please try again.",
   "error_unknown": "An error occurred. Please try again.",

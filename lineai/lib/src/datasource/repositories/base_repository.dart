@@ -21,6 +21,7 @@ abstract class BaseRepository {
       log('Failed to execute function: ${e.reasonPhrase}', name: 'BaseRepository', error: e);
       return ApiResponse.error(createApiErrorFromFunctionError(e));
     } catch (e) {
+      log('Failed to execute network operation: $e', name: 'BaseRepository', error: e);
       return ApiResponse.error(unknownError(e));
     }
   }

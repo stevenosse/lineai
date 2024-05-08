@@ -18,19 +18,18 @@ class UserSettingsCubit extends Cubit<UserSettingsState> {
 
   void onGroqApiKeyChanged(String apiKey) {
     emit(UserSettingsState.initial(settings: state.settings.copyWith(groqApiKey: apiKey)));
-
-    _saveSettings();
   }
 
   void getSettings() async {
+    emit(UserSettingsState.loading(settings: state.settings));
     final response = await _userSettingsRepository.getUserSettings();
     response.when(
-      success: (data) => emit(UserSettingsState.success(settings: data)),
+      success: (data) => emit(UserSettingsState.success(settings: data ?? state.settings)),
       error: (error) => emit(UserSettingsState.error(settings: state.settings, error: error)),
     );
   }
 
-  Future<void> _saveSettings() async {
+  Future<void> saveSettings() async {
     final response = await _userSettingsRepository.updateUserSettings(userSettings: state.settings);
 
     emit(UserSettingsState.loading(settings: state.settings));

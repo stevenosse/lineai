@@ -30,4 +30,16 @@ class _NotificationService {
       type: ToastificationType.error,
     );
   }
+
+  void showSuccessNotification({
+    required BuildContext context,
+    String? title,
+    required String body,
+  }) {
+    show(
+      title: title ?? I18n.of(context).successNotification_title,
+      body: body,
+      type: ToastificationType.success,
+    );
+  }
 }

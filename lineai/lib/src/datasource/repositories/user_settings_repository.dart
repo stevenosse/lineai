@@ -11,15 +11,15 @@ final class UserSettingsRepository extends BaseRepository {
   UserSettingsRepository({
     SupabaseClient? supabaseClient,
   }) : _supabaseClient = supabaseClient ?? Supabase.instance.client;
-  Future<ApiResponse<UserSettings, ApiError>> getUserSettings() async {
+  Future<ApiResponse<UserSettings?, ApiError>> getUserSettings() async {
     return runOperation(call: () async {
       final response = await _supabaseClient
           .from(DBConstants.userSettingsTable)
           .select()
           .eq('user_id', _supabaseClient.auth.currentUser!.id)
-          .single();
+          .maybeSingle();
 
-      return ApiResponse.success(UserSettings.fromJson(response));
+      return ApiResponse.success(response == null ? null : UserSettings.fromJson(response));
     });
   }
 

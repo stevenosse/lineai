@@ -130,12 +130,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("gsk_********************"),
         "settings_groqApiKeyLabel":
             MessageLookupByLibrary.simpleMessage("Groq API key"),
+        "settings_groqApiKeyRequiredValidation":
+            MessageLookupByLibrary.simpleMessage(
+                "Please provide a groq API key."),
+        "settings_groqApiKeySuccess": MessageLookupByLibrary.simpleMessage(
+            "Settings saved successfully."),
         "settings_logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "settings_logoutFailedBody": MessageLookupByLibrary.simpleMessage(
             "An error occurred while logging out. Please try again."),
         "settings_logoutFailedTitle":
             MessageLookupByLibrary.simpleMessage("Logout failed"),
         "settings_title": MessageLookupByLibrary.simpleMessage("Settings"),
+        "successNotification_title":
+            MessageLookupByLibrary.simpleMessage("Yay!"),
         "welcome_getStarted":
             MessageLookupByLibrary.simpleMessage("Get Started"),
         "welcome_signIn": MessageLookupByLibrary.simpleMessage("Sign In"),

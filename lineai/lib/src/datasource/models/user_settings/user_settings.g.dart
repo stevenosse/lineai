@@ -8,10 +8,10 @@ part of 'user_settings.dart';
 
 _$UserSettingsImpl _$$UserSettingsImplFromJson(Map<String, dynamic> json) =>
     _$UserSettingsImpl(
-      groqApiKey: json['groqApiKey'] as String,
+      groqApiKey: json['groq_api_key'] as String,
     );
 
 Map<String, dynamic> _$$UserSettingsImplToJson(_$UserSettingsImpl instance) =>
     <String, dynamic>{
-      'groqApiKey': instance.groqApiKey,
+      'groq_api_key': instance.groqApiKey,
     };

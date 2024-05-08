@@ -22,6 +22,7 @@ class AuthWrapper extends StatefulWidget implements AutoRouteWrapper {
         ),
         BlocProvider(
           create: (context) => UserSettingsCubit()..getSettings(),
+          lazy: false,
           child: this,
         )
       ],

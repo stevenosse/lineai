@@ -20,6 +20,7 @@ UserSettings _$UserSettingsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserSettings {
+  @JsonKey(name: 'groq_api_key')
   String get groqApiKey => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +35,7 @@ abstract class $UserSettingsCopyWith<$Res> {
           UserSettings value, $Res Function(UserSettings) then) =
       _$UserSettingsCopyWithImpl<$Res, UserSettings>;
   @useResult
-  $Res call({String groqApiKey});
+  $Res call({@JsonKey(name: 'groq_api_key') String groqApiKey});
 }
 
 /// @nodoc
@@ -69,7 +70,7 @@ abstract class _$$UserSettingsImplCopyWith<$Res>
       __$$UserSettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String groqApiKey});
+  $Res call({@JsonKey(name: 'groq_api_key') String groqApiKey});
 }
 
 /// @nodoc
@@ -97,12 +98,14 @@ class __$$UserSettingsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$UserSettingsImpl implements _UserSettings {
-  const _$UserSettingsImpl({required this.groqApiKey});
+  const _$UserSettingsImpl(
+      {@JsonKey(name: 'groq_api_key') required this.groqApiKey});
 
   factory _$UserSettingsImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserSettingsImplFromJson(json);
 
   @override
+  @JsonKey(name: 'groq_api_key')
   final String groqApiKey;
 
   @override
@@ -138,13 +141,15 @@ class _$UserSettingsImpl implements _UserSettings {
 }
 
 abstract class _UserSettings implements UserSettings {
-  const factory _UserSettings({required final String groqApiKey}) =
+  const factory _UserSettings(
+          {@JsonKey(name: 'groq_api_key') required final String groqApiKey}) =
       _$UserSettingsImpl;
 
   factory _UserSettings.fromJson(Map<String, dynamic> json) =
       _$UserSettingsImpl.fromJson;
 
   @override
+  @JsonKey(name: 'groq_api_key')
   String get groqApiKey;
   @override
   @JsonKey(ignore: true)

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/features/chat/logic/message_list/message_list_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:lineai/src/features/chat/ui/components/message_list.dart';
 import 'package:lineai/src/features/chat/ui/components/send_message_form.dart';
 import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
+import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 import 'package:lineai/src/shared/utils/notifications.dart';
@@ -91,11 +93,16 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
           child: Column(
             children: [
               BlocBuilder<ChatCubit, ChatState>(
-                builder: (context, state) {
-                  return _HomeBanner(
-                    label: (state.conversation?.name.isEmpty ?? true)
-                        ? I18n.of(context).chat_unnamedConversation
-                        : state.conversation!.name,
+                builder: (context, chatState) {
+                  return BlocBuilder<SendMessageCubit, SendMessageState>(
+                    builder: (context, state) {
+                      return _HomeBanner(
+                        label: (chatState.conversation?.name.isEmpty ?? true)
+                            ? I18n.of(context).chat_unnamedConversation
+                            : chatState.conversation!.name,
+                        isLoading: state.isLoading,
+                      );
+                    },
                   );
                 },
               ),
@@ -149,24 +156,46 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
 class _HomeBanner extends StatelessWidget {
   const _HomeBanner({
     required this.label,
+    this.isLoading = false,
   });
 
   final String label;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: context.colorScheme.primary,
+        color: context.colorScheme.surface,
       ),
       padding: const EdgeInsets.symmetric(horizontal: Dimens.spacing, vertical: Dimens.halfSpacing),
-      child: Text(
-        label,
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall
-            ?.copyWith(color: context.colorScheme.onPrimary, fontWeight: FontWeight.bold),
+      child: Row(
+        children: [
+          Icon(
+            IconsaxPlusBroken.message_text,
+            color: context.colorScheme.onSurface,
+            size: Dimens.iconSizeS,
+          ),
+          const Gap.horizontal(width: Dimens.spacing),
+          Expanded(
+            child: Text(
+              label,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: context.colorScheme.onSurface, fontWeight: FontWeight.bold),
+            ),
+          ),
+          if (isLoading) ...[
+            const Gap.horizontal(width: Dimens.spacing),
+            const SizedBox(
+              width: Dimens.spacing,
+              height: Dimens.spacing,
+              child: CircularProgressIndicator(strokeWidth: 1.2),
+            )
+          ]
+        ],
       ),
     );
   }

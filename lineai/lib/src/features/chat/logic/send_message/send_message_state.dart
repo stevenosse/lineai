@@ -20,3 +20,7 @@ class SendMessageState with _$SendMessageState {
     required ApiError error,
   }) = _Error;
 }
+
+extension SendMessageStateX on SendMessageState {
+  bool get isLoading => maybeMap(loading: (_) => true, orElse: () => false);
+}

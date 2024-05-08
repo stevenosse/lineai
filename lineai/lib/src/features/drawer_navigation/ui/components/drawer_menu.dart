@@ -15,9 +15,11 @@ class DrawerMenu extends StatefulWidget {
   const DrawerMenu({
     super.key,
     required this.conversations,
+    this.selectedConversation,
     this.onDismissRequested,
   });
 
+  final Conversation? selectedConversation;
   final List<Conversation> conversations;
   final VoidCallback? onDismissRequested;
 
@@ -118,6 +120,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           final conversation = widget.conversations[index];
                           return ListTile(
                             title: Text(conversation.name),
+                            selected: widget.selectedConversation?.id == conversation.id,
+                            selectedTileColor: context.colorScheme.background,
                             onTap: () {
                               context.read<ChatCubit>().selectConversation(conversation);
                               widget.onDismissRequested?.call();

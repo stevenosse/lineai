@@ -8,6 +8,7 @@ import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/features/drawer_navigation/logic/conversations/conversation_list_bloc.dart';
 import 'package:lineai/src/features/drawer_navigation/models/drawer_entry.dart';
 import 'package:lineai/src/features/drawer_navigation/ui/components/drawer_menu.dart';
+import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 
 @RoutePage(name: 'DrawerRoute')
 class DrawerWrapper extends StatefulWidget implements AutoRouteWrapper {
@@ -66,9 +67,14 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
       scaffoldKey: _scaffoldKey,
       drawer: BlocBuilder<ConversationListBloc, ConversationListState>(
         builder: (context, state) {
-          return DrawerMenu(
-            conversations: state.conversations,
-            onDismissRequested: () => _scaffoldKey.currentState?.closeDrawer(),
+          return BlocBuilder<ChatCubit, ChatState>(
+            builder: (context, chatState) {
+              return DrawerMenu(
+                conversations: state.conversations,
+                selectedConversation: chatState.conversation,
+                onDismissRequested: () => _scaffoldKey.currentState?.closeDrawer(),
+              );
+            },
           );
         },
       ),
