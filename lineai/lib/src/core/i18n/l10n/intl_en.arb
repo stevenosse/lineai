@@ -61,6 +61,7 @@
   "chatSettings_conversationTitleLabel": "Conversation name",
   "chatSettings_conversationTitleHint": "Ex: Personal knowledge",
   "chatSettings_savedNotification": "Conversation settings updated successfully.",
+  "settings_groqApiKeyAlreadySet": "Groq API key already set.",
 
   "settings_title": "Settings",
   "settings_groqApiKeyLabel": "Groq API key",

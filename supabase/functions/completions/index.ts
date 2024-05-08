@@ -2,11 +2,12 @@
 /// <reference types="https://esm.sh/@supabase/functions-js/src/edge-runtime.d.ts" />
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.7.1";
 import { handleError, handleSuccess } from "../_shared/response.mapper.ts";
-
-class SendMessageRequest {
-  conversationId: number;
-  message: string;
-}
+import {
+  CompletionMessage,
+  CompletionRequest,
+  MessageEntity,
+  SendMessageRequest,
+} from "../_shared/models.ts";
 
 Deno.serve(async (req: Request) => {
   const request: SendMessageRequest = await req.json();
@@ -43,7 +44,7 @@ Deno.serve(async (req: Request) => {
 
     const { data: conversation, error } = await supabaseClient
       .from("conversations")
-      .select("id")
+      .select("*")
       .eq("id", request.conversationId)
       .single();
 
@@ -54,7 +55,7 @@ Deno.serve(async (req: Request) => {
     const requestMessage = {
       content: request.message,
       role: "user",
-    };
+    } as CompletionMessage;
 
     const { error: messageError } = await supabaseClient
       .from("messages")
@@ -62,22 +63,30 @@ Deno.serve(async (req: Request) => {
         conversation_id: conversation.id,
         user_id: user?.id,
         ...requestMessage,
-      });
+      } as MessageEntity);
 
     if (messageError) {
       return handleError(messageError.message, 500);
     }
 
+    const messages: CompletionMessage[] = [];
+
+    if (conversation.system_prompt) {
+      messages.push({ role: "system", content: conversation.system_prompt });
+    }
+
+    if (conversation.summary) {
+      messages.push({ role: "system", content: conversation.summary });
+    }
+    messages.push(requestMessage);
+
     const payload = {
-      messages: [
-        requestMessage,
-      ],
+      messages: messages,
       model: conversation.model ?? "mixtral-8x7b-32768",
       temperature: 1,
-      "top_p": 1,
+      top_p: 1,
       stream: false,
-      stop: null,
-    };
+    } as CompletionRequest;
 
     const modelResponse = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
@@ -105,7 +114,7 @@ Deno.serve(async (req: Request) => {
           user_id: user?.id,
           content: answer.content,
           role: answer.role,
-        })
+        } as MessageEntity)
         .select();
 
     if (responseError) {

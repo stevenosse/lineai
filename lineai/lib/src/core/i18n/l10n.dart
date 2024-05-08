@@ -580,6 +580,16 @@ class I18n {
     );
   }
 
+  /// `Groq API key already set.`
+  String get settings_groqApiKeyAlreadySet {
+    return Intl.message(
+      'Groq API key already set.',
+      name: 'settings_groqApiKeyAlreadySet',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get settings_title {
     return Intl.message(

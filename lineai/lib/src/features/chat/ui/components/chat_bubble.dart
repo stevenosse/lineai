@@ -56,7 +56,7 @@ class ChatBubble extends StatelessWidget {
                       _ => ''
                     },
                     style: context.textTheme.bodySmall
-                        ?.copyWith(color: context.colorScheme.secondary, fontWeight: FontWeight.bold),
+                        ?.copyWith(color: context.colorScheme.onSurface, fontWeight: FontWeight.bold),
                   ),
                   const Gap.vertical(height: Dimens.minSpacing),
                   Text(message.content, style: context.textTheme.bodySmall),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // ignore_for_file: use_full_hex_values_for_flutter_colors
 class MaterialTheme {
@@ -26,10 +27,10 @@ class MaterialTheme {
       onError: Color(4294967295),
       errorContainer: Color(4294957782),
       onErrorContainer: Color(4282449922),
-      background: Color(4294638318),
-      onBackground: Color(4279901206),
-      surface: Color(4294638318),
-      onSurface: Color(4279901206),
+      background: Color(0XFFFFFFFF),
+      onBackground: Color(0XFF09090B),
+      surface: Color(0XFFF4F4F5),
+      onSurface: Color(0XFF09090B),
       surfaceVariant: Color(4292994261),
       onSurfaceVariant: Color(4282730557),
       outline: Color(4285888620),
@@ -124,7 +125,6 @@ class MaterialTheme {
     return theme(darkScheme().toColorScheme());
   }
 
-
   ThemeData theme(ColorScheme colorScheme) => ThemeData(
         useMaterial3: true,
         brightness: colorScheme.brightness,
@@ -135,6 +135,10 @@ class MaterialTheme {
         ),
         scaffoldBackgroundColor: colorScheme.background,
         canvasColor: colorScheme.surface,
+        appBarTheme: AppBarTheme(
+          systemOverlayStyle:
+              colorScheme.brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+        ),
       );
 
   List<ExtendedColor> get extendedColors => [];

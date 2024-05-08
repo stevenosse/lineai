@@ -24,7 +24,7 @@ class ChatRepository extends BaseRepository {
         .from(DBConstants.messagesTable)
         .stream(primaryKey: ['id'])
         .eq('conversation_id', conversationId)
-        .order('created_at', ascending: false)
+        .order('created_at', ascending: true)
         .map((event) => event.map<Message>((json) => Message.fromJson(json)).toList());
   }
 

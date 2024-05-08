@@ -49,16 +49,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: const EdgeInsets.all(Dimens.spacing),
         child: ListView(
           children: [
-            Text(
-              I18n.of(context).settings_groqApiKeyLabel,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-            const Gap.vertical(height: Dimens.minSpacing),
             Input(
               controller: _apiKeyController,
               filled: true,
               isBorderless: true,
               hintText: I18n.of(context).settings_groqApiKeyHint,
+              labelText: I18n.of(context).settings_groqApiKeyLabel,
               onChanged: (_) {
                 context.read<UserSettingsCubit>().onGroqApiKeyChanged(_apiKeyController.text);
                 setState(() {
@@ -104,23 +100,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
             ),
             const Gap.vertical(height: Dimens.halfSpacing),
-            Text.rich(
-              TextSpan(
-                text: I18n.of(context).settings_apiKeyIndications,
-                style: context.textTheme.labelSmall,
-                children: [
-                  TextSpan(
-                    text: groqConsoleApiKeyUrl,
+            BlocBuilder<UserSettingsCubit, UserSettingsState>(
+              builder: (context, state) {
+                if (state.settings.groqApiKey.isNotEmpty) {
+                  return Text(
+                    I18n.of(context).settings_groqApiKeyAlreadySet,
                     style: context.textTheme.labelSmall?.copyWith(color: context.colorScheme.primary),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () async {
-                        if (await canLaunchUrlString(groqConsoleApiKeyUrl)) {
-                          await launchUrlString(groqConsoleApiKeyUrl, mode: LaunchMode.externalApplication);
-                        }
-                      },
-                  )
-                ],
-              ),
+                  );
+                }
+                return Text.rich(
+                  TextSpan(
+                    text: I18n.of(context).settings_apiKeyIndications,
+                    style: context.textTheme.labelSmall,
+                    children: [
+                      TextSpan(
+                        text: groqConsoleApiKeyUrl,
+                        style: context.textTheme.labelSmall?.copyWith(color: context.colorScheme.primary),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () async {
+                            if (await canLaunchUrlString(groqConsoleApiKeyUrl)) {
+                              await launchUrlString(groqConsoleApiKeyUrl, mode: LaunchMode.externalApplication);
+                            }
+                          },
+                      )
+                    ],
+                  ),
+                );
+              },
             ),
             const Gap.vertical(height: Dimens.doubleSpacing),
             ListTile(
