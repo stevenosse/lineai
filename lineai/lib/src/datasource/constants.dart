@@ -3,6 +3,7 @@ final class DBConstants {
   
   static const String conversationsTable = 'conversations';
   static const String messagesTable = 'messages';
+  static const String userSettingsTable = 'user_settings';
 }
 
 final class AIConstants {

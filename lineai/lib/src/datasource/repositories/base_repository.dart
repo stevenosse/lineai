@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:lineai/src/datasource/models/api_error.dart';
@@ -17,9 +18,9 @@ abstract class BaseRepository {
     } on SocketException catch (e) {
       return ApiResponse.error(networkError(e));
     } on FunctionException catch (e) {
+      log('Failed to execute function: ${e.reasonPhrase}', name: 'BaseRepository', error: e);
       return ApiResponse.error(createApiErrorFromFunctionError(e));
-    } 
-    catch (e) {
+    } catch (e) {
       return ApiResponse.error(unknownError(e));
     }
   }

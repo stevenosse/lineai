@@ -22,7 +22,9 @@ mixin _$ChatState {
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation) saved,
     required TResult Function(Conversation? conversation) loading,
-    required TResult Function(Conversation? conversation, ApiError error) error,
+    required TResult Function(
+            Conversation? conversation, ApiError<dynamic> error)
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,7 +32,8 @@ mixin _$ChatState {
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation)? saved,
     TResult? Function(Conversation? conversation)? loading,
-    TResult? Function(Conversation? conversation, ApiError error)? error,
+    TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,7 +41,8 @@ mixin _$ChatState {
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation)? saved,
     TResult Function(Conversation? conversation)? loading,
-    TResult Function(Conversation? conversation, ApiError error)? error,
+    TResult Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -193,7 +197,9 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation) saved,
     required TResult Function(Conversation? conversation) loading,
-    required TResult Function(Conversation? conversation, ApiError error) error,
+    required TResult Function(
+            Conversation? conversation, ApiError<dynamic> error)
+        error,
   }) {
     return unsaved(conversation);
   }
@@ -204,7 +210,8 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation)? saved,
     TResult? Function(Conversation? conversation)? loading,
-    TResult? Function(Conversation? conversation, ApiError error)? error,
+    TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
   }) {
     return unsaved?.call(conversation);
   }
@@ -215,7 +222,8 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation)? saved,
     TResult Function(Conversation? conversation)? loading,
-    TResult Function(Conversation? conversation, ApiError error)? error,
+    TResult Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
     required TResult orElse(),
   }) {
     if (unsaved != null) {
@@ -356,7 +364,9 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation) saved,
     required TResult Function(Conversation? conversation) loading,
-    required TResult Function(Conversation? conversation, ApiError error) error,
+    required TResult Function(
+            Conversation? conversation, ApiError<dynamic> error)
+        error,
   }) {
     return saved(conversation);
   }
@@ -367,7 +377,8 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation)? saved,
     TResult? Function(Conversation? conversation)? loading,
-    TResult? Function(Conversation? conversation, ApiError error)? error,
+    TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
   }) {
     return saved?.call(conversation);
   }
@@ -378,7 +389,8 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation)? saved,
     TResult Function(Conversation? conversation)? loading,
-    TResult Function(Conversation? conversation, ApiError error)? error,
+    TResult Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
     required TResult orElse(),
   }) {
     if (saved != null) {
@@ -511,7 +523,9 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation) saved,
     required TResult Function(Conversation? conversation) loading,
-    required TResult Function(Conversation? conversation, ApiError error) error,
+    required TResult Function(
+            Conversation? conversation, ApiError<dynamic> error)
+        error,
   }) {
     return loading(conversation);
   }
@@ -522,7 +536,8 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation)? saved,
     TResult? Function(Conversation? conversation)? loading,
-    TResult? Function(Conversation? conversation, ApiError error)? error,
+    TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
   }) {
     return loading?.call(conversation);
   }
@@ -533,7 +548,8 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation)? saved,
     TResult Function(Conversation? conversation)? loading,
-    TResult Function(Conversation? conversation, ApiError error)? error,
+    TResult Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -600,7 +616,7 @@ abstract class _$$ChatStateErrorImplCopyWith<$Res>
       __$$ChatStateErrorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Conversation? conversation, ApiError error});
+  $Res call({Conversation? conversation, ApiError<dynamic> error});
 
   @override
   $ConversationCopyWith<$Res>? get conversation;
@@ -618,17 +634,17 @@ class __$$ChatStateErrorImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? conversation = freezed,
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$ChatStateErrorImpl(
       conversation: freezed == conversation
           ? _value.conversation
           : conversation // ignore: cast_nullable_to_non_nullable
               as Conversation?,
-      error: freezed == error
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as ApiError,
+              as ApiError<dynamic>,
     ));
   }
 }
@@ -641,7 +657,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   @override
   final Conversation? conversation;
   @override
-  final ApiError error;
+  final ApiError<dynamic> error;
 
   @override
   String toString() {
@@ -655,12 +671,11 @@ class _$ChatStateErrorImpl implements _ChatStateError {
             other is _$ChatStateErrorImpl &&
             (identical(other.conversation, conversation) ||
                 other.conversation == conversation) &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, conversation, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, conversation, error);
 
   @JsonKey(ignore: true)
   @override
@@ -675,7 +690,9 @@ class _$ChatStateErrorImpl implements _ChatStateError {
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation) saved,
     required TResult Function(Conversation? conversation) loading,
-    required TResult Function(Conversation? conversation, ApiError error) error,
+    required TResult Function(
+            Conversation? conversation, ApiError<dynamic> error)
+        error,
   }) {
     return error(conversation, this.error);
   }
@@ -686,7 +703,8 @@ class _$ChatStateErrorImpl implements _ChatStateError {
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation)? saved,
     TResult? Function(Conversation? conversation)? loading,
-    TResult? Function(Conversation? conversation, ApiError error)? error,
+    TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
   }) {
     return error?.call(conversation, this.error);
   }
@@ -697,7 +715,8 @@ class _$ChatStateErrorImpl implements _ChatStateError {
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation)? saved,
     TResult Function(Conversation? conversation)? loading,
-    TResult Function(Conversation? conversation, ApiError error)? error,
+    TResult Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -747,11 +766,11 @@ class _$ChatStateErrorImpl implements _ChatStateError {
 abstract class _ChatStateError implements ChatState {
   const factory _ChatStateError(
       {final Conversation? conversation,
-      required final ApiError error}) = _$ChatStateErrorImpl;
+      required final ApiError<dynamic> error}) = _$ChatStateErrorImpl;
 
   @override
   Conversation? get conversation;
-  ApiError get error;
+  ApiError<dynamic> get error;
   @override
   @JsonKey(ignore: true)
   _$$ChatStateErrorImplCopyWith<_$ChatStateErrorImpl> get copyWith =>

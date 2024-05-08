@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
+import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -14,8 +15,16 @@ class AuthWrapper extends StatefulWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => ChatCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => ChatCubit(),
+        ),
+        BlocProvider(
+          create: (context) => UserSettingsCubit(),
+          child: this,
+        )
+      ],
       child: this,
     );
   }

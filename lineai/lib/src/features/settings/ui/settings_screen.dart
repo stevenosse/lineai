@@ -1,13 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/components/main_app_bar.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
+
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
   SettingsScreen({
@@ -49,6 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               filled: true,
               isBorderless: true,
               hintText: I18n.of(context).settings_groqApiKeyHint,
+              onChanged: (_) => context.read<UserSettingsCubit>().onGroqApiKeyChanged,
             ),
             const Gap.vertical(height: Dimens.doubleSpacing),
             ListTile(

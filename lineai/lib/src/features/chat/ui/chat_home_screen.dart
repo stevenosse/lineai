@@ -40,27 +40,41 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocListener<ChatCubit, ChatState>(
-        listener: (context, state) {
-          state.whenOrNull(
-            saved: (conversation) {
-              if (_pendingMessage != null) {
-                context
-                    .read<SendMessageCubit>()
-                    .sendMessage(conversationId: conversation.id, message: _pendingMessage!);
-                _pendingMessage = null;
-              }
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<ChatCubit, ChatState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                saved: (conversation) {
+                  if (_pendingMessage != null) {
+                    context
+                        .read<SendMessageCubit>()
+                        .sendMessage(conversationId: conversation.id, message: _pendingMessage!);
+                    _pendingMessage = null;
+                  }
 
-              context.read<MessageListBloc>().setConversationId(conversation.id);
-            },
-            error: (conversation, error) {
-              $notificationService.showErrorNotification(
-                context: context,
-                body: error.describe(context: context),
+                  context.read<MessageListBloc>().setConversationId(conversation.id);
+                },
+                error: (conversation, error) {
+                  $notificationService.showErrorNotification(
+                    context: context,
+                    body: error.describe(context: context),
+                  );
+                },
               );
             },
-          );
-        },
+          ),
+          BlocListener<SendMessageCubit, SendMessageState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                error: (message, conversationId, error) => $notificationService.showErrorNotification(
+                  context: context,
+                  body: error.describe(context: context),
+                ),
+              );
+            },
+          ),
+        ],
         child: FractionallySizedBox(
           widthFactor: 1,
           child: Column(

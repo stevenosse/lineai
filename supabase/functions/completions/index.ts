@@ -37,11 +37,7 @@ Deno.serve(async (req: Request) => {
       .eq("user_id", user?.id ?? 1)
       .single();
 
-    if (settingsError) {
-      return handleError(settingsError.message, 500);
-    }
-
-    if (!usersSettings?.groq_api_key) {
+    if (!usersSettings?.groq_api_key || settingsError) {
       return handleError("Please set your Groq API key in the settings", 400);
     }
 
@@ -52,7 +48,7 @@ Deno.serve(async (req: Request) => {
       .single();
 
     if (error) {
-      return handleError(error.message, 500);
+      return handleError("Conversation not found", 500);
     }
 
     const requestMessage = {
