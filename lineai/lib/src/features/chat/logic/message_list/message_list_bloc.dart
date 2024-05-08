@@ -8,7 +8,7 @@ import 'package:lineai/src/features/chat/logic/message_list/message_list_event.d
 import 'package:lineai/src/shared/locator.dart';
 
 part 'message_list_state.dart';
-part 'message_list_cubit.freezed.dart';
+part 'message_list_bloc.freezed.dart';
 
 class MessageListBloc extends Bloc<MessageListEvent, MessageListState> {
   final ChatRepository _chatRepository;

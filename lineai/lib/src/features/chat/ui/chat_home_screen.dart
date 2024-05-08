@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
-import 'package:lineai/src/features/chat/logic/message_list/message_list_cubit.dart';
+import 'package:lineai/src/features/chat/logic/message_list/message_list_bloc.dart';
 import 'package:lineai/src/features/chat/logic/send_message/send_message_cubit.dart';
 import 'package:lineai/src/features/chat/ui/components/chats_empty_state.dart';
 import 'package:lineai/src/features/chat/ui/components/message_list.dart';

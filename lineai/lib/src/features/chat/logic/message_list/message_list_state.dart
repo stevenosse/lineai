@@ -1,4 +1,4 @@
-part of 'message_list_cubit.dart';
+part of 'message_list_bloc.dart';
 
 @freezed
 class MessageListState with _$MessageListState {

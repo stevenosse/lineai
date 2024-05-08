@@ -124,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "register_title": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "settings_apiKeyIndications":
+            MessageLookupByLibrary.simpleMessage("Get your API key from "),
         "settings_groqApiKeyError": MessageLookupByLibrary.simpleMessage(
             "Please provide a groq API key in the settings."),
         "settings_groqApiKeyHint":

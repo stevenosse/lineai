@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/datasource/constants.dart';
 import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
@@ -14,6 +16,7 @@ import 'package:lineai/src/shared/components/main_app_bar.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
 import 'package:lineai/src/shared/utils/notifications.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 @RoutePage()
 class SettingsScreen extends StatefulWidget {
@@ -99,6 +102,25 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 }
                 return const Gap.vertical(height: 0);
               },
+            ),
+            const Gap.vertical(height: Dimens.halfSpacing),
+            Text.rich(
+              TextSpan(
+                text: I18n.of(context).settings_apiKeyIndications,
+                style: context.textTheme.labelSmall,
+                children: [
+                  TextSpan(
+                    text: groqConsoleApiKeyUrl,
+                    style: context.textTheme.labelSmall?.copyWith(color: context.colorScheme.primary),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () async {
+                        if (await canLaunchUrlString(groqConsoleApiKeyUrl)) {
+                          await launchUrlString(groqConsoleApiKeyUrl, mode: LaunchMode.externalApplication);
+                        }
+                      },
+                  )
+                ],
+              ),
             ),
             const Gap.vertical(height: Dimens.doubleSpacing),
             ListTile(

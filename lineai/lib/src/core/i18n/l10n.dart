@@ -610,6 +610,16 @@ class I18n {
     );
   }
 
+  /// `Get your API key from `
+  String get settings_apiKeyIndications {
+    return Intl.message(
+      'Get your API key from ',
+      name: 'settings_apiKeyIndications',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please provide a groq API key in the settings.`
   String get settings_groqApiKeyError {
     return Intl.message(

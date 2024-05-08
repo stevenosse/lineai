@@ -55,6 +55,11 @@ class AppTheme {
         fontWeight: FontWeight.w500,
         fontSize: 14,
       ),
+      labelSmall: TextStyle(
+        fontFamily: _fontFamily,
+        fontWeight: FontWeight.w500,
+        fontSize: 10,
+      )
     );
   }
 }
