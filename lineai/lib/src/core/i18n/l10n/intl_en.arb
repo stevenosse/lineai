@@ -4,6 +4,8 @@
   "formInput_required": "This field is required.",
   "formInput_emailValidation": "Please enter a valid email address.",
   "formInput_passwordValidation": "Please enter a password.",
+  "formInput_minLengthValidation": "Please enter at least {minLength} characters.",
+  "formInput_passwordsMissMatch": "Passwords do not match.",
 
   "welcome_getStarted": "Get Started",
   "welcome_signIn": "Sign In",
@@ -41,6 +43,16 @@
   "forgotPassword_submitButton": "Submit",
   "forgotPassword_successMessage": "We have sent you an email with a link to reset your password.",
   "forgotPassword_resendMessage": "You can request another link in {time} seconds.",
+  
+  "resetPassword_title": "Reset your password",
+  "resetPassword_subtitle": "Please enter a new password.",
+  "resetPassword_submitButton": "Submit",
+  "resetPassword_successMessage": "Your password has been reset successfully.",
+  "resetPassword_passwordLabel": "Password",
+  "resetPassword_passwordHint": "********",
+  "resetPassword_confirmPasswordLabel": "Confirm Password",
+  "resetPassword_confirmPasswordHint": "********",
+  "resetPassword_success": "Your password has been reset successfully. You can now log in.",
 
   "pendingVerification_title": "Verify your email",
   "pendingVerification_subtitle": "Please check your email and click on the link to verify your account.",

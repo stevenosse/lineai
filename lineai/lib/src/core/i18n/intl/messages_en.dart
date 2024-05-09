@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m0(time) => "You can request another link in ${time} seconds.";
 
+  static String m1(minLength) =>
+      "Please enter at least ${minLength} characters.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "chatSettings_conversationTitleHint":
@@ -83,8 +86,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "formInput_emailValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid email address."),
+        "formInput_minLengthValidation": m1,
         "formInput_passwordValidation":
             MessageLookupByLibrary.simpleMessage("Please enter a password."),
+        "formInput_passwordsMissMatch":
+            MessageLookupByLibrary.simpleMessage("Passwords do not match."),
         "formInput_required":
             MessageLookupByLibrary.simpleMessage("This field is required."),
         "loadingDialog_content":
@@ -141,6 +147,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "register_termsLink":
             MessageLookupByLibrary.simpleMessage("terms of service"),
         "register_title": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "resetPassword_confirmPasswordHint":
+            MessageLookupByLibrary.simpleMessage("********"),
+        "resetPassword_confirmPasswordLabel":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "resetPassword_passwordHint":
+            MessageLookupByLibrary.simpleMessage("********"),
+        "resetPassword_passwordLabel":
+            MessageLookupByLibrary.simpleMessage("Password"),
+        "resetPassword_submitButton":
+            MessageLookupByLibrary.simpleMessage("Submit"),
+        "resetPassword_subtitle": MessageLookupByLibrary.simpleMessage(
+            "Please enter a new password."),
+        "resetPassword_success": MessageLookupByLibrary.simpleMessage(
+            "Your password has been reset successfully. You can now log in."),
+        "resetPassword_successMessage": MessageLookupByLibrary.simpleMessage(
+            "Your password has been reset successfully."),
+        "resetPassword_title":
+            MessageLookupByLibrary.simpleMessage("Reset your password"),
         "retry": MessageLookupByLibrary.simpleMessage("Retry"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings_apiKeyIndications":

@@ -80,6 +80,26 @@ class I18n {
     );
   }
 
+  /// `Please enter at least {minLength} characters.`
+  String formInput_minLengthValidation(Object minLength) {
+    return Intl.message(
+      'Please enter at least $minLength characters.',
+      name: 'formInput_minLengthValidation',
+      desc: '',
+      args: [minLength],
+    );
+  }
+
+  /// `Passwords do not match.`
+  String get formInput_passwordsMissMatch {
+    return Intl.message(
+      'Passwords do not match.',
+      name: 'formInput_passwordsMissMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Get Started`
   String get welcome_getStarted {
     return Intl.message(
@@ -407,6 +427,96 @@ class I18n {
       name: 'forgotPassword_resendMessage',
       desc: '',
       args: [time],
+    );
+  }
+
+  /// `Reset your password`
+  String get resetPassword_title {
+    return Intl.message(
+      'Reset your password',
+      name: 'resetPassword_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a new password.`
+  String get resetPassword_subtitle {
+    return Intl.message(
+      'Please enter a new password.',
+      name: 'resetPassword_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get resetPassword_submitButton {
+    return Intl.message(
+      'Submit',
+      name: 'resetPassword_submitButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password has been reset successfully.`
+  String get resetPassword_successMessage {
+    return Intl.message(
+      'Your password has been reset successfully.',
+      name: 'resetPassword_successMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get resetPassword_passwordLabel {
+    return Intl.message(
+      'Password',
+      name: 'resetPassword_passwordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `********`
+  String get resetPassword_passwordHint {
+    return Intl.message(
+      '********',
+      name: 'resetPassword_passwordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Password`
+  String get resetPassword_confirmPasswordLabel {
+    return Intl.message(
+      'Confirm Password',
+      name: 'resetPassword_confirmPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `********`
+  String get resetPassword_confirmPasswordHint {
+    return Intl.message(
+      '********',
+      name: 'resetPassword_confirmPasswordHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password has been reset successfully. You can now log in.`
+  String get resetPassword_success {
+    return Intl.message(
+      'Your password has been reset successfully. You can now log in.',
+      name: 'resetPassword_success',
+      desc: '',
+      args: [],
     );
   }
 

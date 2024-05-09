@@ -8,6 +8,7 @@ import 'package:lineai/gen/assets.gen.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/datasource/constants.dart';
 import 'package:lineai/src/features/register/logic/register_cubit.dart';
 import 'package:lineai/src/shared/components/button.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
@@ -119,7 +120,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               hintText: I18n.of(context).register_passwordHint,
                               onChanged: context.read<RegisterCubit>().onPasswordChanged,
                               validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
-                                  .minLength(8, I18n.of(context).formInput_passwordValidation)
+                                  .minLength(AppConstants.minPasswordLength, I18n.of(context).formInput_passwordValidation)
                                   .required(I18n.of(context).formInput_required)
                                   .build(),
                               textInputAction: TextInputAction.done,

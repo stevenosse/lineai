@@ -9,10 +9,12 @@ import 'package:lineai/src/features/login/ui/login_screen.dart';
 import 'package:lineai/src/features/profile/ui/profile_screen.dart';
 import 'package:lineai/src/features/register/ui/register_screen.dart';
 import 'package:lineai/src/features/reset_password/ui/forgot_password_screen.dart';
+import 'package:lineai/src/features/reset_password/ui/reset_password_screen.dart';
 import 'package:lineai/src/features/settings/ui/settings_screen.dart';
 import 'package:lineai/src/features/welcome/welcome_screen.dart';
 import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
 import 'package:lineai/src/shared/features/auth/ui/auth_wrapper.dart';
+import 'package:lineai/src/shared/features/wrappers/main_wrapper.dart';
 
 part 'app_router.gr.dart';
 
@@ -21,33 +23,30 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> routes = [
     AutoRoute(
-      page: WelcomeRoute.page,
+      page: MainRoute.page,
       initial: true,
-      guards: [AuthRedirectionGuard()],
-    ),
-    AutoRoute(
-      page: LoginRoute.page,
-      guards: [AuthRedirectionGuard()],
-    ),
-    AutoRoute(
-      page: RegisterRoute.page,
-      guards: [AuthRedirectionGuard()],
-    ),
-    AutoRoute(page: ForgotPasswordRoute.page),
-    AutoRoute(
-      page: AuthRoute.page,
-      guards: [AuthGuard()],
       children: [
+        AutoRoute(page: WelcomeRoute.page, guards: [AuthRedirectionGuard()], initial: true),
+        AutoRoute(page: LoginRoute.page, guards: [AuthRedirectionGuard()]),
+        AutoRoute(page: RegisterRoute.page, guards: [AuthRedirectionGuard()]),
+        AutoRoute(page: ForgotPasswordRoute.page),
+        AutoRoute(page: ResetPasswordRoute.page),
         AutoRoute(
-          page: DrawerRoute.page,
-          initial: true,
+          page: AuthRoute.page,
+          guards: [AuthGuard()],
           children: [
-            AutoRoute(page: ChatHomeRoute.page, initial: true),
-            AutoRoute(page: ProfileRoute.page),
+            AutoRoute(
+              page: DrawerRoute.page,
+              initial: true,
+              children: [
+                AutoRoute(page: ChatHomeRoute.page, initial: true),
+                AutoRoute(page: ProfileRoute.page),
+              ],
+            ),
+            AutoRoute(page: ChatSettingsRoute.page),
+            AutoRoute(page: SettingsRoute.page),
           ],
         ),
-        AutoRoute(page: ChatSettingsRoute.page),
-        AutoRoute(page: SettingsRoute.page),
       ],
     ),
   ];

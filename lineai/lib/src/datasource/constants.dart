@@ -1,3 +1,8 @@
+final class AppConstants {
+  AppConstants._();
+
+  static const minPasswordLength = 8;
+}
 final class DBConstants {
   DBConstants._();
 
