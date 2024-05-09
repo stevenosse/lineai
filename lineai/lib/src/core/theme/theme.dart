@@ -136,6 +136,7 @@ class MaterialTheme {
         scaffoldBackgroundColor: colorScheme.background,
         canvasColor: colorScheme.surface,
         appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
           systemOverlayStyle:
               colorScheme.brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
         ),

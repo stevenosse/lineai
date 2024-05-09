@@ -31,4 +31,11 @@ class AuthRepository extends BaseRepository {
       return ApiResponse.success(response);
     });
   }
+
+  Future<ApiResponse<bool, ApiError>> sendPasswordReset({required String email}) async {
+    return runOperation(call: () async {
+      await _supabaseClient.auth.resetPasswordForEmail(email);
+      return ApiResponse.success(true);
+    });
+  }
 }

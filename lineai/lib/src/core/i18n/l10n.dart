@@ -320,6 +320,16 @@ class I18n {
     );
   }
 
+  /// `Sign up with Apple`
+  String get register_appleBtnLabel {
+    return Intl.message(
+      'Sign up with Apple',
+      name: 'register_appleBtnLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `By signing up, you agree to our`
   String get register_termsLabel {
     return Intl.message(
@@ -345,6 +355,46 @@ class I18n {
     return Intl.message(
       'Forgot your password?',
       name: 'register_forgotPasswordLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot your password?`
+  String get forgotPassword_title {
+    return Intl.message(
+      'Forgot your password?',
+      name: 'forgotPassword_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will send you a link to reset your password.`
+  String get forgotPassword_subtitle {
+    return Intl.message(
+      'We will send you a link to reset your password.',
+      name: 'forgotPassword_subtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit`
+  String get forgotPassword_submitButton {
+    return Intl.message(
+      'Submit',
+      name: 'forgotPassword_submitButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We have sent you an email with a link to reset your password.`
+  String get forgotPassword_successMessage {
+    return Intl.message(
+      'We have sent you an email with a link to reset your password.',
+      name: 'forgotPassword_successMessage',
       desc: '',
       args: [],
     );
@@ -690,10 +740,10 @@ class I18n {
     );
   }
 
-  /// `Loading...`
+  /// `Please wait...`
   String get loadingDialog_content {
     return Intl.message(
-      'Loading...',
+      'Please wait...',
       name: 'loadingDialog_content',
       desc: '',
       args: [],

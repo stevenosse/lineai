@@ -70,6 +70,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred. Please try again."),
         "error_unknown": MessageLookupByLibrary.simpleMessage(
             "An error occurred. Please try again."),
+        "forgotPassword_submitButton":
+            MessageLookupByLibrary.simpleMessage("Submit"),
+        "forgotPassword_subtitle": MessageLookupByLibrary.simpleMessage(
+            "We will send you a link to reset your password."),
+        "forgotPassword_successMessage": MessageLookupByLibrary.simpleMessage(
+            "We have sent you an email with a link to reset your password."),
+        "forgotPassword_title":
+            MessageLookupByLibrary.simpleMessage("Forgot your password?"),
         "formInput_emailValidation": MessageLookupByLibrary.simpleMessage(
             "Please enter a valid email address."),
         "formInput_passwordValidation":
@@ -77,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "formInput_required":
             MessageLookupByLibrary.simpleMessage("This field is required."),
         "loadingDialog_content":
-            MessageLookupByLibrary.simpleMessage("Loading..."),
+            MessageLookupByLibrary.simpleMessage("Please wait..."),
         "login_appleBtnLabel":
             MessageLookupByLibrary.simpleMessage("Sign in with Apple"),
         "login_btnLabel": MessageLookupByLibrary.simpleMessage("Login"),
@@ -109,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please check your email and click on the link to verify your account."),
         "pendingVerification_title":
             MessageLookupByLibrary.simpleMessage("Verify your email"),
+        "register_appleBtnLabel":
+            MessageLookupByLibrary.simpleMessage("Sign up with Apple"),
         "register_btnLabel": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "register_emailHint":
             MessageLookupByLibrary.simpleMessage("hello@adaptiv.io"),

@@ -31,9 +31,15 @@
   "register_passwordLabel": "Password",
   "register_passwordHint": "********",
   "register_googleBtnLabel": "Sign up with Google",
+  "register_appleBtnLabel": "Sign up with Apple",
   "register_termsLabel": "By signing up, you agree to our",
   "register_termsLink": "terms of service",
   "register_forgotPasswordLabel": "Forgot your password?",
+
+  "forgotPassword_title": "Forgot your password?",
+  "forgotPassword_subtitle": "We will send you a link to reset your password.",
+  "forgotPassword_submitButton": "Submit",
+  "forgotPassword_successMessage": "We have sent you an email with a link to reset your password.",
 
   "pendingVerification_title": "Verify your email",
   "pendingVerification_subtitle": "Please check your email and click on the link to verify your account.",
@@ -75,7 +81,7 @@
   "settings_groqApiKeyRequiredValidation": "Please provide a groq API key.",
   "settings_groqApiKeySuccess": "Settings saved successfully.",
 
-  "loadingDialog_content": "Loading...",
+  "loadingDialog_content": "Please wait...",
 
   "login_error_400": "Invalid email address or password",
   "login_error_default": "An error occurred. Please try again.",

@@ -130,14 +130,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
                     const Gap.vertical(height: Dimens.spacing),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: Text(I18n.of(context).register_forgotPasswordLabel),
-                      ),
-                    ),
-                    const Gap.vertical(height: Dimens.spacing),
                     Button.primary(
                       title: I18n.of(context).register_btnLabel,
                       onPressed: _onRegister,
@@ -154,7 +146,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: Dimens.iconSize,
                       ),
                       title: I18n.of(context).register_googleBtnLabel,
-                      onPressed: () => context.router.push(const ChatHomeRoute()),
+                      onPressed: () {},
                     ),
                     const Gap.vertical(height: Dimens.spacing),
                     Button.outline(
@@ -164,8 +156,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         width: Dimens.iconSize,
                         height: Dimens.iconSize,
                       ),
-                      title: I18n.of(context).login_appleBtnLabel,
-                      onPressed: () => context.router.push(const ChatHomeRoute()),
+                      title: I18n.of(context).register_appleBtnLabel,
+                      onPressed: () {},
                     ),
                   ],
                 ),

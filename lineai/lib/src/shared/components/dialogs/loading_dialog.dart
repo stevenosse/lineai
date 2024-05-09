@@ -1,12 +1,15 @@
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:flutter/material.dart';
+import 'package:lineai/src/shared/extensions/context_extensions.dart';
 
 class LoadingDialog {
   static bool _isVisible = false;
 
   static Future<void> show({required BuildContext context, List<Widget> actions = const []}) {
     if (_isVisible == false) {
+      // Hide keyboard for a better experience
+      FocusManager.instance.primaryFocus?.unfocus();
       _isVisible = true;
 
       return showDialog(
@@ -18,6 +21,7 @@ class LoadingDialog {
             canPop: false,
             child: AlertDialog.adaptive(
               surfaceTintColor: Colors.transparent,
+              backgroundColor: context.colorScheme.surface,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.borderRadius)),
               content: Row(
                 children: [
