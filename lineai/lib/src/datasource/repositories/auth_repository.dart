@@ -1,4 +1,3 @@
-import 'package:lineai/src/core/environment.dart';
 import 'package:lineai/src/datasource/models/api_error.dart';
 import 'package:lineai/src/datasource/models/api_response/api_response.dart';
 import 'package:lineai/src/datasource/repositories/base_repository.dart';
@@ -35,7 +34,7 @@ class AuthRepository extends BaseRepository {
 
   Future<ApiResponse<bool, ApiError>> sendPasswordReset({required String email}) async {
     return runOperation(call: () async {
-      await _supabaseClient.auth.resetPasswordForEmail(email, redirectTo: Environment.forgotPasswordCallbackUrl);
+      await _supabaseClient.auth.resetPasswordForEmail(email);
       return ApiResponse.success(true);
     });
   }

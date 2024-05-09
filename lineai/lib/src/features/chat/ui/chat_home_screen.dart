@@ -100,7 +100,6 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                         label: (chatState.conversation?.name.isEmpty ?? true)
                             ? I18n.of(context).chat_unnamedConversation
                             : chatState.conversation!.name,
-                        isLoading: state.isLoading,
                       );
                     },
                   );
@@ -124,6 +123,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 child: SendMessageForm(
                   controller: _messageController,
                   onSendMessage: _onSendMessagePressed,
+                  isLoading: context.watch<SendMessageCubit>().state.isLoading,
                 ),
               ),
             ],
@@ -158,11 +158,9 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
 class _HomeBanner extends StatelessWidget {
   const _HomeBanner({
     required this.label,
-    this.isLoading = false,
   });
 
   final String label;
-  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -189,14 +187,6 @@ class _HomeBanner extends StatelessWidget {
                   ?.copyWith(color: context.colorScheme.onSurface, fontWeight: FontWeight.bold),
             ),
           ),
-          if (isLoading) ...[
-            const Gap.horizontal(width: Dimens.spacing),
-            const SizedBox(
-              width: Dimens.spacing,
-              height: Dimens.spacing,
-              child: CircularProgressIndicator(strokeWidth: 1.2),
-            )
-          ]
         ],
       ),
     );

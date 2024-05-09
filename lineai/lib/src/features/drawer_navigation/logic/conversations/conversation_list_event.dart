@@ -11,3 +11,17 @@ final class OnConversationListUpdated extends ConversationListEvent {
   @override
   List<Object?> get props => [conversations];
 }
+
+final class OnSearchQueryChanged extends ConversationListEvent {
+  final String query;
+
+  OnSearchQueryChanged({required this.query});
+
+  @override
+  List<Object?> get props => [query];
+}
+
+final class OnSearchExited extends ConversationListEvent {
+  @override
+  List<Object?> get props => [];
+}

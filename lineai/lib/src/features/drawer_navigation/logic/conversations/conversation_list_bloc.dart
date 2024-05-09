@@ -15,6 +15,8 @@ class ConversationListBloc extends Bloc<ConversationListEvent, ConversationListS
 
   StreamSubscription<List<Conversation>>? _conversationSubscription;
 
+  List<Conversation> _allConversations = [];
+
   ConversationListBloc({
     ChatRepository? chatRepository,
   })  : _chatRepository = chatRepository ?? locator<ChatRepository>(),
@@ -23,13 +25,30 @@ class ConversationListBloc extends Bloc<ConversationListEvent, ConversationListS
       emit(ConversationListState(conversations: event.conversations));
     });
 
+    on<OnSearchQueryChanged>((event, emit) {
+      _onFilterConversations(event.query);
+    });
+
+    on<OnSearchExited>((event, emit) {
+      emit(ConversationListState(conversations: _allConversations));
+    });
+
     _listenConversations();
   }
 
   void _listenConversations() {
     _conversationSubscription = _chatRepository.getConversations().listen((conversations) {
+      _allConversations = conversations;
       add(OnConversationListUpdated(conversations: conversations));
     });
+  }
+
+  void _onFilterConversations(String query) {
+    final conversations = _allConversations
+        .where((conversation) => conversation.name.toLowerCase().contains(query.toLowerCase()))
+        .toList();
+
+    add(OnConversationListUpdated(conversations: conversations));
   }
 
   @override

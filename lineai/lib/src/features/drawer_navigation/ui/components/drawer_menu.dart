@@ -16,12 +16,16 @@ class DrawerMenu extends StatefulWidget {
     this.selectedConversation,
     this.onConversationSelected,
     this.onStartConversation,
+    this.onSearchQueryChanged,
+    this.onSearchExited,
   });
 
   final Conversation? selectedConversation;
   final List<Conversation> conversations;
+  final ValueChanged<String>? onSearchQueryChanged;
   final ValueChanged<Conversation>? onConversationSelected;
   final VoidCallback? onStartConversation;
+  final VoidCallback? onSearchExited;
 
   @override
   State<DrawerMenu> createState() => _DrawerMenuState();
@@ -71,6 +75,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                   controller: _searchController,
                   focusNode: _searchFocusNode,
                   hintText: I18n.of(context).drawer_searchHint,
+                  onChanged: widget.onSearchQueryChanged,
                   prefixIcon: ListenableBuilder(
                     listenable: _searchFocusNode,
                     builder: (context, child) {
@@ -85,6 +90,8 @@ class _DrawerMenuState extends State<DrawerMenu> {
                           onPressed: () {
                             _searchFocusNode.unfocus();
                             FocusManager.instance.primaryFocus?.unfocus();
+                            _searchController.clear();
+                            widget.onSearchExited?.call();
                           },
                         ),
                         crossFadeState:

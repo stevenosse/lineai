@@ -6,6 +6,7 @@ import 'package:lineai/src/core/environment.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/features/drawer_navigation/logic/conversations/conversation_list_bloc.dart';
+import 'package:lineai/src/features/drawer_navigation/logic/conversations/conversation_list_event.dart';
 import 'package:lineai/src/features/drawer_navigation/models/drawer_entry.dart';
 import 'package:lineai/src/features/drawer_navigation/ui/components/drawer_menu.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
@@ -72,6 +73,13 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
               return DrawerMenu(
                 conversations: state.conversations,
                 selectedConversation: chatState.conversation,
+                onSearchQueryChanged: (query) {
+                  context.read<ConversationListBloc>().add(OnSearchQueryChanged(query: query));
+                  if (query.isEmpty) {
+                    context.read<ConversationListBloc>().add(OnSearchExited());
+                  }
+                },
+                onSearchExited: () => context.read<ConversationListBloc>().add(OnSearchExited()),
                 onStartConversation: () {
                   context.read<ChatCubit>().startNewConversation();
                   _scaffoldKey.currentState?.closeDrawer();
