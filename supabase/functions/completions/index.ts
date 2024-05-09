@@ -77,14 +77,14 @@ Deno.serve(async (req: Request) => {
     }
 
     if (conversation.summary) {
-      messages.push({ role: "system", content: conversation.summary });
+      messages.push({ role: "system", content: `Here is a summary of the conversation: ${conversation.summary}` });
     }
     messages.push(aiRequestMessage);
 
     const payload = {
       messages: messages,
       model: conversation.model ?? "mixtral-8x7b-32768",
-      temperature: 1,
+      temperature: conversation.temperature ?? 1,
       top_p: 1,
       stream: false,
     } as CompletionRequest;
@@ -101,7 +101,7 @@ Deno.serve(async (req: Request) => {
       },
     ).then((res) => res.json());
 
-    // TODO: summarize all conversations and save the summary in the conversation
+    // TODO: summarize all message in conversation and save the summary in the conversation
 
     if (!modelResponse) {
       return handleError("Failed to query AI model", 500);

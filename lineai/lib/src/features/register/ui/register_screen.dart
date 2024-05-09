@@ -117,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Input(
                               autofillHints: const [AutofillHints.password],
                               controller: _passwordController,
-                              isPassword: true,
+                              isPassword: !_isPasswordVisible,
                               labelText: I18n.of(context).register_passwordLabel,
                               hintText: I18n.of(context).register_passwordHint,
                               onChanged: context.read<RegisterCubit>().onPasswordChanged,

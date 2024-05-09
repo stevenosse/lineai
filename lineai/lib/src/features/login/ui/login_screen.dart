@@ -114,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Input(
                       autofillHints: const [AutofillHints.password],
                       controller: _passwordController,
-                      isPassword: true,
+                      isPassword: !_isPasswordVisible,
                       labelText: I18n.of(context).login_passwordLabel,
                       hintText: I18n.of(context).login_passwordHint,
                       onChanged: context.read<LoginCubit>().onPasswordChanged,
