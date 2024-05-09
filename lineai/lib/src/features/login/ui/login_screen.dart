@@ -39,6 +39,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -121,6 +123,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           .required(I18n.of(context).formInput_required)
                           .build(),
                       textInputAction: TextInputAction.done,
+                      suffixIcon: IconButton(
+                        onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+                        icon: Icon(
+                          _isPasswordVisible ? IconsaxPlusBroken.eye : IconsaxPlusBroken.eye_slash,
+                          color: context.colorScheme.onSurface,
+                        ),
+                      ),
                       onSubmitted: (_) => _onLogin(),
                     ),
                   ],

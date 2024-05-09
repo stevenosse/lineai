@@ -39,6 +39,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -120,10 +122,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               hintText: I18n.of(context).register_passwordHint,
                               onChanged: context.read<RegisterCubit>().onPasswordChanged,
                               validator: ValidationBuilder(requiredMessage: I18n.of(context).formInput_required)
-                                  .minLength(AppConstants.minPasswordLength, I18n.of(context).formInput_passwordValidation)
+                                  .minLength(
+                                      AppConstants.minPasswordLength, I18n.of(context).formInput_passwordValidation)
                                   .required(I18n.of(context).formInput_required)
                                   .build(),
                               textInputAction: TextInputAction.done,
+                              suffixIcon: IconButton(
+                                onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+                                icon: Icon(
+                                  _isPasswordVisible ? IconsaxPlusBroken.eye : IconsaxPlusBroken.eye_slash,
+                                  color: context.colorScheme.onSurface,
+                                ),
+                              ),
                               onSubmitted: (value) => _onRegister(),
                             ),
                           ],
