@@ -53,7 +53,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const requestMessage = {
-      content: request.message,
+      content: `${request.message}\n\n Answer in markdown format.`,
       role: "user",
     } as CompletionMessage;
 

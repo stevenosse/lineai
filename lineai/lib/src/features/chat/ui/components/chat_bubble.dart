@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
@@ -55,11 +56,14 @@ class ChatBubble extends StatelessWidget {
                       'user' => Supabase.instance.client.auth.currentUser!.email!,
                       _ => ''
                     },
-                    style: context.textTheme.bodySmall
+                    style: context.textTheme.bodyMedium
                         ?.copyWith(color: context.colorScheme.onSurface, fontWeight: FontWeight.bold),
                   ),
                   const Gap.vertical(height: Dimens.minSpacing),
-                  Text(message.content, style: context.textTheme.bodySmall),
+                  MarkdownBody(
+                    data: message.content,
+                    styleSheet: MarkdownStyleSheet.fromTheme(context.theme),
+                  ),
                 ],
               ),
             ),
