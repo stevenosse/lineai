@@ -52,7 +52,7 @@
   "resetPassword_passwordHint": "********",
   "resetPassword_confirmPasswordLabel": "Confirm Password",
   "resetPassword_confirmPasswordHint": "********",
-  "resetPassword_success": "Your password has been reset successfully. You can now log in.",
+  "resetPassword_success": "Your password has been reset successfully. You are now logged in.",
 
   "pendingVerification_title": "Verify your email",
   "pendingVerification_subtitle": "Please check your email and click on the link to verify your account.",

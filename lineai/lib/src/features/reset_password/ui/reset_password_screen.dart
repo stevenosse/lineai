@@ -37,6 +37,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
 
+  bool _isPasswordVisible = false;
+  bool _isConfirmPasswordVisible = false;
+
   @override
   void dispose() {
     _passwordController.dispose();
@@ -57,7 +60,10 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             );
             context.router.navigate(const LoginRoute());
           },
-          loading: (password) => LoadingDialog.show(context: context),
+          loading: (password) {
+            FocusManager.instance.primaryFocus?.unfocus();
+            LoadingDialog.show(context: context);
+          },
           error: (_, error) {
             LoadingDialog.hide(context: context);
             ApiErrorDialog.show(context: context, error: error);
@@ -96,7 +102,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 child: Column(
                   children: [
                     Input(
-                      isPassword: true,
+                      isPassword: !_isPasswordVisible,
                       autofillHints: const [AutofillHints.newPassword],
                       controller: _passwordController,
                       labelText: I18n.of(context).resetPassword_passwordLabel,
@@ -106,11 +112,18 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           .minLength(AppConstants.minPasswordLength)
                           .required(I18n.of(context).formInput_required)
                           .build(),
+                      suffixIcon: IconButton(
+                        onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
+                        icon: Icon(
+                          _isPasswordVisible ? IconsaxPlusBroken.eye : IconsaxPlusBroken.eye_slash,
+                          color: context.colorScheme.onSurface,
+                        ),
+                      ),
                       textInputAction: TextInputAction.next,
                     ),
                     const Gap.vertical(height: Dimens.spacing),
                     Input(
-                      isPassword: true,
+                      isPassword: !_isConfirmPasswordVisible,
                       controller: _confirmPasswordController,
                       autofillHints: const [AutofillHints.newPassword],
                       labelText: I18n.of(context).resetPassword_confirmPasswordLabel,
@@ -121,8 +134,15 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           .add((value) =>
                               value != _passwordController.text ? I18n.of(context).formInput_passwordsMissMatch : null)
                           .build(),
-                      onSubmitted: (_) => _onSubmit(),
+                      suffixIcon: IconButton(
+                        onPressed: () => setState(() => _isConfirmPasswordVisible = !_isConfirmPasswordVisible),
+                        icon: Icon(
+                          _isConfirmPasswordVisible ? IconsaxPlusBroken.eye : IconsaxPlusBroken.eye_slash,
+                          color: context.colorScheme.onSurface,
+                        ),
+                      ),
                       textInputAction: TextInputAction.done,
+                      onSubmitted: (_) => _onSubmit(),
                     )
                   ],
                 ),

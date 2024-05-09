@@ -510,10 +510,10 @@ class I18n {
     );
   }
 
-  /// `Your password has been reset successfully. You can now log in.`
+  /// `Your password has been reset successfully. You are now logged in.`
   String get resetPassword_success {
     return Intl.message(
-      'Your password has been reset successfully. You can now log in.',
+      'Your password has been reset successfully. You are now logged in.',
       name: 'resetPassword_success',
       desc: '',
       args: [],

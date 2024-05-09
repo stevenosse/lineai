@@ -160,7 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "resetPassword_subtitle": MessageLookupByLibrary.simpleMessage(
             "Please enter a new password."),
         "resetPassword_success": MessageLookupByLibrary.simpleMessage(
-            "Your password has been reset successfully. You can now log in."),
+            "Your password has been reset successfully. You are now logged in."),
         "resetPassword_successMessage": MessageLookupByLibrary.simpleMessage(
             "Your password has been reset successfully."),
         "resetPassword_title":
