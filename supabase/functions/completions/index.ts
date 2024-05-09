@@ -52,8 +52,8 @@ Deno.serve(async (req: Request) => {
       return handleError("Conversation not found", 500);
     }
 
-    const requestMessage = {
-      content: `${request.message}\n\n Answer in markdown format.`,
+    const aiRequestMessage = {
+      content: `${request.message}\n\n Answer in markdown format in the same language the prompt is in.`,
       role: "user",
     } as CompletionMessage;
 
@@ -62,7 +62,8 @@ Deno.serve(async (req: Request) => {
       .insert({
         conversation_id: conversation.id,
         user_id: user?.id,
-        ...requestMessage,
+        content: request.message,
+        role: "user",
       } as MessageEntity);
 
     if (messageError) {
@@ -78,7 +79,7 @@ Deno.serve(async (req: Request) => {
     if (conversation.summary) {
       messages.push({ role: "system", content: conversation.summary });
     }
-    messages.push(requestMessage);
+    messages.push(aiRequestMessage);
 
     const payload = {
       messages: messages,

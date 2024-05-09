@@ -660,6 +660,26 @@ class I18n {
     );
   }
 
+  /// `Copy message`
+  String get chat_copyMessage {
+    return Intl.message(
+      'Copy message',
+      name: 'chat_copyMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete message`
+  String get chat_deleteMessage {
+    return Intl.message(
+      'Delete message',
+      name: 'chat_deleteMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Chat settings`
   String get chatSettings_title {
     return Intl.message(

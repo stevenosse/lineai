@@ -70,6 +70,8 @@
   "chat_unnamedConversation": "Unnamed conversation",
   "chat_aiAssistant": "AI Assistant",
   "chat_copiedToClipboardMessage": "Message content copied to clipboard",
+  "chat_copyMessage": "Copy message",
+  "chat_deleteMessage": "Delete message",
 
   "chatSettings_title": "Chat settings",
   "chatSettings_modelLabel": "Model",

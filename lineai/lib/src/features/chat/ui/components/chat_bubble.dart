@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
@@ -7,16 +6,19 @@ import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/datasource/models/message.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
-import 'package:lineai/src/shared/utils/notifications_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
     super.key,
     required this.message,
+    this.onCopy,
+    this.onDelete,
   });
 
   final Message message;
+  final VoidCallback? onCopy;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -67,23 +69,63 @@ class ChatBubble extends StatelessWidget {
                 ],
               ),
             ),
-            // TODO: This button will be turned into a popup menu in the future
-            IconButton(
-              onPressed: () {
-                Clipboard.setData(ClipboardData(text: message.content));
-                $notificationService.showSuccessNotification(
-                  context: context,
-                  body: I18n.of(context).chat_copiedToClipboardMessage,
-                );
+            PopupMenuButton(
+              surfaceTintColor: Colors.transparent,
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                    onTap: onCopy,
+                    child: _MenuEntry(
+                      icon: IconsaxPlusBroken.copy,
+                      title: I18n.of(context).chat_copyMessage,
+                    ),
+                  ),
+                  PopupMenuItem(
+                      onTap: onDelete,
+                      child: _MenuEntry(
+                        icon: IconsaxPlusBroken.trash,
+                        title: I18n.of(context).chat_deleteMessage,
+                        color: context.colorScheme.error,
+                      ))
+                ];
               },
-              icon: const Icon(
-                IconsaxPlusBroken.copy,
-                size: Dimens.iconSizeS,
-              ),
-            ),
+              icon: Icon(IconsaxPlusBroken.more, color: context.colorScheme.onSurface, size: Dimens.iconSizeM),
+            )
           ],
         ),
       ),
+    );
+  }
+}
+
+class _MenuEntry extends StatelessWidget {
+  const _MenuEntry({
+    required this.icon,
+    required this.title,
+    this.color,
+  });
+
+  final IconData icon;
+  final String title;
+  final Color? color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          color: color ?? context.colorScheme.onSurface,
+          size: Dimens.iconSizeM,
+        ),
+        const Gap.horizontal(width: Dimens.spacing),
+        Expanded(
+          child: Text(
+            title,
+            style: context.textTheme.bodyMedium?.copyWith(color: color ?? context.colorScheme.onSurface),
+          ),
+        ),
+      ],
     );
   }
 }

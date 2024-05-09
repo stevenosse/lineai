@@ -49,6 +49,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("AI Assistant"),
         "chat_copiedToClipboardMessage": MessageLookupByLibrary.simpleMessage(
             "Message content copied to clipboard"),
+        "chat_copyMessage":
+            MessageLookupByLibrary.simpleMessage("Copy message"),
+        "chat_deleteMessage":
+            MessageLookupByLibrary.simpleMessage("Delete message"),
         "chat_inputPlaceholder":
             MessageLookupByLibrary.simpleMessage("Message..."),
         "chat_messageRequiredValidation":

@@ -1,7 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lineai/src/features/chat/logic/delete_message/delete_message_cubit.dart';
 import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
+import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
+import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 
 @RoutePage(name: 'AuthRoute')
@@ -10,16 +13,27 @@ class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return const AutoRouter();
+    return BlocListener<DeleteMessageCubit, DeleteMessageState>(
+      listener: (context, state) {
+        state.whenOrNull(
+          success: (message) => LoadingDialog.hide(context: context),
+          loading: (message) => LoadingDialog.show(context: context),
+          error: (message, error) {
+            LoadingDialog.hide(context: context);
+            ApiErrorDialog.show(context: context, error: error);
+          },
+        );
+      },
+      child: const AutoRouter(),
+    );
   }
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => ChatCubit(),
-        ),
+        BlocProvider(create: (_) => ChatCubit()),
+        BlocProvider(create: (_) => DeleteMessageCubit()),
         BlocProvider(
           create: (context) => UserSettingsCubit()..getSettings(),
           lazy: false,
