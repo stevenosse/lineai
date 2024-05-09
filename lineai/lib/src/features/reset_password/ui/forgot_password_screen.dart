@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,6 +15,8 @@ import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/utils/notifications_service.dart';
+
+const _resendTimeout = 60; // 1 minute
 
 @RoutePage()
 class ForgotPasswordScreen extends StatefulWidget implements AutoRouteWrapper {
@@ -34,10 +38,30 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
 
+  Timer? _resendTimer;
+  int _resendTime = 0;
+  bool _resendEnabled = false;
+
   @override
   void dispose() {
     _emailController.dispose();
+    _resendTimer?.cancel();
     super.dispose();
+  }
+
+  void _startResendTimer() {
+    _resendTime = _resendTimeout;
+    _resendEnabled = true;
+    _resendTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      setState(() {
+        if (_resendTime == 0) {
+          _resendEnabled = false;
+          _resendTimer?.cancel();
+        } else {
+          _resendTime -= 1;
+        }
+      });
+    });
   }
 
   @override
@@ -45,7 +69,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     return BlocListener<ForgotPasswordCubit, ForgotPasswordState>(
       listener: (context, state) {
         state.whenOrNull(
-          loading: (email) => LoadingDialog.show(context: context),
+          loading: (email) {
+            FocusManager.instance.primaryFocus?.unfocus();
+            return LoadingDialog.show(context: context);
+          },
           error: (email, error) {
             LoadingDialog.hide(context: context);
             ApiErrorDialog.show(context: context, error: error);
@@ -56,6 +83,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               context: context,
               body: I18n.of(context).forgotPassword_successMessage,
             );
+            _startResendTimer();
           },
         );
       },
@@ -108,9 +136,16 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             ),
             const Gap.vertical(height: Dimens.spacing),
             Button.primary(
-              onPressed: _onSubmit,
+              onPressed: !_resendEnabled ? _onSubmit : null,
               title: I18n.of(context).forgotPassword_submitButton,
             ),
+            const Gap.vertical(height: Dimens.spacing),
+            if (_resendEnabled)
+              Text(
+                I18n.of(context).forgotPassword_resendMessage(_resendTime),
+                textAlign: TextAlign.center,
+                style: context.textTheme.labelMedium,
+              )
           ],
         ),
       ),

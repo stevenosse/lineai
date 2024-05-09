@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(time) => "You can request another link in ${time} seconds.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "chatSettings_conversationTitleHint":
@@ -70,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error occurred. Please try again."),
         "error_unknown": MessageLookupByLibrary.simpleMessage(
             "An error occurred. Please try again."),
+        "forgotPassword_resendMessage": m0,
         "forgotPassword_submitButton":
             MessageLookupByLibrary.simpleMessage("Submit"),
         "forgotPassword_subtitle": MessageLookupByLibrary.simpleMessage(

@@ -400,6 +400,16 @@ class I18n {
     );
   }
 
+  /// `You can request another link in {time} seconds.`
+  String forgotPassword_resendMessage(Object time) {
+    return Intl.message(
+      'You can request another link in $time seconds.',
+      name: 'forgotPassword_resendMessage',
+      desc: '',
+      args: [time],
+    );
+  }
+
   /// `Verify your email`
   String get pendingVerification_title {
     return Intl.message(

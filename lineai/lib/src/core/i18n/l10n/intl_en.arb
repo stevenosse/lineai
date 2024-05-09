@@ -40,6 +40,7 @@
   "forgotPassword_subtitle": "We will send you a link to reset your password.",
   "forgotPassword_submitButton": "Submit",
   "forgotPassword_successMessage": "We have sent you an email with a link to reset your password.",
+  "forgotPassword_resendMessage": "You can request another link in {time} seconds.",
 
   "pendingVerification_title": "Verify your email",
   "pendingVerification_subtitle": "Please check your email and click on the link to verify your account.",

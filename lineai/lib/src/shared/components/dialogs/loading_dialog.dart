@@ -8,8 +8,6 @@ class LoadingDialog {
 
   static Future<void> show({required BuildContext context, List<Widget> actions = const []}) {
     if (_isVisible == false) {
-      // Hide keyboard for a better experience
-      FocusManager.instance.primaryFocus?.unfocus();
       _isVisible = true;
 
       return showDialog(

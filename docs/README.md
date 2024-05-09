@@ -1,0 +1,1 @@
+This folder contains all the additional documentation for the projects
