@@ -23,10 +23,12 @@ class Input extends StatelessWidget {
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onSubmitted;
   final bool enabled;
-  final int maxLines;
+  final int? maxLines;
   final TextInputAction? textInputAction;
   final List<String>? autofillHints;
   final String? labelText;
+  final TextCapitalization? textCapitalization;
+  final bool expands;
 
   const Input({
     super.key,
@@ -48,11 +50,13 @@ class Input extends StatelessWidget {
     this.onChanged,
     this.readOnly = false,
     this.enabled = true,
-    this.maxLines = 1,
+    this.maxLines,
     this.textInputAction,
     this.autofillHints,
     this.onSubmitted,
     this.labelText,
+    this.textCapitalization,
+    this.expands = false,
   });
 
   @override
@@ -72,6 +76,7 @@ class Input extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(Dimens.borderRadius),
           child: TextFormField(
+            expands: expands,
             autofillHints: autofillHints,
             controller: controller,
             obscureText: isPassword,
@@ -84,6 +89,7 @@ class Input extends StatelessWidget {
             keyboardType: keyboardType,
             textInputAction: textInputAction,
             onFieldSubmitted: onSubmitted,
+            textCapitalization: textCapitalization ?? TextCapitalization.sentences,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: Dimens.halfSpacing, horizontal: Dimens.spacing),
               hintText: hintText,

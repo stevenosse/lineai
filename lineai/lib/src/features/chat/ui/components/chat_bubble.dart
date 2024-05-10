@@ -46,7 +46,7 @@ class ChatBubble extends StatelessWidget {
                   'user' => IconsaxPlusBroken.user,
                   _ => IconsaxPlusBroken.emoji_happy,
                 },
-                size: 12.0,
+                size: 16.0,
               ),
             ),
             const Gap.horizontal(width: Dimens.spacing),

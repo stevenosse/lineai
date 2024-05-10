@@ -40,6 +40,7 @@ class _SendMessageFormState extends State<SendMessageForm> {
               fillColor: context.colorScheme.surface,
               filled: true,
               isBorderless: true,
+              textCapitalization: TextCapitalization.sentences,
               hintText: I18n.of(context).chat_inputPlaceholder,
               textInputAction: TextInputAction.newline,
               validator: ValidationBuilder(requiredMessage: I18n.of(context).chat_messageRequiredValidation)
