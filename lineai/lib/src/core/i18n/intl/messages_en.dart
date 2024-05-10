@@ -27,6 +27,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about_legalNotice": MessageLookupByLibrary.simpleMessage(
+            "This project is NOT backed by any way by Groq Inc"),
+        "about_licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
+        "about_privacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Privacy policy"),
+        "about_termsOfUse":
+            MessageLookupByLibrary.simpleMessage("Terms of use"),
+        "about_title": MessageLookupByLibrary.simpleMessage("About"),
         "chatSettings_conversationTitleHint":
             MessageLookupByLibrary.simpleMessage("Ex: Personal knowledge"),
         "chatSettings_conversationTitleLabel":
@@ -53,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Copy message"),
         "chat_deleteMessage":
             MessageLookupByLibrary.simpleMessage("Delete message"),
+        "chat_garanteeNotice": MessageLookupByLibrary.simpleMessage(
+            "Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed."),
         "chat_inputPlaceholder":
             MessageLookupByLibrary.simpleMessage("Message..."),
         "chat_messageRequiredValidation":

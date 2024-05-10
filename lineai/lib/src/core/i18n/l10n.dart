@@ -680,6 +680,16 @@ class I18n {
     );
   }
 
+  /// `Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed.`
+  String get chat_garanteeNotice {
+    return Intl.message(
+      'Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed.',
+      name: 'chat_garanteeNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Chat settings`
   String get chatSettings_title {
     return Intl.message(
@@ -885,6 +895,56 @@ class I18n {
     return Intl.message(
       'Settings saved successfully.',
       name: 'settings_groqApiKeySuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about_title {
+    return Intl.message(
+      'About',
+      name: 'about_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This project is NOT backed by any way by Groq Inc`
+  String get about_legalNotice {
+    return Intl.message(
+      'This project is NOT backed by any way by Groq Inc',
+      name: 'about_legalNotice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms of use`
+  String get about_termsOfUse {
+    return Intl.message(
+      'Terms of use',
+      name: 'about_termsOfUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Privacy policy`
+  String get about_privacyPolicy {
+    return Intl.message(
+      'Privacy policy',
+      name: 'about_privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Licenses`
+  String get about_licenses {
+    return Intl.message(
+      'Licenses',
+      name: 'about_licenses',
       desc: '',
       args: [],
     );

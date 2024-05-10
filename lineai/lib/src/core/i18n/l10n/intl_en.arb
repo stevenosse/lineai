@@ -72,6 +72,7 @@
   "chat_copiedToClipboardMessage": "Message content copied to clipboard",
   "chat_copyMessage": "Copy message",
   "chat_deleteMessage": "Delete message",
+  "chat_garanteeNotice": "Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed.",
 
   "chatSettings_title": "Chat settings",
   "chatSettings_modelLabel": "Model",
@@ -95,6 +96,12 @@
   "settings_groqApiKeyError": "Please provide a groq API key in the settings.",
   "settings_groqApiKeyRequiredValidation": "Please provide a groq API key.",
   "settings_groqApiKeySuccess": "Settings saved successfully.",
+
+  "about_title": "About",
+  "about_legalNotice": "This project is NOT backed by any way by Groq Inc",
+  "about_termsOfUse": "Terms of use",
+  "about_privacyPolicy": "Privacy policy",
+  "about_licenses": "Licenses",
 
   "loadingDialog_content": "Please wait...",
 
