@@ -5,7 +5,8 @@ import 'package:lineai/src/features/chat/logic/delete_message/delete_message_cub
 import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
-import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
+import 'package:lineai/src/shared/features/chats/current_chat/chat_cubit.dart';
+import 'package:lineai/src/shared/features/chats/regenerate_message/regenerate_message_cubit.dart';
 
 @RoutePage(name: 'AuthRoute')
 class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
@@ -34,10 +35,10 @@ class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
       providers: [
         BlocProvider(create: (_) => ChatCubit()),
         BlocProvider(create: (_) => DeleteMessageCubit()),
+        BlocProvider(create: (_) => RegenerateMessageCubit()),
         BlocProvider(
           create: (context) => UserSettingsCubit()..getSettings(),
           lazy: false,
-          child: this,
         )
       ],
       child: this,

@@ -670,6 +670,16 @@ class I18n {
     );
   }
 
+  /// `Regenerate`
+  String get chat_regenerate {
+    return Intl.message(
+      'Regenerate',
+      name: 'chat_regenerate',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Delete message`
   String get chat_deleteMessage {
     return Intl.message(

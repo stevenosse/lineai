@@ -13,11 +13,13 @@ class ChatBubble extends StatelessWidget {
     super.key,
     required this.message,
     this.onCopy,
+    this.onRegenerate,
     this.onDelete,
   });
 
   final Message message;
   final VoidCallback? onCopy;
+  final VoidCallback? onRegenerate;
   final VoidCallback? onDelete;
 
   @override
@@ -71,6 +73,8 @@ class ChatBubble extends StatelessWidget {
             ),
             PopupMenuButton(
               surfaceTintColor: Colors.transparent,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(Dimens.borderRadius)),
+              elevation: 4.0,
               itemBuilder: (context) {
                 return [
                   PopupMenuItem(
@@ -81,12 +85,20 @@ class ChatBubble extends StatelessWidget {
                     ),
                   ),
                   PopupMenuItem(
-                      onTap: onDelete,
-                      child: _MenuEntry(
-                        icon: IconsaxPlusBroken.trash,
-                        title: I18n.of(context).chat_deleteMessage,
-                        color: context.colorScheme.error,
-                      ))
+                    onTap: onRegenerate,
+                    child: _MenuEntry(
+                      icon: IconsaxPlusBroken.refresh,
+                      title: I18n.of(context).chat_regenerate,
+                    ),
+                  ),
+                  PopupMenuItem(
+                    onTap: onDelete,
+                    child: _MenuEntry(
+                      icon: IconsaxPlusBroken.trash,
+                      title: I18n.of(context).chat_deleteMessage,
+                      color: context.colorScheme.error,
+                    ),
+                  )
                 ];
               },
               icon: Icon(IconsaxPlusBroken.more, color: context.colorScheme.onSurface, size: Dimens.iconSizeM),

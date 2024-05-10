@@ -71,6 +71,7 @@
   "chat_aiAssistant": "AI Assistant",
   "chat_copiedToClipboardMessage": "Message content copied to clipboard",
   "chat_copyMessage": "Copy message",
+  "chat_regenerate": "Regenerate",
   "chat_deleteMessage": "Delete message",
   "chat_garanteeNotice": "Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed.",
 

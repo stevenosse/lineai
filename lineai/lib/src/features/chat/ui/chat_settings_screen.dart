@@ -13,7 +13,7 @@ import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/components/main_app_bar.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
-import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
+import 'package:lineai/src/shared/features/chats/current_chat/chat_cubit.dart';
 import 'package:lineai/src/shared/utils/notifications_service.dart';
 
 @RoutePage()

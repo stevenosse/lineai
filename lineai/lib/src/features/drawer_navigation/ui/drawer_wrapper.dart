@@ -9,7 +9,7 @@ import 'package:lineai/src/features/drawer_navigation/logic/conversations/conver
 import 'package:lineai/src/features/drawer_navigation/logic/conversations/conversation_list_event.dart';
 import 'package:lineai/src/features/drawer_navigation/models/drawer_entry.dart';
 import 'package:lineai/src/features/drawer_navigation/ui/components/drawer_menu.dart';
-import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
+import 'package:lineai/src/shared/features/chats/current_chat/chat_cubit.dart';
 
 @RoutePage(name: 'DrawerRoute')
 class DrawerWrapper extends StatefulWidget implements AutoRouteWrapper {

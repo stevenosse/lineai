@@ -82,4 +82,12 @@ class ChatRepository extends BaseRepository {
       return ApiResponse.success(true);
     });
   }
+
+  Future<ApiResponse<bool, ApiError>> regenerateAnswer({required int messageId}) async {
+    return runOperation(call: () async {
+      await _supabaseClient.functions.invoke('regenerate-completion', body: {'messageId': messageId});
+
+      return ApiResponse.success(true);
+    });
+  }
 }

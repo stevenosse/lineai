@@ -3,6 +3,7 @@ export class CompletionMessage {
   content: string;
 }
 
+// Requests
 export class CompletionRequest {
   messages: CompletionMessage[];
   model: string;
@@ -17,6 +18,13 @@ export class SendMessageRequest {
   message: string;
 }
 
+export class RegenerateCompletionRequest {
+  messageId: number;
+  tone: "professional" | "educator" | "friendly" | "neutral" | null;
+  style: "bulleted" | "expanded" | "sentence" | null;
+}
+
+// Entities
 export class ConversationEntity {
   id: number;
   summary: string;

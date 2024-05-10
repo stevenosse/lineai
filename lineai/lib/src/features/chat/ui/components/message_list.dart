@@ -1,17 +1,23 @@
 import 'package:entry/entry.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lineai/src/core/i18n/l10n.dart';
+import 'package:flutter/material.dart';
 import 'package:lineai/src/datasource/models/message.dart';
-import 'package:lineai/src/features/chat/logic/delete_message/delete_message_cubit.dart';
 import 'package:lineai/src/features/chat/ui/components/chat_bubble.dart';
-import 'package:lineai/src/shared/utils/notifications_service.dart';
 
 class MessageList extends StatefulWidget {
-  const MessageList({super.key, required this.messages});
+  const MessageList({
+    super.key,
+    required this.messages,
+    required this.onCopy,
+    required this.onDelete,
+    required this.onRegenerate,
+    this.currentlyRegeneratingMessageId,
+  });
 
+  final int? currentlyRegeneratingMessageId;
   final List<Message> messages;
+  final ValueChanged<Message> onCopy;
+  final ValueChanged<Message> onDelete;
+  final ValueChanged<Message> onRegenerate;
 
   @override
   State<MessageList> createState() => _MessageListState();
@@ -51,18 +57,32 @@ class _MessageListState extends State<MessageList> {
 
         return Entry(
           key: ValueKey('message-${message.id}'),
-          child: ChatBubble(
-            message: message,
-            onCopy: () {
-              Clipboard.setData(ClipboardData(text: message.content));
-              $notificationService.showSuccessNotification(
-                context: context,
-                body: I18n.of(context).chat_copiedToClipboardMessage,
-              );
-            },
-            onDelete: () async {
-              context.read<DeleteMessageCubit>().deleteMessage(message);
-            },
+          child: Stack(
+            children: [
+              ChatBubble(
+                message: message,
+                onCopy: () => widget.onCopy(message),
+                onRegenerate: () => widget.onRegenerate(message),
+                onDelete: () => widget.onDelete(message),
+              ),
+              if (message.id == widget.currentlyRegeneratingMessageId)
+                Positioned.fill(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.5),
+                    ),
+                    child: const Center(
+                      child: SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator.adaptive(
+                          strokeWidth: 2.5,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
           ),
         );
       },

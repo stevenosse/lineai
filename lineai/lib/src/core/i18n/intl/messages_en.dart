@@ -81,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Message..."),
         "chat_messageRequiredValidation":
             MessageLookupByLibrary.simpleMessage("Please enter a message."),
+        "chat_regenerate": MessageLookupByLibrary.simpleMessage("Regenerate"),
         "chat_unnamedConversation":
             MessageLookupByLibrary.simpleMessage("Unnamed conversation"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),

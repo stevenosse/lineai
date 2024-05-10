@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
+import 'package:lineai/src/features/chat/logic/delete_message/delete_message_cubit.dart';
 import 'package:lineai/src/features/chat/logic/message_list/message_list_bloc.dart';
 import 'package:lineai/src/features/chat/logic/send_message/send_message_cubit.dart';
 import 'package:lineai/src/features/chat/ui/components/chats_empty_state.dart';
@@ -13,7 +15,8 @@ import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/components/gap.dart';
-import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
+import 'package:lineai/src/shared/features/chats/current_chat/chat_cubit.dart';
+import 'package:lineai/src/shared/features/chats/regenerate_message/regenerate_message_cubit.dart';
 import 'package:lineai/src/shared/utils/notifications_service.dart';
 
 @RoutePage()
@@ -74,7 +77,6 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                     context: context,
                     body: I18n.of(context).chatSettings_deletedNotification,
                   );
-
                 },
                 error: (conversation, error) {
                   $notificationService.showErrorNotification(
@@ -98,6 +100,13 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
               );
             },
           ),
+          BlocListener<RegenerateMessageCubit, RegenerateMessageState>(
+            listener: (context, state) {
+              state.whenOrNull(
+                error: (error) => ApiErrorDialog.show(context: context, error: error),
+              );
+            },
+          )
         ],
         child: FractionallySizedBox(
           widthFactor: 1,
@@ -112,7 +121,24 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                       );
                     }
 
-                    return MessageList(messages: state.messages);
+                    return MessageList(
+                      messages: state.messages,
+                      currentlyRegeneratingMessageId:
+                          context.watch<RegenerateMessageCubit>().state.regeneratingMessageId,
+                      onCopy: (message) {
+                        Clipboard.setData(ClipboardData(text: message.content));
+                        $notificationService.showSuccessNotification(
+                          context: context,
+                          body: I18n.of(context).chat_copiedToClipboardMessage,
+                        );
+                      },
+                      onRegenerate: (message) {
+                        context.read<RegenerateMessageCubit>().regenerateMessage(messageId: message.id);
+                      },
+                      onDelete: (message) {
+                        context.read<DeleteMessageCubit>().deleteMessage(message);
+                      },
+                    );
                   },
                 ),
               ),
