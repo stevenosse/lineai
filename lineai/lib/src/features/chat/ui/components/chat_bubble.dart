@@ -84,13 +84,14 @@ class ChatBubble extends StatelessWidget {
                       title: I18n.of(context).chat_copyMessage,
                     ),
                   ),
-                  PopupMenuItem(
-                    onTap: onRegenerate,
-                    child: _MenuEntry(
-                      icon: IconsaxPlusBroken.refresh,
-                      title: I18n.of(context).chat_regenerate,
+                  if (message.role == 'user')
+                    PopupMenuItem(
+                      onTap: onRegenerate,
+                      child: _MenuEntry(
+                        icon: IconsaxPlusBroken.refresh,
+                        title: I18n.of(context).chat_regenerate,
+                      ),
                     ),
-                  ),
                   PopupMenuItem(
                     onTap: onDelete,
                     child: _MenuEntry(

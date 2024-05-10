@@ -60,10 +60,19 @@ Deno.serve(async (req) => {
       );
     }
 
-    if (!message.answered_message_id && message.role !== "user") {
+    // If no corresponding entry exists with the message.id as answered_message_id, then
+    // this message has never been answered.
+    const { data: previousAnswer, error: previousAnswerError } =
+      await supabaseClient
+        .from("messages")
+        .select()
+        .eq("answered_message_id", message.id)
+        .maybeSingle();
+
+    if (!previousAnswer || previousAnswerError) {
       return handleError(
         "The message you're trying to regenerate an answer for has not been answered yet or cannot be regenerated",
-        500,
+        400,
       );
     }
 
@@ -75,7 +84,7 @@ Deno.serve(async (req) => {
         .single();
 
     if (!conversation || conversationError) {
-      return handleError("Conversation not found", 500);
+      return handleError("Conversation not found", 404);
     }
 
     const messages: CompletionMessage[] = [];
@@ -103,9 +112,7 @@ Deno.serve(async (req) => {
       messages.push({ role: "system", content: styleSystemPrompt });
     }
 
-    messages.push(
-      { role: "user", content: message.content } as CompletionMessage,
-    );
+    messages.push({ role: "user", content: message.content });
 
     const payload = {
       messages: messages,
@@ -128,41 +135,23 @@ Deno.serve(async (req) => {
     ).then((res) => res.json());
 
     const answer = modelResponse.choices[0].message;
-    if (message.answered_message_id) {
-      const { data: aiResponseMessage, error: responseError } =
-        await supabaseClient
-          .from("messages")
-          .update({
-            content: answer.content,
-          })
-          .eq("id", message.answered_message_id)
-          .select()
-          .single();
-      if (responseError) {
-        return handleError(responseError.message, 500);
-      }
-      return handleSuccess({
-        answer: aiResponseMessage,
-      });
-    } else {
-      const { data: aiResponseMessage, error: responseError } =
-        await supabaseClient
-          .from("messages")
-          .update({
-            content: answer.content,
-            role: message.role,
-          })
-          .eq("id", message.id)
-          .select()
-          .single();
+    const { data: aiResponseMessage, error: responseError } =
+      await supabaseClient
+        .from("messages")
+        .update({
+          content: answer.content,
+          role: previousAnswer.role,
+        })
+        .eq("answered_message_id", message.id)
+        .select()
+        .single();
 
-      if (responseError) {
-        return handleError(responseError.message, 500);
-      }
-      return handleSuccess({
-        answer: aiResponseMessage,
-      });
+    if (responseError) {
+      return handleError(responseError.message, 500);
     }
+    return handleSuccess({
+      answer: aiResponseMessage,
+    });
   } catch (error) {
     return handleError(error.message, 500);
   }

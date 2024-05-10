@@ -140,6 +140,9 @@ class MaterialTheme {
           systemOverlayStyle:
               colorScheme.brightness == Brightness.dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
         ),
+        dialogTheme: DialogTheme(
+          backgroundColor: colorScheme.surface,
+        )
       );
 
   List<ExtendedColor> get extendedColors => [];

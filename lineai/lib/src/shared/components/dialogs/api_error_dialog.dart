@@ -62,8 +62,10 @@ extension ApiErrorX on ApiError {
       return authException.message;
     } else if (error is FunctionException) {
       final functionException = error as FunctionException;
-
-      return functionException.details?.message;
+      final details = functionException.details;
+      if (details is Map) {
+        return details['message'] ?? details['error'];
+      }
     }
     return null;
   }
