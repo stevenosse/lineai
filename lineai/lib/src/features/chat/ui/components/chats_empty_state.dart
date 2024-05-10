@@ -29,13 +29,13 @@ class ChatsEmptyState extends StatelessWidget {
             ),
           ),
         ),
-        const Gap.vertical(height: Dimens.spacing),
         SizedBox(
           height: MediaQuery.textScalerOf(context).scale(_tipsCardHeight),
-          child: ListView.builder(
+          child: ListView.separated(
             itemCount: chatTips.length,
             padding: const EdgeInsets.only(left: Dimens.spacing),
             scrollDirection: Axis.horizontal,
+            separatorBuilder: (context, index) => const Gap.horizontal(width: Dimens.halfSpacing),
             itemBuilder: (context, index) {
               final tips = chatTips[index];
               return TipsCard(
