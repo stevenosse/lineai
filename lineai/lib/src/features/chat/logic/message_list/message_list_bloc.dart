@@ -19,11 +19,11 @@ class MessageListBloc extends Bloc<MessageListEvent, MessageListState> {
     ChatRepository? chatRepository,
   })  : _chatRepository = chatRepository ?? locator<ChatRepository>(),
         super(const MessageListState.initial()) {
-    on<OnReceivedMessages>((event, emit) {
+    on<MessageListUpdated>((event, emit) {
       emit(MessageListState.initial(messages: event.messages));
     });
 
-    on<OnNewConversationStarted>((event, emit) {
+    on<NewConversationStarted>((event, emit) {
       emit(const MessageListState.initial(messages: []));
     });
   }
@@ -32,13 +32,13 @@ class MessageListBloc extends Bloc<MessageListEvent, MessageListState> {
     _messagesSubscription?.cancel();
 
     if (conversationId == null) {
-      add(OnNewConversationStarted());
+      add(NewConversationStarted());
       return;
     }
 
     _messagesSubscription = _chatRepository
         .getMessagesStream(conversationId: conversationId)
-        .listen((messages) => add(OnReceivedMessages(messages: messages)));
+        .listen((messages) => add(MessageListUpdated(messages: messages)));
   }
 
   @override

@@ -28,7 +28,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "about_legalNotice": MessageLookupByLibrary.simpleMessage(
-            "This project is NOT backed by any way by Groq Inc"),
+            "This project is NOT backed in any way by Groq Inc"),
         "about_licenses": MessageLookupByLibrary.simpleMessage("Licenses"),
         "about_privacyPolicy":
             MessageLookupByLibrary.simpleMessage("Privacy policy"),

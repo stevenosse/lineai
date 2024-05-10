@@ -5,16 +5,16 @@ abstract class MessageListEvent extends Equatable {
   const MessageListEvent();
 }
 
-class OnReceivedMessages extends MessageListEvent {
+class MessageListUpdated extends MessageListEvent {
   final List<Message> messages;
 
-  const OnReceivedMessages({required this.messages});
+  const MessageListUpdated({required this.messages});
   
   @override
   List<Object> get props => [];
 }
 
-class OnNewConversationStarted extends MessageListEvent {
+class NewConversationStarted extends MessageListEvent {
   @override
   List<Object> get props => [];
 }

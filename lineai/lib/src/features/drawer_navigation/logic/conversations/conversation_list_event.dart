@@ -3,25 +3,25 @@ import 'package:lineai/src/datasource/models/conversation/conversation.dart';
 
 abstract class ConversationListEvent extends Equatable {}
 
-final class OnConversationListUpdated extends ConversationListEvent {
+final class ConversationListUpdated extends ConversationListEvent {
   final List<Conversation> conversations;
 
-  OnConversationListUpdated({required this.conversations});
+  ConversationListUpdated({required this.conversations});
 
   @override
   List<Object?> get props => [conversations];
 }
 
-final class OnSearchQueryChanged extends ConversationListEvent {
+final class ConversationSearchQueryChanged extends ConversationListEvent {
   final String query;
 
-  OnSearchQueryChanged({required this.query});
+  ConversationSearchQueryChanged({required this.query});
 
   @override
   List<Object?> get props => [query];
 }
 
-final class OnSearchExited extends ConversationListEvent {
+final class ConversationSearchExited extends ConversationListEvent {
   @override
   List<Object?> get props => [];
 }

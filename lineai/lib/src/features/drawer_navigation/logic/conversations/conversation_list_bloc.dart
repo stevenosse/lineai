@@ -21,15 +21,15 @@ class ConversationListBloc extends Bloc<ConversationListEvent, ConversationListS
     ChatRepository? chatRepository,
   })  : _chatRepository = chatRepository ?? locator<ChatRepository>(),
         super(const ConversationListState(conversations: [])) {
-    on<OnConversationListUpdated>((event, emit) {
+    on<ConversationListUpdated>((event, emit) {
       emit(ConversationListState(conversations: event.conversations));
     });
 
-    on<OnSearchQueryChanged>((event, emit) {
+    on<ConversationSearchQueryChanged>((event, emit) {
       _onFilterConversations(event.query);
     });
 
-    on<OnSearchExited>((event, emit) {
+    on<ConversationSearchExited>((event, emit) {
       emit(ConversationListState(conversations: _allConversations));
     });
 
@@ -39,7 +39,7 @@ class ConversationListBloc extends Bloc<ConversationListEvent, ConversationListS
   void _listenConversations() {
     _conversationSubscription = _chatRepository.getConversations().listen((conversations) {
       _allConversations = conversations;
-      add(OnConversationListUpdated(conversations: conversations));
+      add(ConversationListUpdated(conversations: conversations));
     });
   }
 
@@ -48,7 +48,7 @@ class ConversationListBloc extends Bloc<ConversationListEvent, ConversationListS
         .where((conversation) => conversation.name.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
-    add(OnConversationListUpdated(conversations: conversations));
+    add(ConversationListUpdated(conversations: conversations));
   }
 
   @override

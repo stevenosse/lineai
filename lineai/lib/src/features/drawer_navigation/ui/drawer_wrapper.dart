@@ -74,12 +74,12 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
                 conversations: state.conversations,
                 selectedConversation: chatState.conversation,
                 onSearchQueryChanged: (query) {
-                  context.read<ConversationListBloc>().add(OnSearchQueryChanged(query: query));
+                  context.read<ConversationListBloc>().add(ConversationSearchQueryChanged(query: query));
                   if (query.isEmpty) {
-                    context.read<ConversationListBloc>().add(OnSearchExited());
+                    context.read<ConversationListBloc>().add(ConversationSearchExited());
                   }
                 },
-                onSearchExited: () => context.read<ConversationListBloc>().add(OnSearchExited()),
+                onSearchExited: () => context.read<ConversationListBloc>().add(ConversationSearchExited()),
                 onStartConversation: () {
                   context.read<ChatCubit>().startNewConversation();
                   _scaffoldKey.currentState?.closeDrawer();

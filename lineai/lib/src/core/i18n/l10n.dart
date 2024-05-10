@@ -950,10 +950,10 @@ class I18n {
     );
   }
 
-  /// `This project is NOT backed by any way by Groq Inc`
+  /// `This project is NOT backed in any way by Groq Inc`
   String get about_legalNotice {
     return Intl.message(
-      'This project is NOT backed by any way by Groq Inc',
+      'This project is NOT backed in any way by Groq Inc',
       name: 'about_legalNotice',
       desc: '',
       args: [],
