@@ -35,10 +35,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "about_termsOfUse":
             MessageLookupByLibrary.simpleMessage("Terms of use"),
         "about_title": MessageLookupByLibrary.simpleMessage("About"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "chatSettings_conversationTitleHint":
             MessageLookupByLibrary.simpleMessage("Ex: Personal knowledge"),
         "chatSettings_conversationTitleLabel":
             MessageLookupByLibrary.simpleMessage("Conversation name"),
+        "chatSettings_deleteConversationConfirmation":
+            MessageLookupByLibrary.simpleMessage(
+                "This action cannot be undone. Are you sure you want to delete this conversation?"),
+        "chatSettings_deleteConversationSubtitle":
+            MessageLookupByLibrary.simpleMessage(
+                "This action cannot be undone."),
+        "chatSettings_deleteConversationTitle":
+            MessageLookupByLibrary.simpleMessage("Delete conversation"),
+        "chatSettings_deletedNotification":
+            MessageLookupByLibrary.simpleMessage(
+                "Conversation deleted successfully."),
+        "chatSettings_groqApiKeyAlreadySet":
+            MessageLookupByLibrary.simpleMessage("Groq API key already set."),
         "chatSettings_modelLabel":
             MessageLookupByLibrary.simpleMessage("Model"),
         "chatSettings_savedNotification": MessageLookupByLibrary.simpleMessage(
@@ -69,6 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a message."),
         "chat_unnamedConversation":
             MessageLookupByLibrary.simpleMessage("Unnamed conversation"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "confirmDialog_title":
+            MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "drawer_about": MessageLookupByLibrary.simpleMessage("About"),
         "drawer_chatsSectionTitle":
             MessageLookupByLibrary.simpleMessage("Chats"),
@@ -185,8 +202,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Get your API key from "),
         "settings_generalSettings":
             MessageLookupByLibrary.simpleMessage("General settings"),
-        "settings_groqApiKeyAlreadySet":
-            MessageLookupByLibrary.simpleMessage("Groq API key already set."),
         "settings_groqApiKeyError": MessageLookupByLibrary.simpleMessage(
             "Please provide a groq API key in the settings."),
         "settings_groqApiKeyHint":

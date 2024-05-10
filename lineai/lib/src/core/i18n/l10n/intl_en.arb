@@ -83,7 +83,11 @@
   "chatSettings_conversationTitleLabel": "Conversation name",
   "chatSettings_conversationTitleHint": "Ex: Personal knowledge",
   "chatSettings_savedNotification": "Conversation settings updated successfully.",
-  "settings_groqApiKeyAlreadySet": "Groq API key already set.",
+  "chatSettings_groqApiKeyAlreadySet": "Groq API key already set.",
+  "chatSettings_deleteConversationTitle": "Delete conversation",
+  "chatSettings_deleteConversationSubtitle": "This action cannot be undone.",
+  "chatSettings_deleteConversationConfirmation": "This action cannot be undone. Are you sure you want to delete this conversation?",
+  "chatSettings_deletedNotification": "Conversation deleted successfully.",
 
   "settings_title": "Settings",
   "settings_groqApiKeyLabel": "Groq API key",
@@ -111,6 +115,8 @@
   "errorDialog_title": "Oops!",
   "errorNotification_title": "An error occurred",
 
+  "confirmDialog_title": "Are you sure?",
+
   "successNotification_title": "Yay!",
 
   "error_noInternet": "We are unable to connect to the internet. Please check your connection and try again.",
@@ -121,5 +127,7 @@
   "ok": "OK",
   "or": "OR",
   "save": "Save",
-  "retry": "Retry"
+  "retry": "Retry",
+  "cancel": "Cancel",
+  "confirm": "Confirm"
 }

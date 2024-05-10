@@ -77,4 +77,14 @@ class ChatCubit extends Cubit<ChatState> {
       error: (error) => emit(ChatState.error(conversation: state.conversation, error: error)),
     );
   }
+
+  void deleteConversation({required Conversation conversation}) async {
+    emit(ChatState.loading(conversation: conversation));
+
+    final response = await _chatRepository.deleteConversation(conversationId: conversation.id!);
+    response.when(
+      success: (conversation) => emit(const ChatState.deleted()),
+      error: (error) => emit(ChatState.error(conversation: state.conversation, error: error)),
+    );
+  }
 }

@@ -781,10 +781,50 @@ class I18n {
   }
 
   /// `Groq API key already set.`
-  String get settings_groqApiKeyAlreadySet {
+  String get chatSettings_groqApiKeyAlreadySet {
     return Intl.message(
       'Groq API key already set.',
-      name: 'settings_groqApiKeyAlreadySet',
+      name: 'chatSettings_groqApiKeyAlreadySet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete conversation`
+  String get chatSettings_deleteConversationTitle {
+    return Intl.message(
+      'Delete conversation',
+      name: 'chatSettings_deleteConversationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This action cannot be undone.`
+  String get chatSettings_deleteConversationSubtitle {
+    return Intl.message(
+      'This action cannot be undone.',
+      name: 'chatSettings_deleteConversationSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This action cannot be undone. Are you sure you want to delete this conversation?`
+  String get chatSettings_deleteConversationConfirmation {
+    return Intl.message(
+      'This action cannot be undone. Are you sure you want to delete this conversation?',
+      name: 'chatSettings_deleteConversationConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Conversation deleted successfully.`
+  String get chatSettings_deletedNotification {
+    return Intl.message(
+      'Conversation deleted successfully.',
+      name: 'chatSettings_deletedNotification',
       desc: '',
       args: [],
     );
@@ -1000,6 +1040,16 @@ class I18n {
     );
   }
 
+  /// `Are you sure?`
+  String get confirmDialog_title {
+    return Intl.message(
+      'Are you sure?',
+      name: 'confirmDialog_title',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Yay!`
   String get successNotification_title {
     return Intl.message(
@@ -1085,6 +1135,26 @@ class I18n {
     return Intl.message(
       'Retry',
       name: 'retry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
       desc: '',
       args: [],
     );

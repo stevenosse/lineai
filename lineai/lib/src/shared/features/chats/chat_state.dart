@@ -9,7 +9,18 @@ class ChatState with _$ChatState {
     @Default(false) bool isUpdated,
   }) = _ChatStateSaved;
 
+  const factory ChatState.deleted() = _ChatStateDeleted;
+
   const factory ChatState.loading({Conversation? conversation}) = _ChatStateLoading;
 
   const factory ChatState.error({Conversation? conversation, required ApiError error}) = _ChatStateError;
+}
+
+extension ChatStateX on ChatState {
+  Conversation? get conversation => maybeWhen(
+        saved: (conversation, _) => conversation,
+        unsaved: (conversation) => conversation,
+        loading: (conversation) => conversation,
+        orElse: () => null,
+      );
 }

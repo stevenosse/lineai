@@ -130,7 +130,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               builder: (context, state) {
                 if (state.settings.groqApiKey.isNotEmpty) {
                   return Text(
-                    I18n.of(context).settings_groqApiKeyAlreadySet,
+                    I18n.of(context).chatSettings_groqApiKeyAlreadySet,
                     style: context.textTheme.labelSmall?.copyWith(color: context.colorScheme.primary),
                   );
                 }

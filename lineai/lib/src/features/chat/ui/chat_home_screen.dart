@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
+import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/features/chat/logic/message_list/message_list_bloc.dart';
 import 'package:lineai/src/features/chat/logic/send_message/send_message_cubit.dart';
@@ -10,6 +11,7 @@ import 'package:lineai/src/features/chat/ui/components/message_list.dart';
 import 'package:lineai/src/features/chat/ui/components/send_message_form.dart';
 import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
+import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/features/chats/chat_cubit.dart';
 import 'package:lineai/src/shared/utils/notifications_service.dart';
@@ -62,6 +64,17 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                         .sendMessage(conversationId: conversation.id!, message: _pendingMessage!);
                     _pendingMessage = null;
                   }
+                },
+                deleted: () {
+                  LoadingDialog.hide(context: context);
+                  context.read<MessageListBloc>().setConversationId(null);
+                  context.router.navigate(const ChatHomeRoute());
+
+                  $notificationService.showSuccessNotification(
+                    context: context,
+                    body: I18n.of(context).chatSettings_deletedNotification,
+                  );
+
                 },
                 error: (conversation, error) {
                   $notificationService.showErrorNotification(

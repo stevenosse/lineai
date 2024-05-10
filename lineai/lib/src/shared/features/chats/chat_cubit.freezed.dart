@@ -16,11 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ChatState {
-  Conversation? get conversation => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation, bool isUpdated) saved,
+    required TResult Function() deleted,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -31,6 +31,7 @@ mixin _$ChatState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation, bool isUpdated)? saved,
+    TResult? Function()? deleted,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -40,6 +41,7 @@ mixin _$ChatState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation, bool isUpdated)? saved,
+    TResult Function()? deleted,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -50,6 +52,7 @@ mixin _$ChatState {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatStateUnsaved value) unsaved,
     required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateDeleted value) deleted,
     required TResult Function(_ChatStateLoading value) loading,
     required TResult Function(_ChatStateError value) error,
   }) =>
@@ -58,6 +61,7 @@ mixin _$ChatState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatStateUnsaved value)? unsaved,
     TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateDeleted value)? deleted,
     TResult? Function(_ChatStateLoading value)? loading,
     TResult? Function(_ChatStateError value)? error,
   }) =>
@@ -66,14 +70,11 @@ mixin _$ChatState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatStateUnsaved value)? unsaved,
     TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateDeleted value)? deleted,
     TResult Function(_ChatStateLoading value)? loading,
     TResult Function(_ChatStateError value)? error,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ChatStateCopyWith<ChatState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -81,10 +82,6 @@ mixin _$ChatState {
 abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res, ChatState>;
-  @useResult
-  $Res call({Conversation conversation});
-
-  $ConversationCopyWith<$Res>? get conversation;
 }
 
 /// @nodoc
@@ -96,44 +93,16 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? conversation = null,
-  }) {
-    return _then(_value.copyWith(
-      conversation: null == conversation
-          ? _value.conversation!
-          : conversation // ignore: cast_nullable_to_non_nullable
-              as Conversation,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConversationCopyWith<$Res>? get conversation {
-    if (_value.conversation == null) {
-      return null;
-    }
-
-    return $ConversationCopyWith<$Res>(_value.conversation!, (value) {
-      return _then(_value.copyWith(conversation: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$ChatStateUnsavedImplCopyWith<$Res>
-    implements $ChatStateCopyWith<$Res> {
+abstract class _$$ChatStateUnsavedImplCopyWith<$Res> {
   factory _$$ChatStateUnsavedImplCopyWith(_$ChatStateUnsavedImpl value,
           $Res Function(_$ChatStateUnsavedImpl) then) =
       __$$ChatStateUnsavedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Conversation? conversation});
 
-  @override
   $ConversationCopyWith<$Res>? get conversation;
 }
 
@@ -156,6 +125,18 @@ class __$$ChatStateUnsavedImplCopyWithImpl<$Res>
           : conversation // ignore: cast_nullable_to_non_nullable
               as Conversation?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConversationCopyWith<$Res>? get conversation {
+    if (_value.conversation == null) {
+      return null;
+    }
+
+    return $ConversationCopyWith<$Res>(_value.conversation!, (value) {
+      return _then(_value.copyWith(conversation: value));
+    });
   }
 }
 
@@ -196,6 +177,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation, bool isUpdated) saved,
+    required TResult Function() deleted,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -209,6 +191,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation, bool isUpdated)? saved,
+    TResult? Function()? deleted,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -221,6 +204,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation, bool isUpdated)? saved,
+    TResult Function()? deleted,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -237,6 +221,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatStateUnsaved value) unsaved,
     required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateDeleted value) deleted,
     required TResult Function(_ChatStateLoading value) loading,
     required TResult Function(_ChatStateError value) error,
   }) {
@@ -248,6 +233,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatStateUnsaved value)? unsaved,
     TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateDeleted value)? deleted,
     TResult? Function(_ChatStateLoading value)? loading,
     TResult? Function(_ChatStateError value)? error,
   }) {
@@ -259,6 +245,7 @@ class _$ChatStateUnsavedImpl implements _ChatStateUnsaved {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatStateUnsaved value)? unsaved,
     TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateDeleted value)? deleted,
     TResult Function(_ChatStateLoading value)? loading,
     TResult Function(_ChatStateError value)? error,
     required TResult orElse(),
@@ -274,25 +261,20 @@ abstract class _ChatStateUnsaved implements ChatState {
   const factory _ChatStateUnsaved({final Conversation? conversation}) =
       _$ChatStateUnsavedImpl;
 
-  @override
   Conversation? get conversation;
-  @override
   @JsonKey(ignore: true)
   _$$ChatStateUnsavedImplCopyWith<_$ChatStateUnsavedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChatStateSavedImplCopyWith<$Res>
-    implements $ChatStateCopyWith<$Res> {
+abstract class _$$ChatStateSavedImplCopyWith<$Res> {
   factory _$$ChatStateSavedImplCopyWith(_$ChatStateSavedImpl value,
           $Res Function(_$ChatStateSavedImpl) then) =
       __$$ChatStateSavedImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Conversation conversation, bool isUpdated});
 
-  @override
   $ConversationCopyWith<$Res> get conversation;
 }
 
@@ -374,6 +356,7 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation, bool isUpdated) saved,
+    required TResult Function() deleted,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -387,6 +370,7 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation, bool isUpdated)? saved,
+    TResult? Function()? deleted,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -399,6 +383,7 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation, bool isUpdated)? saved,
+    TResult Function()? deleted,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -415,6 +400,7 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatStateUnsaved value) unsaved,
     required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateDeleted value) deleted,
     required TResult Function(_ChatStateLoading value) loading,
     required TResult Function(_ChatStateError value) error,
   }) {
@@ -426,6 +412,7 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatStateUnsaved value)? unsaved,
     TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateDeleted value)? deleted,
     TResult? Function(_ChatStateLoading value)? loading,
     TResult? Function(_ChatStateError value)? error,
   }) {
@@ -437,6 +424,7 @@ class _$ChatStateSavedImpl implements _ChatStateSaved {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatStateUnsaved value)? unsaved,
     TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateDeleted value)? deleted,
     TResult Function(_ChatStateLoading value)? loading,
     TResult Function(_ChatStateError value)? error,
     required TResult orElse(),
@@ -453,26 +441,145 @@ abstract class _ChatStateSaved implements ChatState {
       {required final Conversation conversation,
       final bool isUpdated}) = _$ChatStateSavedImpl;
 
-  @override
   Conversation get conversation;
   bool get isUpdated;
-  @override
   @JsonKey(ignore: true)
   _$$ChatStateSavedImplCopyWith<_$ChatStateSavedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChatStateLoadingImplCopyWith<$Res>
-    implements $ChatStateCopyWith<$Res> {
+abstract class _$$ChatStateDeletedImplCopyWith<$Res> {
+  factory _$$ChatStateDeletedImplCopyWith(_$ChatStateDeletedImpl value,
+          $Res Function(_$ChatStateDeletedImpl) then) =
+      __$$ChatStateDeletedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChatStateDeletedImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatStateDeletedImpl>
+    implements _$$ChatStateDeletedImplCopyWith<$Res> {
+  __$$ChatStateDeletedImplCopyWithImpl(_$ChatStateDeletedImpl _value,
+      $Res Function(_$ChatStateDeletedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChatStateDeletedImpl implements _ChatStateDeleted {
+  const _$ChatStateDeletedImpl();
+
+  @override
+  String toString() {
+    return 'ChatState.deleted()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ChatStateDeletedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Conversation? conversation) unsaved,
+    required TResult Function(Conversation conversation, bool isUpdated) saved,
+    required TResult Function() deleted,
+    required TResult Function(Conversation? conversation) loading,
+    required TResult Function(
+            Conversation? conversation, ApiError<dynamic> error)
+        error,
+  }) {
+    return deleted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Conversation? conversation)? unsaved,
+    TResult? Function(Conversation conversation, bool isUpdated)? saved,
+    TResult? Function()? deleted,
+    TResult? Function(Conversation? conversation)? loading,
+    TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
+  }) {
+    return deleted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Conversation? conversation)? unsaved,
+    TResult Function(Conversation conversation, bool isUpdated)? saved,
+    TResult Function()? deleted,
+    TResult Function(Conversation? conversation)? loading,
+    TResult Function(Conversation? conversation, ApiError<dynamic> error)?
+        error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChatStateUnsaved value) unsaved,
+    required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateDeleted value) deleted,
+    required TResult Function(_ChatStateLoading value) loading,
+    required TResult Function(_ChatStateError value) error,
+  }) {
+    return deleted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ChatStateUnsaved value)? unsaved,
+    TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateDeleted value)? deleted,
+    TResult? Function(_ChatStateLoading value)? loading,
+    TResult? Function(_ChatStateError value)? error,
+  }) {
+    return deleted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChatStateUnsaved value)? unsaved,
+    TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateDeleted value)? deleted,
+    TResult Function(_ChatStateLoading value)? loading,
+    TResult Function(_ChatStateError value)? error,
+    required TResult orElse(),
+  }) {
+    if (deleted != null) {
+      return deleted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChatStateDeleted implements ChatState {
+  const factory _ChatStateDeleted() = _$ChatStateDeletedImpl;
+}
+
+/// @nodoc
+abstract class _$$ChatStateLoadingImplCopyWith<$Res> {
   factory _$$ChatStateLoadingImplCopyWith(_$ChatStateLoadingImpl value,
           $Res Function(_$ChatStateLoadingImpl) then) =
       __$$ChatStateLoadingImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Conversation? conversation});
 
-  @override
   $ConversationCopyWith<$Res>? get conversation;
 }
 
@@ -495,6 +602,18 @@ class __$$ChatStateLoadingImplCopyWithImpl<$Res>
           : conversation // ignore: cast_nullable_to_non_nullable
               as Conversation?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConversationCopyWith<$Res>? get conversation {
+    if (_value.conversation == null) {
+      return null;
+    }
+
+    return $ConversationCopyWith<$Res>(_value.conversation!, (value) {
+      return _then(_value.copyWith(conversation: value));
+    });
   }
 }
 
@@ -535,6 +654,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation, bool isUpdated) saved,
+    required TResult Function() deleted,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -548,6 +668,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation, bool isUpdated)? saved,
+    TResult? Function()? deleted,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -560,6 +681,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation, bool isUpdated)? saved,
+    TResult Function()? deleted,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -576,6 +698,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatStateUnsaved value) unsaved,
     required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateDeleted value) deleted,
     required TResult Function(_ChatStateLoading value) loading,
     required TResult Function(_ChatStateError value) error,
   }) {
@@ -587,6 +710,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatStateUnsaved value)? unsaved,
     TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateDeleted value)? deleted,
     TResult? Function(_ChatStateLoading value)? loading,
     TResult? Function(_ChatStateError value)? error,
   }) {
@@ -598,6 +722,7 @@ class _$ChatStateLoadingImpl implements _ChatStateLoading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatStateUnsaved value)? unsaved,
     TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateDeleted value)? deleted,
     TResult Function(_ChatStateLoading value)? loading,
     TResult Function(_ChatStateError value)? error,
     required TResult orElse(),
@@ -613,25 +738,20 @@ abstract class _ChatStateLoading implements ChatState {
   const factory _ChatStateLoading({final Conversation? conversation}) =
       _$ChatStateLoadingImpl;
 
-  @override
   Conversation? get conversation;
-  @override
   @JsonKey(ignore: true)
   _$$ChatStateLoadingImplCopyWith<_$ChatStateLoadingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ChatStateErrorImplCopyWith<$Res>
-    implements $ChatStateCopyWith<$Res> {
+abstract class _$$ChatStateErrorImplCopyWith<$Res> {
   factory _$$ChatStateErrorImplCopyWith(_$ChatStateErrorImpl value,
           $Res Function(_$ChatStateErrorImpl) then) =
       __$$ChatStateErrorImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({Conversation? conversation, ApiError<dynamic> error});
 
-  @override
   $ConversationCopyWith<$Res>? get conversation;
 }
 
@@ -659,6 +779,18 @@ class __$$ChatStateErrorImplCopyWithImpl<$Res>
           : error // ignore: cast_nullable_to_non_nullable
               as ApiError<dynamic>,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ConversationCopyWith<$Res>? get conversation {
+    if (_value.conversation == null) {
+      return null;
+    }
+
+    return $ConversationCopyWith<$Res>(_value.conversation!, (value) {
+      return _then(_value.copyWith(conversation: value));
+    });
   }
 }
 
@@ -702,6 +834,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   TResult when<TResult extends Object?>({
     required TResult Function(Conversation? conversation) unsaved,
     required TResult Function(Conversation conversation, bool isUpdated) saved,
+    required TResult Function() deleted,
     required TResult Function(Conversation? conversation) loading,
     required TResult Function(
             Conversation? conversation, ApiError<dynamic> error)
@@ -715,6 +848,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Conversation? conversation)? unsaved,
     TResult? Function(Conversation conversation, bool isUpdated)? saved,
+    TResult? Function()? deleted,
     TResult? Function(Conversation? conversation)? loading,
     TResult? Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -727,6 +861,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Conversation? conversation)? unsaved,
     TResult Function(Conversation conversation, bool isUpdated)? saved,
+    TResult Function()? deleted,
     TResult Function(Conversation? conversation)? loading,
     TResult Function(Conversation? conversation, ApiError<dynamic> error)?
         error,
@@ -743,6 +878,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   TResult map<TResult extends Object?>({
     required TResult Function(_ChatStateUnsaved value) unsaved,
     required TResult Function(_ChatStateSaved value) saved,
+    required TResult Function(_ChatStateDeleted value) deleted,
     required TResult Function(_ChatStateLoading value) loading,
     required TResult Function(_ChatStateError value) error,
   }) {
@@ -754,6 +890,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ChatStateUnsaved value)? unsaved,
     TResult? Function(_ChatStateSaved value)? saved,
+    TResult? Function(_ChatStateDeleted value)? deleted,
     TResult? Function(_ChatStateLoading value)? loading,
     TResult? Function(_ChatStateError value)? error,
   }) {
@@ -765,6 +902,7 @@ class _$ChatStateErrorImpl implements _ChatStateError {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChatStateUnsaved value)? unsaved,
     TResult Function(_ChatStateSaved value)? saved,
+    TResult Function(_ChatStateDeleted value)? deleted,
     TResult Function(_ChatStateLoading value)? loading,
     TResult Function(_ChatStateError value)? error,
     required TResult orElse(),
@@ -781,10 +919,8 @@ abstract class _ChatStateError implements ChatState {
       {final Conversation? conversation,
       required final ApiError<dynamic> error}) = _$ChatStateErrorImpl;
 
-  @override
   Conversation? get conversation;
   ApiError<dynamic> get error;
-  @override
   @JsonKey(ignore: true)
   _$$ChatStateErrorImplCopyWith<_$ChatStateErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;

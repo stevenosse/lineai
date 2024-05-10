@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/datasource/constants.dart';
 import 'package:lineai/src/shared/components/button.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
+import 'package:lineai/src/shared/components/dialogs/dialog_builder.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
@@ -138,6 +140,28 @@ class _ChatSettingsScreenState extends State<ChatSettingsScreen> {
                           label: state.conversation?.temperature.toStringAsFixed(1),
                           onChanged: context.read<ChatCubit>().onTemperatureChanged,
                         ),
+                        const Gap.vertical(height: Dimens.doubleSpacing),
+                        if (state.conversation != null)
+                          ListTile(
+                            leading: Icon(
+                              IconsaxPlusBroken.trash,
+                              color: context.colorScheme.error,
+                            ),
+                            title: Text(I18n.of(context).chatSettings_deleteConversationTitle),
+                            subtitle: Text(I18n.of(context).chatSettings_deleteConversationSubtitle),
+                            textColor: context.colorScheme.error,
+                            onTap: () async {
+                              final confirmation = await DialogBuilder.showConfirmationDialog(
+                                context: context,
+                                message: I18n.of(context).chatSettings_deleteConversationConfirmation,
+                                isDestructiveAction: true,
+                              );
+
+                              if (confirmation == true && context.mounted) {
+                                context.read<ChatCubit>().deleteConversation(conversation: state.conversation!);
+                              }
+                            },
+                          ),
                       ],
                     );
                   },
