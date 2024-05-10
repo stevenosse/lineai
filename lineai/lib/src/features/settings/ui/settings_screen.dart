@@ -16,6 +16,7 @@ import 'package:lineai/src/shared/components/main_app_bar.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:lineai/src/shared/features/auth/login/logout_controller.dart';
 import 'package:lineai/src/shared/utils/notifications_service.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 @RoutePage()
@@ -41,6 +42,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
     super.dispose();
   }
 
+  User get _user => Supabase.instance.client.auth.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +52,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
         padding: const EdgeInsets.all(Dimens.spacing),
         child: ListView(
           children: [
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: CircleAvatar(
+                backgroundColor: context.colorScheme.primary,
+                foregroundColor: context.colorScheme.onPrimary,
+                child: Text(
+                  _user.initials,
+                  style: context.textTheme.titleSmall?.copyWith(
+                    color: context.colorScheme.onPrimary,
+                    fontWeight: FontWeight.w600,
+                  )
+                ),
+              ),
+              title: Text(_user.email!, style: context.textTheme.titleSmall),
+            ),
+            const Gap.vertical(height: Dimens.doubleSpacing),
+            Text(
+              I18n.of(context).settings_generalSettings,
+              style: context.textTheme.labelMedium?.copyWith(
+                color: context.colorScheme.onSurface.withOpacity(.7),
+              ),
+            ),
+            const Gap.vertical(height: Dimens.spacing),
             Input(
               controller: _apiKeyController,
               filled: true,
@@ -149,4 +175,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
+}
+
+extension on User {
+  String get initials => (email ?? '').split('@').first.substring(0, 2).toUpperCase();
 }

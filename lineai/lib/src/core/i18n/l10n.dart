@@ -850,6 +850,16 @@ class I18n {
     );
   }
 
+  /// `General settings`
+  String get settings_generalSettings {
+    return Intl.message(
+      'General settings',
+      name: 'settings_generalSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please provide a groq API key in the settings.`
   String get settings_groqApiKeyError {
     return Intl.message(

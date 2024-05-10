@@ -173,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "settings_apiKeyIndications":
             MessageLookupByLibrary.simpleMessage("Get your API key from "),
+        "settings_generalSettings":
+            MessageLookupByLibrary.simpleMessage("General settings"),
         "settings_groqApiKeyAlreadySet":
             MessageLookupByLibrary.simpleMessage("Groq API key already set."),
         "settings_groqApiKeyError": MessageLookupByLibrary.simpleMessage(

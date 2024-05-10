@@ -91,7 +91,7 @@
   "settings_logoutFailedTitle": "Logout failed",
   "settings_logoutFailedBody": "An error occurred while logging out. Please try again.",
   "settings_apiKeyIndications": "Get your API key from ",
-
+  "settings_generalSettings": "General settings",
   "settings_groqApiKeyError": "Please provide a groq API key in the settings.",
   "settings_groqApiKeyRequiredValidation": "Please provide a groq API key.",
   "settings_groqApiKeySuccess": "Settings saved successfully.",
