@@ -53,18 +53,20 @@ Deno.serve(async (req: Request) => {
     }
 
     const aiRequestMessage = {
-      content: `${request.message}\n\n Answer in markdown format in the same language the prompt is in.`,
+      content:
+        `${request.message}\n\n Answer in markdown format. Return the answer in the same language the first sentence of this message is in.`,
       role: "user",
     } as CompletionMessage;
 
-    const { error: messageError } = await supabaseClient
-      .from("messages")
-      .insert({
-        conversation_id: conversation.id,
-        user_id: user?.id,
-        content: request.message,
-        role: "user",
-      } as MessageEntity);
+    const { data: initialUserMessage, error: messageError } =
+      await supabaseClient
+        .from("messages")
+        .insert({
+          conversation_id: conversation.id,
+          user_id: user?.id,
+          content: request.message,
+          role: "user",
+        } as MessageEntity);
 
     if (messageError) {
       return handleError(messageError.message, 500);
@@ -77,7 +79,11 @@ Deno.serve(async (req: Request) => {
     }
 
     if (conversation.summary) {
-      messages.push({ role: "system", content: `Here is a summary of the conversation: ${conversation.summary}` });
+      messages.push({
+        role: "system",
+        content:
+          `Here is a summary of the conversation: ${conversation.summary}`,
+      });
     }
     messages.push(aiRequestMessage);
 
@@ -117,6 +123,7 @@ Deno.serve(async (req: Request) => {
           user_id: user?.id,
           content: answer.content,
           role: answer.role,
+          answered_message_id: initialUserMessage.id,
         } as MessageEntity)
         .select();
 

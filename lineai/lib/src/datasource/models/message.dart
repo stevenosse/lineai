@@ -11,6 +11,7 @@ class Message with _$Message {
     required String content,
     @JsonKey(name: 'conversation_id') required int conversationId,
     @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'answered_message_id') int? answeredMessageId,
   }) = _Message;
 
   factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);

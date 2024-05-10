@@ -27,6 +27,8 @@ mixin _$Message {
   int get conversationId => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'answered_message_id')
+  int? get answeredMessageId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +45,8 @@ abstract class $MessageCopyWith<$Res> {
       String role,
       String content,
       @JsonKey(name: 'conversation_id') int conversationId,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'answered_message_id') int? answeredMessageId});
 }
 
 /// @nodoc
@@ -64,6 +67,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
     Object? content = null,
     Object? conversationId = null,
     Object? createdAt = null,
+    Object? answeredMessageId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -86,6 +90,10 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      answeredMessageId: freezed == answeredMessageId
+          ? _value.answeredMessageId
+          : answeredMessageId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -102,7 +110,8 @@ abstract class _$$MessageImplCopyWith<$Res> implements $MessageCopyWith<$Res> {
       String role,
       String content,
       @JsonKey(name: 'conversation_id') int conversationId,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      @JsonKey(name: 'answered_message_id') int? answeredMessageId});
 }
 
 /// @nodoc
@@ -121,6 +130,7 @@ class __$$MessageImplCopyWithImpl<$Res>
     Object? content = null,
     Object? conversationId = null,
     Object? createdAt = null,
+    Object? answeredMessageId = freezed,
   }) {
     return _then(_$MessageImpl(
       id: null == id
@@ -143,6 +153,10 @@ class __$$MessageImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      answeredMessageId: freezed == answeredMessageId
+          ? _value.answeredMessageId
+          : answeredMessageId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -155,7 +169,8 @@ class _$MessageImpl implements _Message {
       required this.role,
       required this.content,
       @JsonKey(name: 'conversation_id') required this.conversationId,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      @JsonKey(name: 'created_at') required this.createdAt,
+      @JsonKey(name: 'answered_message_id') this.answeredMessageId});
 
   factory _$MessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$MessageImplFromJson(json);
@@ -172,10 +187,13 @@ class _$MessageImpl implements _Message {
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
+  @override
+  @JsonKey(name: 'answered_message_id')
+  final int? answeredMessageId;
 
   @override
   String toString() {
-    return 'Message(id: $id, role: $role, content: $content, conversationId: $conversationId, createdAt: $createdAt)';
+    return 'Message(id: $id, role: $role, content: $content, conversationId: $conversationId, createdAt: $createdAt, answeredMessageId: $answeredMessageId)';
   }
 
   @override
@@ -189,13 +207,15 @@ class _$MessageImpl implements _Message {
             (identical(other.conversationId, conversationId) ||
                 other.conversationId == conversationId) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.answeredMessageId, answeredMessageId) ||
+                other.answeredMessageId == answeredMessageId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, role, content, conversationId, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, role, content,
+      conversationId, createdAt, answeredMessageId);
 
   @JsonKey(ignore: true)
   @override
@@ -217,7 +237,8 @@ abstract class _Message implements Message {
           required final String role,
           required final String content,
           @JsonKey(name: 'conversation_id') required final int conversationId,
-          @JsonKey(name: 'created_at') required final DateTime createdAt}) =
+          @JsonKey(name: 'created_at') required final DateTime createdAt,
+          @JsonKey(name: 'answered_message_id') final int? answeredMessageId}) =
       _$MessageImpl;
 
   factory _Message.fromJson(Map<String, dynamic> json) = _$MessageImpl.fromJson;
@@ -234,6 +255,9 @@ abstract class _Message implements Message {
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @override
+  @JsonKey(name: 'answered_message_id')
+  int? get answeredMessageId;
   @override
   @JsonKey(ignore: true)
   _$$MessageImplCopyWith<_$MessageImpl> get copyWith =>

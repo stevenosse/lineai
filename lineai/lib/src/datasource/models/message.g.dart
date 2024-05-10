@@ -13,6 +13,7 @@ _$MessageImpl _$$MessageImplFromJson(Map<String, dynamic> json) =>
       content: json['content'] as String,
       conversationId: (json['conversation_id'] as num).toInt(),
       createdAt: DateTime.parse(json['created_at'] as String),
+      answeredMessageId: (json['answered_message_id'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$MessageImplToJson(_$MessageImpl instance) =>
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$MessageImplToJson(_$MessageImpl instance) =>
       'content': instance.content,
       'conversation_id': instance.conversationId,
       'created_at': instance.createdAt.toIso8601String(),
+      'answered_message_id': instance.answeredMessageId,
     };

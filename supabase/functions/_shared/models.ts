@@ -31,4 +31,5 @@ export class MessageEntity {
   role: "user" | "system" | "assistant";
   conversation_id: number;
   user_id: number;
+  answered_message_id: number | null;
 }
