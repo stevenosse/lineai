@@ -66,9 +66,8 @@ Deno.serve(async (req: Request) => {
           user_id: user?.id,
           content: request.message,
           role: "user",
-        } as MessageEntity)
-        .select()
-        .single()
+        })
+        .select();
 
     if (messageError) {
       return handleError(messageError.message, 500);

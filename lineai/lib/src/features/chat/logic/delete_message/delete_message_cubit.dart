@@ -19,7 +19,7 @@ class DeleteMessageCubit extends Cubit<DeleteMessageState> {
   void deleteMessage(Message message) async {
     emit(DeleteMessageState.loading(message: message));
 
-    final response = await _chatRepository.deleteMessage(messageId: message.id);
+    final response = await _chatRepository.deleteMessage(message: message);
     response.when(
       success: (_) => emit(DeleteMessageState.success(message: message)),
       error: (error) => emit(DeleteMessageState.error(message: message, error: error)),

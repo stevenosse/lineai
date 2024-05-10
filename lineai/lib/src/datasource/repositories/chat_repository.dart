@@ -65,9 +65,17 @@ class ChatRepository extends BaseRepository {
     });
   }
 
-  Future<ApiResponse<bool, ApiError>> deleteMessage({required int messageId}) async {
+  Future<ApiResponse<bool, ApiError>> deleteMessage({required Message message}) async {
     return runOperation(call: () async {
-      await _supabaseClient.from(DBConstants.messagesTable).delete().eq('id', messageId);
+      await _supabaseClient.from(DBConstants.messagesTable).delete().eq('id', message.id);
+
+      // If the conversation is empty, delete it
+      final messages =
+          await _supabaseClient.from(DBConstants.messagesTable).select().eq('conversation_id', message.conversationId);
+      if (messages.isEmpty) {
+        await _supabaseClient.from(DBConstants.conversationsTable).delete().eq('id', message.conversationId);
+      }
+
       return ApiResponse.success(true);
     });
   }
