@@ -5,7 +5,6 @@ import { handleError, handleSuccess } from "../_shared/response.mapper.ts";
 import {
   CompletionMessage,
   CompletionRequest,
-  MessageEntity,
   SendMessageRequest,
 } from "../_shared/models.ts";
 
@@ -36,7 +35,7 @@ Deno.serve(async (req: Request) => {
       .from("user_settings")
       .select("groq_api_key")
       .eq("user_id", user?.id ?? 1)
-      .single();
+      .maybeSingle();
 
     if (!usersSettings?.groq_api_key || settingsError) {
       return handleError("Please set your Groq API key in the settings", 400);
@@ -46,9 +45,9 @@ Deno.serve(async (req: Request) => {
       .from("conversations")
       .select("*")
       .eq("id", request.conversationId)
-      .single();
+      .maybeSingle();
 
-    if (error) {
+    if (error || !conversation) {
       return handleError("Conversation not found", 500);
     }
 
@@ -67,7 +66,8 @@ Deno.serve(async (req: Request) => {
           content: request.message,
           role: "user",
         })
-        .select();
+        .select()
+        .maybeSingle();
 
     if (messageError) {
       return handleError(messageError.message, 500);
@@ -120,14 +120,14 @@ Deno.serve(async (req: Request) => {
       await supabaseClient
         .from("messages")
         .insert({
+          answered_message_id: initialUserMessage?.id,
           conversation_id: conversation.id,
           user_id: user?.id,
           content: answer.content,
-          role: answer.role,
-          answered_message_id: initialUserMessage.id,
-        } as MessageEntity)
-        .select();
-
+          role: answer.role, 
+        })
+        .select()
+        .maybeSingle()
     if (responseError) {
       return handleError(responseError.message, 500);
     }
