@@ -21,7 +21,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Message {
   int get id => throw _privateConstructorUsedError;
-  String get role => throw _privateConstructorUsedError;
+  ChatMessageRole get role => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'conversation_id')
   int get conversationId => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $MessageCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String role,
+      ChatMessageRole role,
       String content,
       @JsonKey(name: 'conversation_id') int conversationId,
       @JsonKey(name: 'created_at') DateTime createdAt,
@@ -77,7 +77,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ChatMessageRole,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$MessageImplCopyWith<$Res> implements $MessageCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      String role,
+      ChatMessageRole role,
       String content,
       @JsonKey(name: 'conversation_id') int conversationId,
       @JsonKey(name: 'created_at') DateTime createdAt,
@@ -140,7 +140,7 @@ class __$$MessageImplCopyWithImpl<$Res>
       role: null == role
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ChatMessageRole,
       content: null == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
@@ -166,7 +166,7 @@ class __$$MessageImplCopyWithImpl<$Res>
 class _$MessageImpl implements _Message {
   const _$MessageImpl(
       {required this.id,
-      required this.role,
+      this.role = ChatMessageRole.user,
       required this.content,
       @JsonKey(name: 'conversation_id') required this.conversationId,
       @JsonKey(name: 'created_at') required this.createdAt,
@@ -178,7 +178,8 @@ class _$MessageImpl implements _Message {
   @override
   final int id;
   @override
-  final String role;
+  @JsonKey()
+  final ChatMessageRole role;
   @override
   final String content;
   @override
@@ -234,7 +235,7 @@ class _$MessageImpl implements _Message {
 abstract class _Message implements Message {
   const factory _Message(
           {required final int id,
-          required final String role,
+          final ChatMessageRole role,
           required final String content,
           @JsonKey(name: 'conversation_id') required final int conversationId,
           @JsonKey(name: 'created_at') required final DateTime createdAt,
@@ -246,7 +247,7 @@ abstract class _Message implements Message {
   @override
   int get id;
   @override
-  String get role;
+  ChatMessageRole get role;
   @override
   String get content;
   @override

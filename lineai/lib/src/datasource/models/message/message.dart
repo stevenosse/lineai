@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:lineai/src/datasource/models/chat_message_role.dart';
 
 part 'message.freezed.dart';
 part 'message.g.dart';
@@ -7,7 +8,7 @@ part 'message.g.dart';
 class Message with _$Message {
   const factory Message({
     required int id,
-    required String role,
+    @Default(ChatMessageRole.user) ChatMessageRole role,
     required String content,
     @JsonKey(name: 'conversation_id') required int conversationId,
     @JsonKey(name: 'created_at') required DateTime createdAt,

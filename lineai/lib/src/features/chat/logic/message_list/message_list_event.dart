@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:lineai/src/datasource/models/message.dart';
+import 'package:lineai/src/datasource/models/message/message.dart';
 
 abstract class MessageListEvent extends Equatable {
   const MessageListEvent();

@@ -54,116 +54,126 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: MultiBlocListener(
-        listeners: [
-          BlocListener<ChatCubit, ChatState>(
-            listener: (context, state) {
-              state.whenOrNull(
-                unsaved: (conversation) => context.read<MessageListBloc>().setConversationId(null),
-                saved: (conversation, _) {
-                  context.read<MessageListBloc>().setConversationId(conversation.id);
-                  if (_pendingMessage != null) {
-                    context
-                        .read<SendMessageCubit>()
-                        .sendMessage(conversationId: conversation.id!, message: _pendingMessage!);
-                    _pendingMessage = null;
-                  }
-                },
-                deleted: () {
-                  LoadingDialog.hide(context: context);
-                  context.read<MessageListBloc>().setConversationId(null);
-                  context.router.navigate(const ChatHomeRoute());
-
-                  $notificationService.showSuccessNotification(
-                    context: context,
-                    body: I18n.of(context).chatSettings_deletedNotification,
-                  );
-                },
-                error: (conversation, error) {
-                  $notificationService.showErrorNotification(
-                    context: context,
-                    body: error.describe(context: context),
-                  );
-                },
-              );
-            },
-          ),
-          BlocListener<SendMessageCubit, SendMessageState>(
-            listener: (context, state) {
-              state.whenOrNull(
-                error: (message, conversationId, error) => $notificationService.showErrorNotification(
-                  context: context,
-                  body: error.describe(context: context),
-                ),
-                success: (conversationId, message) {
-                  _messageController.clear();
-                },
-              );
-            },
-          ),
-          BlocListener<RegenerateMessageCubit, RegenerateMessageState>(
-            listener: (context, state) {
-              state.whenOrNull(
-                error: (error) => ApiErrorDialog.show(context: context, error: error),
-              );
-            },
-          )
-        ],
-        child: FractionallySizedBox(
-          widthFactor: 1,
-          child: Column(
-            children: [
-              Expanded(
-                child: BlocBuilder<MessageListBloc, MessageListState>(
-                  builder: (context, state) {
-                    if (state.messages.isEmpty) {
-                      return ChatsEmptyState(
-                        onTipsTapped: _onSendMessagePressed,
-                      );
+          listeners: [
+            BlocListener<ChatCubit, ChatState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  unsaved: (conversation) => context.read<MessageListBloc>().setConversationId(null),
+                  saved: (conversation, _) {
+                    context.read<MessageListBloc>().setConversationId(conversation.id);
+                    if (_pendingMessage != null) {
+                      context
+                          .read<SendMessageCubit>()
+                          .sendMessage(conversationId: conversation.id!, content: _pendingMessage!);
+                      _pendingMessage = null;
                     }
+                  },
+                  deleted: () {
+                    LoadingDialog.hide(context: context);
+                    context.read<MessageListBloc>().setConversationId(null);
+                    context.router.navigate(const ChatHomeRoute());
 
-                    return MessageList(
-                      messages: state.messages,
-                      currentlyRegeneratingMessageId:
-                          context.watch<RegenerateMessageCubit>().state.regeneratingMessageId,
-                      onCopy: (message) {
-                        Clipboard.setData(ClipboardData(text: message.content));
-                        $notificationService.showSuccessNotification(
-                          context: context,
-                          body: I18n.of(context).chat_copiedToClipboardMessage,
-                        );
-                      },
-                      onRegenerate: (message) {
-                        context.read<RegenerateMessageCubit>().regenerateMessage(messageId: message.id);
-                      },
-                      onDelete: (message) {
-                        context.read<DeleteMessageCubit>().deleteMessage(message);
-                      },
+                    $notificationService.showSuccessNotification(
+                      context: context,
+                      body: I18n.of(context).chatSettings_deletedNotification,
                     );
                   },
+                  error: (conversation, error) {
+                    $notificationService.showErrorNotification(
+                      context: context,
+                      body: error.describe(context: context),
+                    );
+                  },
+                );
+              },
+            ),
+            BlocListener<SendMessageCubit, SendMessageState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  error: (content, conversationId, error) {
+                    _messageController.text = content;
+                    $notificationService.showErrorNotification(
+                      context: context,
+                      body: error.describe(context: context),
+                    );
+                  },
+                  loading: (message, conversationId) => _messageController.clear(),
+                );
+              },
+            ),
+            BlocListener<RegenerateMessageCubit, RegenerateMessageState>(
+              listener: (context, state) {
+                state.whenOrNull(
+                  error: (error) => ApiErrorDialog.show(context: context, error: error),
+                );
+              },
+            )
+          ],
+          child: FractionallySizedBox(
+            widthFactor: 1,
+            child: Column(
+              children: [
+                Expanded(
+                  child: BlocBuilder<MessageListBloc, MessageListState>(
+                    builder: (context, state) {
+                      if (state.messages.isEmpty) {
+                        return ChatsEmptyState(onTipsTapped: _onSendMessagePressed);
+                      }
+
+                      return BlocBuilder<SendMessageCubit, SendMessageState>(
+                        builder: (context, sendMessageState) {
+                          // The send message is persisted when it appears in the list
+                          final bool isMessageSent = state.messages.any(
+                            (message) =>
+                                message.content == sendMessageState.message?.content &&
+                                message.role == sendMessageState.message?.role &&
+                                message.conversationId == sendMessageState.message?.conversationId,
+                          );
+
+                          return MessageList(
+                            messages: [
+                              ...state.messages,
+                              if (sendMessageState.message != null && !isMessageSent) sendMessageState.message!,
+                            ],
+                            currentlyRegeneratingMessageId:
+                                context.watch<RegenerateMessageCubit>().state.regeneratingMessageId,
+                            onCopy: (message) {
+                              Clipboard.setData(ClipboardData(text: message.content));
+                              $notificationService.showSuccessNotification(
+                                context: context,
+                                body: I18n.of(context).chat_copiedToClipboardMessage,
+                              );
+                            },
+                            onRegenerate: (message) =>
+                                context.read<RegenerateMessageCubit>().regenerateMessage(messageId: message.id),
+                            onDelete: (message) => context.read<DeleteMessageCubit>().deleteMessage(message),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(Dimens.spacing),
-                child: Column(
-                  children: [
-                    SendMessageForm(
-                      controller: _messageController,
-                      onSendMessage: _onSendMessagePressed,
-                      isLoading: context.watch<SendMessageCubit>().state.isLoading,
-                    ),
-                    const Gap.vertical(height: Dimens.spacing),
-                    Text(
-                      I18n.of(context).chat_garanteeNotice,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelSmall,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(Dimens.spacing),
+                  child: Column(
+                    children: [
+                      SendMessageForm(
+                        controller: _messageController,
+                        onSendMessage: _onSendMessagePressed,
+                        isLoading: context.watch<SendMessageCubit>().state.isLoading,
+                      ),
+                      const Gap.vertical(height: Dimens.spacing),
+                      Text(
+                        I18n.of(context).chat_garanteeNotice,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ),
-      ),
+              ],
+            ),
+          )),
     );
   }
 
@@ -184,7 +194,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
       _pendingMessage = message;
       context.read<ChatCubit>().createEmptyConversation();
     } else {
-      await sendMessageCubit.sendMessage(conversationId: conversationId, message: message);
+      await sendMessageCubit.sendMessage(conversationId: conversationId, content: message);
     }
   }
 }

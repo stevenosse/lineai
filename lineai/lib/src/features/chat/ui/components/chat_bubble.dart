@@ -3,7 +3,8 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
-import 'package:lineai/src/datasource/models/message.dart';
+import 'package:lineai/src/datasource/models/chat_message_role.dart';
+import 'package:lineai/src/datasource/models/message/message.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -25,7 +26,7 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: message.role == 'assistant' ? context.colorScheme.surface : context.colorScheme.background,
+      color: message.role == ChatMessageRole.assistant ? context.colorScheme.surface : context.colorScheme.background,
       child: Padding(
         padding: const EdgeInsets.all(Dimens.spacing),
         child: Row(
@@ -33,17 +34,17 @@ class ChatBubble extends StatelessWidget {
           children: [
             CircleAvatar(
               backgroundColor: switch (message.role) {
-                'user' => context.colorScheme.surface,
+                ChatMessageRole.user => context.colorScheme.surface,
                 _ => context.colorScheme.background
               },
               foregroundColor: switch (message.role) {
-                'user' => context.colorScheme.onSurface,
+                ChatMessageRole.user => context.colorScheme.onSurface,
                 _ => context.colorScheme.onBackground
               },
               radius: 14.0,
               child: Icon(
                 switch (message.role) {
-                  'user' => IconsaxPlusBroken.user,
+                  ChatMessageRole.user => IconsaxPlusBroken.user,
                   _ => IconsaxPlusBroken.emoji_happy,
                 },
                 size: 16.0,
@@ -56,8 +57,8 @@ class ChatBubble extends StatelessWidget {
                 children: [
                   Text(
                     switch (message.role) {
-                      'assistant' => I18n.of(context).chat_aiAssistant,
-                      'user' => Supabase.instance.client.auth.currentUser!.email!,
+                      ChatMessageRole.assistant => I18n.of(context).chat_aiAssistant,
+                      ChatMessageRole.user => Supabase.instance.client.auth.currentUser!.email!,
                       _ => ''
                     },
                     style: context.textTheme.bodyMedium
@@ -84,7 +85,7 @@ class ChatBubble extends StatelessWidget {
                       title: I18n.of(context).chat_copyMessage,
                     ),
                   ),
-                  if (message.role == 'user')
+                  if (message.role == ChatMessageRole.user)
                     PopupMenuItem(
                       onTap: onRegenerate,
                       child: _MenuEntry(

@@ -19,30 +19,30 @@ mixin _$SendMessageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String message, int? conversationId) loading,
-    required TResult Function(String message, int conversationId) success,
+    required TResult Function(Message message, int? conversationId) loading,
+    required TResult Function(int conversationId) success,
     required TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)
+            String content, int? conversationId, ApiError<dynamic> error)
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String message, int? conversationId)? loading,
-    TResult? Function(String message, int conversationId)? success,
+    TResult? Function(Message message, int? conversationId)? loading,
+    TResult? Function(int conversationId)? success,
     TResult? Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String message, int? conversationId)? loading,
-    TResult Function(String message, int conversationId)? success,
+    TResult Function(Message message, int? conversationId)? loading,
+    TResult Function(int conversationId)? success,
     TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
     required TResult orElse(),
   }) =>
@@ -131,10 +131,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String message, int? conversationId) loading,
-    required TResult Function(String message, int conversationId) success,
+    required TResult Function(Message message, int? conversationId) loading,
+    required TResult Function(int conversationId) success,
     required TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)
+            String content, int? conversationId, ApiError<dynamic> error)
         error,
   }) {
     return initial();
@@ -144,10 +144,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String message, int? conversationId)? loading,
-    TResult? Function(String message, int conversationId)? success,
+    TResult? Function(Message message, int? conversationId)? loading,
+    TResult? Function(int conversationId)? success,
     TResult? Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
   }) {
     return initial?.call();
@@ -157,10 +157,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String message, int? conversationId)? loading,
-    TResult Function(String message, int conversationId)? success,
+    TResult Function(Message message, int? conversationId)? loading,
+    TResult Function(int conversationId)? success,
     TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
     required TResult orElse(),
   }) {
@@ -218,7 +218,9 @@ abstract class _$$LoadingImplCopyWith<$Res> {
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, int? conversationId});
+  $Res call({Message message, int? conversationId});
+
+  $MessageCopyWith<$Res> get message;
 }
 
 /// @nodoc
@@ -239,12 +241,20 @@ class __$$LoadingImplCopyWithImpl<$Res>
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Message,
       conversationId: freezed == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MessageCopyWith<$Res> get message {
+    return $MessageCopyWith<$Res>(_value.message, (value) {
+      return _then(_value.copyWith(message: value));
+    });
   }
 }
 
@@ -254,7 +264,7 @@ class _$LoadingImpl implements _Loading {
   const _$LoadingImpl({required this.message, this.conversationId});
 
   @override
-  final String message;
+  final Message message;
   @override
   final int? conversationId;
 
@@ -286,10 +296,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String message, int? conversationId) loading,
-    required TResult Function(String message, int conversationId) success,
+    required TResult Function(Message message, int? conversationId) loading,
+    required TResult Function(int conversationId) success,
     required TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)
+            String content, int? conversationId, ApiError<dynamic> error)
         error,
   }) {
     return loading(message, conversationId);
@@ -299,10 +309,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String message, int? conversationId)? loading,
-    TResult? Function(String message, int conversationId)? success,
+    TResult? Function(Message message, int? conversationId)? loading,
+    TResult? Function(int conversationId)? success,
     TResult? Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
   }) {
     return loading?.call(message, conversationId);
@@ -312,10 +322,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String message, int? conversationId)? loading,
-    TResult Function(String message, int conversationId)? success,
+    TResult Function(Message message, int? conversationId)? loading,
+    TResult Function(int conversationId)? success,
     TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
     required TResult orElse(),
   }) {
@@ -365,10 +375,10 @@ class _$LoadingImpl implements _Loading {
 
 abstract class _Loading implements SendMessageState {
   const factory _Loading(
-      {required final String message,
+      {required final Message message,
       final int? conversationId}) = _$LoadingImpl;
 
-  String get message;
+  Message get message;
   int? get conversationId;
   @JsonKey(ignore: true)
   _$$LoadingImplCopyWith<_$LoadingImpl> get copyWith =>
@@ -381,7 +391,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, int conversationId});
+  $Res call({int conversationId});
 }
 
 /// @nodoc
@@ -395,14 +405,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
     Object? conversationId = null,
   }) {
     return _then(_$SuccessImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
       conversationId: null == conversationId
           ? _value.conversationId
           : conversationId // ignore: cast_nullable_to_non_nullable
@@ -414,16 +419,14 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.message, required this.conversationId});
+  const _$SuccessImpl({required this.conversationId});
 
-  @override
-  final String message;
   @override
   final int conversationId;
 
   @override
   String toString() {
-    return 'SendMessageState.success(message: $message, conversationId: $conversationId)';
+    return 'SendMessageState.success(conversationId: $conversationId)';
   }
 
   @override
@@ -431,13 +434,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.message, message) || other.message == message) &&
             (identical(other.conversationId, conversationId) ||
                 other.conversationId == conversationId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, conversationId);
+  int get hashCode => Object.hash(runtimeType, conversationId);
 
   @JsonKey(ignore: true)
   @override
@@ -449,41 +451,41 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String message, int? conversationId) loading,
-    required TResult Function(String message, int conversationId) success,
+    required TResult Function(Message message, int? conversationId) loading,
+    required TResult Function(int conversationId) success,
     required TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)
+            String content, int? conversationId, ApiError<dynamic> error)
         error,
   }) {
-    return success(message, conversationId);
+    return success(conversationId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String message, int? conversationId)? loading,
-    TResult? Function(String message, int conversationId)? success,
+    TResult? Function(Message message, int? conversationId)? loading,
+    TResult? Function(int conversationId)? success,
     TResult? Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
   }) {
-    return success?.call(message, conversationId);
+    return success?.call(conversationId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String message, int? conversationId)? loading,
-    TResult Function(String message, int conversationId)? success,
+    TResult Function(Message message, int? conversationId)? loading,
+    TResult Function(int conversationId)? success,
     TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(message, conversationId);
+      return success(conversationId);
     }
     return orElse();
   }
@@ -527,11 +529,8 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements SendMessageState {
-  const factory _Success(
-      {required final String message,
-      required final int conversationId}) = _$SuccessImpl;
+  const factory _Success({required final int conversationId}) = _$SuccessImpl;
 
-  String get message;
   int get conversationId;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -544,7 +543,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
           _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
       __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, int? conversationId, ApiError<dynamic> error});
+  $Res call({String content, int? conversationId, ApiError<dynamic> error});
 }
 
 /// @nodoc
@@ -558,14 +557,14 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? content = null,
     Object? conversationId = freezed,
     Object? error = null,
   }) {
     return _then(_$ErrorImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
+      content: null == content
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
               as String,
       conversationId: freezed == conversationId
           ? _value.conversationId
@@ -583,10 +582,10 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 class _$ErrorImpl implements _Error {
   const _$ErrorImpl(
-      {required this.message, this.conversationId, required this.error});
+      {required this.content, this.conversationId, required this.error});
 
   @override
-  final String message;
+  final String content;
   @override
   final int? conversationId;
   @override
@@ -594,7 +593,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'SendMessageState.error(message: $message, conversationId: $conversationId, error: $error)';
+    return 'SendMessageState.error(content: $content, conversationId: $conversationId, error: $error)';
   }
 
   @override
@@ -602,14 +601,14 @@ class _$ErrorImpl implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.content, content) || other.content == content) &&
             (identical(other.conversationId, conversationId) ||
                 other.conversationId == conversationId) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, conversationId, error);
+  int get hashCode => Object.hash(runtimeType, content, conversationId, error);
 
   @JsonKey(ignore: true)
   @override
@@ -621,41 +620,41 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String message, int? conversationId) loading,
-    required TResult Function(String message, int conversationId) success,
+    required TResult Function(Message message, int? conversationId) loading,
+    required TResult Function(int conversationId) success,
     required TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)
+            String content, int? conversationId, ApiError<dynamic> error)
         error,
   }) {
-    return error(message, conversationId, this.error);
+    return error(content, conversationId, this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(String message, int? conversationId)? loading,
-    TResult? Function(String message, int conversationId)? success,
+    TResult? Function(Message message, int? conversationId)? loading,
+    TResult? Function(int conversationId)? success,
     TResult? Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
   }) {
-    return error?.call(message, conversationId, this.error);
+    return error?.call(content, conversationId, this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String message, int? conversationId)? loading,
-    TResult Function(String message, int conversationId)? success,
+    TResult Function(Message message, int? conversationId)? loading,
+    TResult Function(int conversationId)? success,
     TResult Function(
-            String message, int? conversationId, ApiError<dynamic> error)?
+            String content, int? conversationId, ApiError<dynamic> error)?
         error,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error(message, conversationId, this.error);
+      return error(content, conversationId, this.error);
     }
     return orElse();
   }
@@ -700,11 +699,11 @@ class _$ErrorImpl implements _Error {
 
 abstract class _Error implements SendMessageState {
   const factory _Error(
-      {required final String message,
+      {required final String content,
       final int? conversationId,
       required final ApiError<dynamic> error}) = _$ErrorImpl;
 
-  String get message;
+  String get content;
   int? get conversationId;
   ApiError<dynamic> get error;
   @JsonKey(ignore: true)

@@ -52,8 +52,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const aiRequestMessage = {
-      content:
-        `${request.message}\n\n Answer in markdown format. Return the answer in the same language the first sentence of this message is in.`,
+      content: request.message,
       role: "user",
     } as CompletionMessage;
 
@@ -77,6 +76,29 @@ Deno.serve(async (req: Request) => {
 
     if (conversation.system_prompt) {
       messages.push({ role: "system", content: conversation.system_prompt });
+    }
+
+    messages.push({
+      role: "system",
+      content: "Answer in markdown format. Reply in the user language",
+    });
+
+    /// Temporary, we send the 10 previous messages as content
+    const { data: contextWindowMessages, error: contextError } =
+      await supabaseClient
+        .from("messages")
+        .select("*")
+        .eq("conversation_id", conversation.id)
+        .order("created_at", { ascending: true })
+        .limit(10);
+
+    if (contextWindowMessages && !contextError) {
+      contextWindowMessages.forEach((message) => {
+        messages.push({
+          role: message.role,
+          content: message.content,
+        });
+      });
     }
 
     if (conversation.summary) {
@@ -124,10 +146,10 @@ Deno.serve(async (req: Request) => {
           conversation_id: conversation.id,
           user_id: user?.id,
           content: answer.content,
-          role: answer.role, 
+          role: answer.role,
         })
         .select()
-        .maybeSingle()
+        .maybeSingle();
     if (responseError) {
       return handleError(responseError.message, 500);
     }

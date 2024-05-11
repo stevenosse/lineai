@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:lineai/src/datasource/models/message.dart';
+import 'package:lineai/src/datasource/models/message/message.dart';
 import 'package:lineai/src/datasource/repositories/chat_repository.dart';
 import 'package:lineai/src/features/chat/logic/message_list/message_list_event.dart';
 import 'package:lineai/src/shared/locator.dart';

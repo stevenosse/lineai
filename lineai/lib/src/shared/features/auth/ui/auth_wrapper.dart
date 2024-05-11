@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lineai/src/datasource/repositories/chat_repository.dart';
 import 'package:lineai/src/features/chat/logic/delete_message/delete_message_cubit.dart';
 import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
@@ -17,7 +18,12 @@ class AuthWrapper extends StatelessWidget implements AutoRouteWrapper {
     return BlocListener<DeleteMessageCubit, DeleteMessageState>(
       listener: (context, state) {
         state.whenOrNull(
-          success: (message) => LoadingDialog.hide(context: context),
+          success: (message, result) {
+            LoadingDialog.hide(context: context);
+            if (result == DeleteMessageResult.conversationDeleted) {
+              context.read<ChatCubit>().startNewConversation();
+            }
+          },
           loading: (message) => LoadingDialog.show(context: context),
           error: (message, error) {
             LoadingDialog.hide(context: context);

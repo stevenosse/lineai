@@ -12,6 +12,7 @@ class DeleteMessageState with _$DeleteMessageState {
 
   const factory DeleteMessageState.success({
     required Message message,
+    required DeleteMessageResult result,
   }) = _Success;
 
   const factory DeleteMessageState.error({

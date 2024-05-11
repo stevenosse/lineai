@@ -2,10 +2,16 @@ import 'package:lineai/src/datasource/constants.dart';
 import 'package:lineai/src/datasource/models/api_error.dart';
 import 'package:lineai/src/datasource/models/api_response/api_response.dart';
 import 'package:lineai/src/datasource/models/conversation/conversation.dart';
-import 'package:lineai/src/datasource/models/message.dart';
+import 'package:lineai/src/datasource/models/message/message.dart';
 import 'package:lineai/src/datasource/models/send_message_response/send_message_response.dart';
 import 'package:lineai/src/datasource/repositories/base_repository.dart';
+import 'package:lineai/src/datasource/utils/api_utils.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+
+enum DeleteMessageResult {
+  messageDeleted,
+  conversationDeleted,
+}
 
 class ChatRepository extends BaseRepository {
   final SupabaseClient _supabaseClient;
@@ -47,12 +53,13 @@ class ChatRepository extends BaseRepository {
     required String message,
   }) async {
     return runOperation(call: () async {
-      final Conversation conversation = await _supabaseClient
-          .from(DBConstants.conversationsTable)
-          .select()
-          .eq('id', conversationId)
-          .single()
-          .then((value) => Conversation.fromJson(value));
+      final conversationJson =
+          await _supabaseClient.from(DBConstants.conversationsTable).select().eq('id', conversationId).maybeSingle();
+      if (conversationJson == null) {
+        return ApiResponse.error(unknownError(Exception('Conversation not found.')));
+      }
+
+      final conversation = Conversation.fromJson(conversationJson);
 
       final payload = {
         'conversationId': conversation.id,
@@ -65,7 +72,7 @@ class ChatRepository extends BaseRepository {
     });
   }
 
-  Future<ApiResponse<bool, ApiError>> deleteMessage({required Message message}) async {
+  Future<ApiResponse<DeleteMessageResult, ApiError>> deleteMessage({required Message message}) async {
     return runOperation(call: () async {
       await _supabaseClient.from(DBConstants.messagesTable).delete().eq('id', message.id);
 
@@ -74,9 +81,10 @@ class ChatRepository extends BaseRepository {
           await _supabaseClient.from(DBConstants.messagesTable).select().eq('conversation_id', message.conversationId);
       if (messages.isEmpty) {
         await _supabaseClient.from(DBConstants.conversationsTable).delete().eq('id', message.conversationId);
+        return ApiResponse.success(DeleteMessageResult.conversationDeleted);
       }
 
-      return ApiResponse.success(true);
+      return ApiResponse.success(DeleteMessageResult.messageDeleted);
     });
   }
 

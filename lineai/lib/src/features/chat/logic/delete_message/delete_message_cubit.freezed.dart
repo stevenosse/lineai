@@ -21,7 +21,8 @@ mixin _$DeleteMessageState {
   TResult when<TResult extends Object?>({
     required TResult Function(Message? message) initial,
     required TResult Function(Message message) loading,
-    required TResult Function(Message message) success,
+    required TResult Function(Message message, DeleteMessageResult result)
+        success,
     required TResult Function(Message message, ApiError<dynamic> error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,7 +30,7 @@ mixin _$DeleteMessageState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Message? message)? initial,
     TResult? Function(Message message)? loading,
-    TResult? Function(Message message)? success,
+    TResult? Function(Message message, DeleteMessageResult result)? success,
     TResult? Function(Message message, ApiError<dynamic> error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,7 +38,7 @@ mixin _$DeleteMessageState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Message? message)? initial,
     TResult Function(Message message)? loading,
-    TResult Function(Message message)? success,
+    TResult Function(Message message, DeleteMessageResult result)? success,
     TResult Function(Message message, ApiError<dynamic> error)? error,
     required TResult orElse(),
   }) =>
@@ -191,7 +192,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function(Message? message) initial,
     required TResult Function(Message message) loading,
-    required TResult Function(Message message) success,
+    required TResult Function(Message message, DeleteMessageResult result)
+        success,
     required TResult Function(Message message, ApiError<dynamic> error) error,
   }) {
     return initial(message);
@@ -202,7 +204,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Message? message)? initial,
     TResult? Function(Message message)? loading,
-    TResult? Function(Message message)? success,
+    TResult? Function(Message message, DeleteMessageResult result)? success,
     TResult? Function(Message message, ApiError<dynamic> error)? error,
   }) {
     return initial?.call(message);
@@ -213,7 +215,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Message? message)? initial,
     TResult Function(Message message)? loading,
-    TResult Function(Message message)? success,
+    TResult Function(Message message, DeleteMessageResult result)? success,
     TResult Function(Message message, ApiError<dynamic> error)? error,
     required TResult orElse(),
   }) {
@@ -351,7 +353,8 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function(Message? message) initial,
     required TResult Function(Message message) loading,
-    required TResult Function(Message message) success,
+    required TResult Function(Message message, DeleteMessageResult result)
+        success,
     required TResult Function(Message message, ApiError<dynamic> error) error,
   }) {
     return loading(message);
@@ -362,7 +365,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Message? message)? initial,
     TResult? Function(Message message)? loading,
-    TResult? Function(Message message)? success,
+    TResult? Function(Message message, DeleteMessageResult result)? success,
     TResult? Function(Message message, ApiError<dynamic> error)? error,
   }) {
     return loading?.call(message);
@@ -373,7 +376,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Message? message)? initial,
     TResult Function(Message message)? loading,
-    TResult Function(Message message)? success,
+    TResult Function(Message message, DeleteMessageResult result)? success,
     TResult Function(Message message, ApiError<dynamic> error)? error,
     required TResult orElse(),
   }) {
@@ -440,7 +443,7 @@ abstract class _$$SuccessImplCopyWith<$Res>
       __$$SuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Message message});
+  $Res call({Message message, DeleteMessageResult result});
 
   @override
   $MessageCopyWith<$Res> get message;
@@ -458,12 +461,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
+    Object? result = null,
   }) {
     return _then(_$SuccessImpl(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as Message,
+      result: null == result
+          ? _value.result
+          : result // ignore: cast_nullable_to_non_nullable
+              as DeleteMessageResult,
     ));
   }
 
@@ -479,14 +487,16 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl({required this.message});
+  const _$SuccessImpl({required this.message, required this.result});
 
   @override
   final Message message;
+  @override
+  final DeleteMessageResult result;
 
   @override
   String toString() {
-    return 'DeleteMessageState.success(message: $message)';
+    return 'DeleteMessageState.success(message: $message, result: $result)';
   }
 
   @override
@@ -494,11 +504,12 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.result, result) || other.result == result));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
+  int get hashCode => Object.hash(runtimeType, message, result);
 
   @JsonKey(ignore: true)
   @override
@@ -511,10 +522,11 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function(Message? message) initial,
     required TResult Function(Message message) loading,
-    required TResult Function(Message message) success,
+    required TResult Function(Message message, DeleteMessageResult result)
+        success,
     required TResult Function(Message message, ApiError<dynamic> error) error,
   }) {
-    return success(message);
+    return success(message, result);
   }
 
   @override
@@ -522,10 +534,10 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Message? message)? initial,
     TResult? Function(Message message)? loading,
-    TResult? Function(Message message)? success,
+    TResult? Function(Message message, DeleteMessageResult result)? success,
     TResult? Function(Message message, ApiError<dynamic> error)? error,
   }) {
-    return success?.call(message);
+    return success?.call(message, result);
   }
 
   @override
@@ -533,12 +545,12 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Message? message)? initial,
     TResult Function(Message message)? loading,
-    TResult Function(Message message)? success,
+    TResult Function(Message message, DeleteMessageResult result)? success,
     TResult Function(Message message, ApiError<dynamic> error)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(message);
+      return success(message, result);
     }
     return orElse();
   }
@@ -582,10 +594,13 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements DeleteMessageState {
-  const factory _Success({required final Message message}) = _$SuccessImpl;
+  const factory _Success(
+      {required final Message message,
+      required final DeleteMessageResult result}) = _$SuccessImpl;
 
   @override
   Message get message;
+  DeleteMessageResult get result;
   @override
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -679,7 +694,8 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function(Message? message) initial,
     required TResult Function(Message message) loading,
-    required TResult Function(Message message) success,
+    required TResult Function(Message message, DeleteMessageResult result)
+        success,
     required TResult Function(Message message, ApiError<dynamic> error) error,
   }) {
     return error(message, this.error);
@@ -690,7 +706,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(Message? message)? initial,
     TResult? Function(Message message)? loading,
-    TResult? Function(Message message)? success,
+    TResult? Function(Message message, DeleteMessageResult result)? success,
     TResult? Function(Message message, ApiError<dynamic> error)? error,
   }) {
     return error?.call(message, this.error);
@@ -701,7 +717,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Message? message)? initial,
     TResult Function(Message message)? loading,
-    TResult Function(Message message)? success,
+    TResult Function(Message message, DeleteMessageResult result)? success,
     TResult Function(Message message, ApiError<dynamic> error)? error,
     required TResult orElse(),
   }) {

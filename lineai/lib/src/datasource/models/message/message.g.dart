@@ -9,7 +9,8 @@ part of 'message.dart';
 _$MessageImpl _$$MessageImplFromJson(Map<String, dynamic> json) =>
     _$MessageImpl(
       id: (json['id'] as num).toInt(),
-      role: json['role'] as String,
+      role: $enumDecodeNullable(_$ChatMessageRoleEnumMap, json['role']) ??
+          ChatMessageRole.user,
       content: json['content'] as String,
       conversationId: (json['conversation_id'] as num).toInt(),
       createdAt: DateTime.parse(json['created_at'] as String),
@@ -19,9 +20,15 @@ _$MessageImpl _$$MessageImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$MessageImplToJson(_$MessageImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'role': instance.role,
+      'role': _$ChatMessageRoleEnumMap[instance.role]!,
       'content': instance.content,
       'conversation_id': instance.conversationId,
       'created_at': instance.createdAt.toIso8601String(),
       'answered_message_id': instance.answeredMessageId,
     };
+
+const _$ChatMessageRoleEnumMap = {
+  ChatMessageRole.user: 'user',
+  ChatMessageRole.assistant: 'assistant',
+  ChatMessageRole.system: 'system',
+};
