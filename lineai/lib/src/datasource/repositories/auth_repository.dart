@@ -12,7 +12,6 @@ class AuthRepository extends BaseRepository {
 
   Future<ApiResponse<AuthResponse, ApiError>> login({required String email, required String password}) async {
     return runOperation(call: () async {
-      _supabaseClient.from('').select();
       final response = await _supabaseClient.auth.signInWithPassword(
         email: email,
         password: password,
