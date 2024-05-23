@@ -40,7 +40,6 @@ class ChatCubit extends Cubit<ChatState> {
   void onConversationNameChanged(String name) {
     late Conversation unsavedConversation = state.conversation == null
         ? Conversation(
-            id: 0,
             userId: userId,
             createdAt: DateTime.now(),
           )
@@ -61,8 +60,9 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void createEmptyConversation() {
-    late Conversation conversation =
-        state.conversation == null ? Conversation(userId: userId, createdAt: DateTime.now()) : state.conversation!;
+    late Conversation conversation = state.conversation == null
+        ? Conversation(id: 0, userId: userId, createdAt: DateTime.now())
+        : state.conversation!;
     emit(ChatState.unsaved(conversation: conversation));
 
     saveConversation();

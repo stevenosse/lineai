@@ -58,7 +58,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
             BlocListener<ChatCubit, ChatState>(
               listener: (context, state) {
                 state.whenOrNull(
-                  unsaved: (conversation) => context.read<MessageListBloc>().setConversationId(null),
+                  unsaved: (conversation) => context.read<MessageListBloc>().setConversationId(conversation?.id),
                   saved: (conversation, _) {
                     context.read<MessageListBloc>().setConversationId(conversation.id);
                     if (_pendingMessage != null) {
