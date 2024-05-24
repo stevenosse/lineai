@@ -15,9 +15,11 @@ final class AIConstants {
   AIConstants._();
 
   static const List<String> models = [
+    'mixtral-8x7b-32768',
+    'llama3-70b-8192',
     'llama3-8b-8192',
     'gemma-7b-it',
-    'mixtral-8x7b-32768',
+    
   ];
 
   static const String defaultModel = 'mixtral-8x7b-32768';
