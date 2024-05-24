@@ -74,6 +74,8 @@
   "chat_regenerate": "Regenerate",
   "chat_deleteMessage": "Delete message",
   "chat_garanteeNotice": "Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed.",
+  "chat_messageFailure": "An error occurred. Please try again.",
+  "chat_retryButton": "Retry",
 
   "chatSettings_title": "Chat settings",
   "chatSettings_modelLabel": "Model",

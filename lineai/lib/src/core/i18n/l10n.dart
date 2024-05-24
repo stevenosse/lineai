@@ -700,6 +700,26 @@ class I18n {
     );
   }
 
+  /// `An error occurred. Please try again.`
+  String get chat_messageFailure {
+    return Intl.message(
+      'An error occurred. Please try again.',
+      name: 'chat_messageFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get chat_retryButton {
+    return Intl.message(
+      'Retry',
+      name: 'chat_retryButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Chat settings`
   String get chatSettings_title {
     return Intl.message(

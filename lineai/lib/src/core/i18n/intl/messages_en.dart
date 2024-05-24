@@ -79,9 +79,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Meta-based chatbot. Accuracy, correctness or appropriateness cannot be guaranteed."),
         "chat_inputPlaceholder":
             MessageLookupByLibrary.simpleMessage("Message..."),
+        "chat_messageFailure": MessageLookupByLibrary.simpleMessage(
+            "An error occurred. Please try again."),
         "chat_messageRequiredValidation":
             MessageLookupByLibrary.simpleMessage("Please enter a message."),
         "chat_regenerate": MessageLookupByLibrary.simpleMessage("Regenerate"),
+        "chat_retryButton": MessageLookupByLibrary.simpleMessage("Retry"),
         "chat_unnamedConversation":
             MessageLookupByLibrary.simpleMessage("Unnamed conversation"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),

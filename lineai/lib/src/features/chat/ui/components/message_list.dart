@@ -11,6 +11,7 @@ class MessageList extends StatefulWidget {
     required this.onDelete,
     required this.onRegenerate,
     this.currentlyRegeneratingMessageId,
+    this.hasError = false,
   });
 
   final int? currentlyRegeneratingMessageId;
@@ -19,6 +20,7 @@ class MessageList extends StatefulWidget {
   final ValueChanged<Message> onCopy;
   final ValueChanged<Message> onDelete;
   final ValueChanged<Message> onRegenerate;
+  final bool hasError;
 
   @override
   State<MessageList> createState() => _MessageListState();

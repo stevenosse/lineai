@@ -141,7 +141,7 @@ class _ChatSettingsScreenState extends State<ChatSettingsScreen> {
                           onChanged: context.read<ChatCubit>().onTemperatureChanged,
                         ),
                         const Gap.vertical(height: Dimens.doubleSpacing),
-                        if (state.conversation != null)
+                        if (state.conversation?.id != null)
                           ListTile(
                             leading: Icon(
                               IconsaxPlusBroken.trash,
@@ -172,7 +172,7 @@ class _ChatSettingsScreenState extends State<ChatSettingsScreen> {
                     const EdgeInsets.only(bottom: Dimens.spacing),
                 child: Button.neutral(
                   title: I18n.of(context).save,
-                  onPressed: () => context.read<ChatCubit>().saveConversation(),
+                  onPressed: () => context.read<ChatCubit>().updateConversation(),
                 ),
               ),
             ],

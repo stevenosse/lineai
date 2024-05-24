@@ -18,9 +18,11 @@ class DrawerMenu extends StatefulWidget {
     this.onStartConversation,
     this.onSearchQueryChanged,
     this.onSearchExited,
+    this.isLoading = false,
   });
 
   final Conversation? selectedConversation;
+  final bool isLoading;
   final List<Conversation> conversations;
   final ValueChanged<String>? onSearchQueryChanged;
   final ValueChanged<Conversation>? onConversationSelected;
@@ -116,22 +118,35 @@ class _DrawerMenuState extends State<DrawerMenu> {
               ),
               const SizedBox(height: Dimens.halfSpacing),
               Expanded(
-                child: widget.conversations.isEmpty
-                    ? const _EmptyList()
-                    : ListView.builder(
-                        itemCount: widget.conversations.length,
-                        itemBuilder: (context, index) {
-                          final conversation = widget.conversations[index];
-                          return ListTile(
-                            title: Text(
-                              conversation.name.isEmpty ? I18n.of(context).chat_unnamedConversation : conversation.name,
-                            ),
-                            selected: widget.selectedConversation?.id == conversation.id,
-                            selectedTileColor: context.colorScheme.background,
-                            onTap: () => widget.onConversationSelected?.call(conversation),
-                          );
-                        },
-                      ),
+                child: widget.isLoading
+                    ? const Padding(
+                        padding: EdgeInsets.all(Dimens.spacing),
+                        child: Center(
+                          child: SizedBox(
+                            height: 20.0,
+                            width: 20.0,
+                            child: CircularProgressIndicator.adaptive(strokeWidth: 2.0),
+                          ),
+                        ),
+                      )
+                    : widget.conversations.isEmpty
+                        ? const _EmptyList()
+                        : ListView.builder(
+                            itemCount: widget.conversations.length,
+                            itemBuilder: (context, index) {
+                              final conversation = widget.conversations[index];
+                              return ListTile(
+                                title: Text(
+                                  conversation.name.isEmpty
+                                      ? I18n.of(context).chat_unnamedConversation
+                                      : conversation.name,
+                                ),
+                                selected: widget.selectedConversation?.id == conversation.id,
+                                selectedTileColor: context.colorScheme.background,
+                                onTap: () => widget.onConversationSelected?.call(conversation),
+                              );
+                            },
+                          ),
               ),
               const Divider(),
               ListTile(

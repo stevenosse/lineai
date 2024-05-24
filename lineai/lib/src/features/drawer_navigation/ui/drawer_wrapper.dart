@@ -71,6 +71,7 @@ class _DrawerWrapperState extends State<DrawerWrapper> {
           return BlocBuilder<ChatCubit, ChatState>(
             builder: (context, chatState) {
               return DrawerMenu(
+                isLoading: chatState.isLoading,
                 conversations: state.conversations,
                 selectedConversation: chatState.conversation,
                 onSearchQueryChanged: (query) {

@@ -23,4 +23,6 @@ extension ChatStateX on ChatState {
         loading: (conversation) => conversation,
         orElse: () => null,
       );
+
+  bool get isLoading => maybeWhen(loading: (_) => true, orElse: () => false);
 }

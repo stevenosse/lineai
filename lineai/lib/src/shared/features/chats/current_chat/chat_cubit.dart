@@ -60,10 +60,18 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   void createEmptyConversation() {
-    late Conversation conversation = state.conversation == null
-        ? Conversation(userId: userId, createdAt: DateTime.now())
-        : state.conversation!;
+    late Conversation conversation =
+        state.conversation == null ? Conversation(userId: userId, createdAt: DateTime.now()) : state.conversation!;
     emit(ChatState.unsaved(conversation: conversation));
+
+    saveConversation();
+  }
+
+  void updateConversation() {
+    if (state.conversation case var conversation when conversation?.id == null && conversation != null) {
+      emit(ChatState.saved(conversation: conversation, isUpdated: true));
+      return;
+    }
 
     saveConversation();
   }

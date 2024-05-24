@@ -5,7 +5,6 @@ class SendMessageState with _$SendMessageState {
   const factory SendMessageState.initial() = _Initial;
 
   const factory SendMessageState.loading({
-    required Message message,
     int? conversationId,
   }) = _Loading;
 
@@ -22,6 +21,4 @@ class SendMessageState with _$SendMessageState {
 
 extension SendMessageStateX on SendMessageState {
   bool get isLoading => maybeMap(loading: (_) => true, orElse: () => false);
-
-  Message? get message => whenOrNull(loading: (message, _) => message);
 }
