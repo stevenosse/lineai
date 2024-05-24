@@ -67,7 +67,11 @@ class ChatBubble extends StatelessWidget {
                   const Gap.vertical(height: Dimens.minSpacing),
                   MarkdownBody(
                     data: message.content,
-                    styleSheet: MarkdownStyleSheet.fromTheme(context.theme),
+                    styleSheet: MarkdownStyleSheet.fromTheme(context.theme).copyWith(
+                      h1: context.textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+                      h2: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+                      h3: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),

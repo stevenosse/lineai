@@ -69,7 +69,6 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                     context
                         .read<SendMessageCubit>()
                         .sendMessage(conversationId: conversation.id!, content: _pendingMessage!.content);
-                    _pendingMessage = null;
                   }
                 },
                 deleted: () {
@@ -102,7 +101,12 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                 error: (error) => ApiErrorDialog.show(context: context, error: error),
               );
             },
-          )
+          ),
+          BlocListener<MessageListBloc, MessageListState>(
+            listener: (context, state) {
+              setState(() => _pendingMessage = null);
+            },
+          ),
         ],
         child: FractionallySizedBox(
           widthFactor: 1,
