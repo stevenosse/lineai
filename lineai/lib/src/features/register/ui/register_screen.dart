@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:form_validator/form_validator.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
 import 'package:lineai/gen/assets.gen.dart';
+import 'package:lineai/src/core/environment.dart';
 import 'package:lineai/src/core/i18n/l10n.dart';
 import 'package:lineai/src/core/routing/app_router.dart';
 import 'package:lineai/src/core/theme/dimens.dart';
@@ -17,6 +18,7 @@ import 'package:lineai/src/shared/components/forms/input.dart';
 import 'package:lineai/src/shared/components/gap.dart';
 import 'package:lineai/src/shared/components/labeled_divider.dart';
 import 'package:lineai/src/shared/extensions/context_extensions.dart';
+import 'package:lineai/src/shared/utils/url_utils.dart';
 
 @RoutePage()
 class RegisterScreen extends StatefulWidget implements AutoRouteWrapper {
@@ -157,7 +159,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: Dimens.iconSize,
                       ),
                       title: I18n.of(context).register_googleBtnLabel,
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO: Google sign up
+                      },
                     ),
                     const Gap.vertical(height: Dimens.spacing),
                     Button.outline(
@@ -168,26 +172,35 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         height: Dimens.iconSize,
                       ),
                       title: I18n.of(context).register_appleBtnLabel,
-                      onPressed: () {},
+                      onPressed: () {
+                        // TODO: Apple sign up
+                      },
                     ),
                   ],
                 ),
               ),
               Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: I18n.of(context).register_termsLabel,
-                    style: context.textTheme.bodySmall,
-                    children: [
-                      const TextSpan(text: ' '),
+                child: InkWell(
+                  onTap: () => openUrl(Environment.termsOfServiceUrl),
+                  borderRadius: BorderRadius.circular(Dimens.borderRadius),
+                  child: Padding(
+                    padding: const EdgeInsets.all(Dimens.halfSpacing),
+                    child: Text.rich(
                       TextSpan(
-                        text: I18n.of(context).register_termsLink,
-                        style: context.textTheme.bodySmall
-                            ?.copyWith(color: context.colorScheme.primary, fontWeight: FontWeight.w600),
-                      )
-                    ],
+                        text: I18n.of(context).register_termsLabel,
+                        style: context.textTheme.bodySmall,
+                        children: [
+                          const TextSpan(text: ' '),
+                          TextSpan(
+                            text: I18n.of(context).register_termsLink,
+                            style: context.textTheme.bodySmall
+                                ?.copyWith(color: context.colorScheme.primary, fontWeight: FontWeight.w600),
+                          )
+                        ],
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                  textAlign: TextAlign.center,
                 ),
               ),
               const Gap.vertical(height: Dimens.doubleSpacing),

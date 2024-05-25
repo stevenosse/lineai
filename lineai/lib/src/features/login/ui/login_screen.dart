@@ -161,7 +161,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: Dimens.iconSize,
               ),
               title: I18n.of(context).login_googleBtnLabel,
-              onPressed: () {},
+              onPressed: () {
+                // TODO: Login with Google
+              },
             ),
             const Gap.vertical(height: Dimens.spacing),
             Button.outline(
@@ -172,7 +174,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: Dimens.iconSize,
               ),
               title: I18n.of(context).login_appleBtnLabel,
-              onPressed: () {},
+              onPressed: () {
+                // TODO: Login with Apple
+              },
             ),
           ],
         ),
