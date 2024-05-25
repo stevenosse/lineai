@@ -4,6 +4,7 @@ import 'package:lineai/src/core/theme/dimens.dart';
 import 'package:lineai/src/datasource/models/chat_message_role.dart';
 import 'package:lineai/src/datasource/models/message/message.dart';
 import 'package:lineai/src/features/chat/ui/components/chat_bubble.dart';
+import 'package:lineai/src/shared/extensions/context_extensions.dart';
 
 class MessageList extends StatefulWidget {
   const MessageList({
@@ -63,6 +64,7 @@ class _MessageListState extends State<MessageList> {
 
   @override
   Widget build(BuildContext context) {
+    final scrollShortcutAppearanceThreshold = context.screenSize.height;
     return Stack(
       children: [
         ListView.builder(
@@ -113,19 +115,23 @@ class _MessageListState extends State<MessageList> {
               listenable: _scrollController,
               builder: (context, _) {
                 // if we're not at the bottom yet show arrow to scroll
-                if (_scrollController.hasClients &&
+                final showScrollToBottomButton = _scrollController.hasClients &&
                     _scrollController.position.hasContentDimensions &&
-                    _scrollController.offset < _scrollController.position.maxScrollExtent) {
-                  return IconButton.filled(
+                    _scrollController.offset <
+                        (_scrollController.position.maxScrollExtent - scrollShortcutAppearanceThreshold);
+                return AnimatedOpacity(
+                  opacity: showScrollToBottomButton ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                  child: IconButton.filled(
                     onPressed: () => _scrollController.animateTo(
                       _scrollController.position.maxScrollExtent,
                       curve: Curves.easeInOut,
                       duration: const Duration(milliseconds: 300),
                     ),
                     icon: const Icon(IconsaxPlusBroken.arrow_down_2),
-                  );
-                }
-                return const SizedBox.shrink();
+                  ),
+                );
               },
             ),
           ),
