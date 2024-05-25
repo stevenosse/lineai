@@ -59,14 +59,6 @@ class ChatCubit extends Cubit<ChatState> {
     emit(const ChatState.unsaved());
   }
 
-  void createEmptyConversation() {
-    late Conversation conversation =
-        state.conversation == null ? Conversation(userId: userId, createdAt: DateTime.now()) : state.conversation!;
-    emit(ChatState.unsaved(conversation: conversation));
-
-    saveConversation();
-  }
-
   void updateConversation() {
     if (state.conversation case var conversation when conversation?.id == null && conversation != null) {
       emit(ChatState.saved(conversation: conversation, isUpdated: true));
@@ -76,8 +68,15 @@ class ChatCubit extends Cubit<ChatState> {
     saveConversation();
   }
 
+  Conversation _createEmptyConversation() {
+    return Conversation(
+      userId: userId,
+      createdAt: DateTime.now(),
+    );
+  }
+
   void saveConversation() async {
-    emit(ChatState.loading(conversation: state.conversation!));
+    emit(ChatState.loading(conversation: state.conversation ?? _createEmptyConversation()));
 
     final response = await _chatRepository.createConversation(conversation: state.conversation!);
     response.when(

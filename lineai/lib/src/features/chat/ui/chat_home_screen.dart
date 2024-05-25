@@ -14,7 +14,6 @@ import 'package:lineai/src/features/chat/logic/send_message/send_message_cubit.d
 import 'package:lineai/src/features/chat/ui/components/chats_empty_state.dart';
 import 'package:lineai/src/features/chat/ui/components/message_list.dart';
 import 'package:lineai/src/features/chat/ui/components/send_message_form.dart';
-import 'package:lineai/src/features/settings/logic/user_settings_cubit.dart';
 import 'package:lineai/src/shared/components/dialogs/api_error_dialog.dart';
 import 'package:lineai/src/shared/components/dialogs/loading_dialog.dart';
 import 'package:lineai/src/shared/components/gap.dart';
@@ -127,10 +126,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
                       builder: (context, sendMessageState) {
                         return MessageList(
                           messages: messages,
-                          hasError: sendMessageState.maybeWhen(
-                            error: (_, __, ___) => true,
-                            orElse: () => false,
-                          ),
+                          hasError: sendMessageState.maybeWhen(error: (_, __, ___) => true, orElse: () => false),
                           currentlyRegeneratingMessageId:
                               context.watch<RegenerateMessageCubit>().state.regeneratingMessageId,
                           onCopy: (message) {
@@ -168,9 +164,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
 
                         if ((sendMessageFailed || createConvoFailed) && _pendingMessage != null) {
                           return _SendMessageFailed(
-                            onRetry: () {
-                              _onSendMessagePressed(_pendingMessage!.content);
-                            },
+                            onRetry: () => _onSendMessagePressed(_pendingMessage!.content),
                           );
                         }
                         return Column(
@@ -202,15 +196,6 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
   }
 
   void _onSendMessagePressed(String messageText) async {
-    final settings = context.read<UserSettingsCubit>().state.settings;
-    if (settings.groqApiKey.isEmpty) {
-      $notificationService.showErrorNotification(
-        context: context,
-        body: I18n.of(context).settings_groqApiKeyError,
-      );
-      return;
-    }
-
     final sendMessageCubit = context.read<SendMessageCubit>();
     final conversationId = context.read<ChatCubit>().state.conversation?.id;
 
@@ -225,7 +210,7 @@ class _ChatHomeScreenState extends State<ChatHomeScreen> {
       _pendingMessage = message;
     });
     if (conversationId == null) {
-      context.read<ChatCubit>().createEmptyConversation();
+      context.read<ChatCubit>().saveConversation();
     } else {
       await sendMessageCubit.sendMessage(conversationId: conversationId, content: messageText);
     }
