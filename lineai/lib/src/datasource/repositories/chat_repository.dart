@@ -74,6 +74,19 @@ class ChatRepository extends BaseRepository {
 
   Future<ApiResponse<DeleteMessageResult, ApiError>> deleteMessage({required Message message}) async {
     return runOperation(call: () async {
+      final answer = await _supabaseClient
+          .from(DBConstants.messagesTable)
+          .select()
+          .eq('answered_message_id', message.id)
+          .maybeSingle();
+
+      if (answer != null) {
+        await _supabaseClient.from(DBConstants.messagesTable).update({
+          ...answer,
+          'answered_message_id': null,
+        })
+        .eq('id', answer['id']);
+      }
       await _supabaseClient.from(DBConstants.messagesTable).delete().eq('id', message.id);
 
       // If the conversation is empty, delete it
