@@ -31,13 +31,10 @@ Deno.serve(async (req: Request) => {
       data: { user },
     } = await supabaseClient.auth.getUser(token);
 
-    const { data: usersSettings, error: settingsError } = await supabaseClient
-      .from("user_settings")
-      .select("groq_api_key")
-      .eq("user_id", user?.id ?? 1)
-      .maybeSingle();
+    const { data: groq_api_key, error: fetchApiKeyError } = await supabaseClient
+      .rpc('read_groq_api_key', { user_id: user?.id ?? 1 })
 
-    if (!usersSettings?.groq_api_key || settingsError) {
+    if (!groq_api_key || fetchApiKeyError) {
       return handleError("Please set your Groq API key in the settings", 400);
     }
 
@@ -125,7 +122,7 @@ Deno.serve(async (req: Request) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${usersSettings.groq_api_key}`,
+          "Authorization": `Bearer ${groq_api_key}`,
         },
         body: JSON.stringify(payload),
       },
