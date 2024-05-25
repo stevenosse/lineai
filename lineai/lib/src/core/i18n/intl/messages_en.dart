@@ -67,8 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Temperature"),
         "chatSettings_title":
             MessageLookupByLibrary.simpleMessage("Chat settings"),
-        "chat_aiAssistant":
-            MessageLookupByLibrary.simpleMessage("AI Assistant"),
+        "chat_aiAssistant": MessageLookupByLibrary.simpleMessage("Assistant"),
         "chat_copiedToClipboardMessage": MessageLookupByLibrary.simpleMessage(
             "Message content copied to clipboard"),
         "chat_copyMessage":

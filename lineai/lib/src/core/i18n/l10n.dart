@@ -640,10 +640,10 @@ class I18n {
     );
   }
 
-  /// `AI Assistant`
+  /// `Assistant`
   String get chat_aiAssistant {
     return Intl.message(
-      'AI Assistant',
+      'Assistant',
       name: 'chat_aiAssistant',
       desc: '',
       args: [],

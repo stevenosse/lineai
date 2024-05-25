@@ -68,7 +68,7 @@
   "chat_inputPlaceholder": "Message...",
   "chat_messageRequiredValidation": "Please enter a message.",
   "chat_unnamedConversation": "Unnamed conversation",
-  "chat_aiAssistant": "AI Assistant",
+  "chat_aiAssistant": "Assistant",
   "chat_copiedToClipboardMessage": "Message content copied to clipboard",
   "chat_copyMessage": "Copy message",
   "chat_regenerate": "Regenerate",
