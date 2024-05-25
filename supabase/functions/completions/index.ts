@@ -74,14 +74,14 @@ Deno.serve(async (req: Request) => {
 
     const messages: CompletionMessage[] = [];
 
+    messages.push({
+      role: "system",
+      content: "Use markdown syntax if you need to format the output. Always answer in the language of the conversation with a special focus on the latest message. Use a friendly and humorous tone when necessary.",
+    });
+
     if (conversation.system_prompt) {
       messages.push({ role: "system", content: conversation.system_prompt });
     }
-
-    messages.push({
-      role: "system",
-      content: "Answer in markdown format. Reply in the user language",
-    });
 
     /// Temporary, we send the 10 previous messages as content
     const { data: contextWindowMessages, error: contextError } =
@@ -101,6 +101,7 @@ Deno.serve(async (req: Request) => {
       });
     }
 
+    // TODO: summarize all message in conversation and save the summary in the conversation
     if (conversation.summary) {
       messages.push({
         role: "system",
@@ -129,8 +130,6 @@ Deno.serve(async (req: Request) => {
         body: JSON.stringify(payload),
       },
     ).then((res) => res.json());
-
-    // TODO: summarize all message in conversation and save the summary in the conversation
 
     if (!modelResponse) {
       return handleError("Failed to query AI model", 500);
